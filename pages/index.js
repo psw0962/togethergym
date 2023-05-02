@@ -103,8 +103,6 @@ const Home = () => {
             alt="image1"
             priority={true}
             quality={100}
-            ayout="intrinsic"
-            layout="fixed"
             placeholder="blur"
             blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
           />
@@ -133,8 +131,6 @@ const Home = () => {
             alt="image2"
             priority={true}
             quality={100}
-            ayout="intrinsic"
-            layout="fixed"
             placeholder="blur"
             blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
           />
@@ -167,8 +163,6 @@ const Home = () => {
             alt="image3"
             priority={true}
             quality={100}
-            ayout="intrinsic"
-            layout="fixed"
             placeholder="blur"
             blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
           />
@@ -201,8 +195,6 @@ const Home = () => {
             alt="image4"
             priority={true}
             quality={100}
-            ayout="intrinsic"
-            layout="fixed"
             placeholder="blur"
             blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
           />
@@ -230,8 +222,6 @@ PT 전문 센터를 10호점까지 운영해오면서 쌓아온 노하우와 투
             alt="image5"
             priority={true}
             quality={100}
-            ayout="intrinsic"
-            layout="fixed"
             placeholder="blur"
             blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
           />
@@ -243,7 +233,7 @@ PT 전문 센터를 10호점까지 운영해오면서 쌓아온 노하우와 투
       <Button
         size="large"
         color="black"
-        onClick={() => alert('준비중 입니다.')}
+        onClick={() => window.open('https://naver.me/xPpeuiwB')}
       >
         <Font fontSize="2.5rem">일주일 무료 체험권 신청하기</Font>
       </Button>
