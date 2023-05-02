@@ -5,7 +5,39 @@ export default class CustomDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          {/* 홈페이지 */}
+          <meta name="author" content="togethergym" />
+          <meta
+            name="keywords"
+            content="투게더짐, togethergym, 남스짐, health, fitness, gym, pt, PT, crossfit,team training, weight training, 헬스장, 헬스클럽"
+          />
+          <meta name="description" content="같이하는 재밌는 운동 투게더 짐" />
+
+          {/* 오픈 그래프 */}
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="TOGETHER GYM" />
+          <meta
+            property="og:description"
+            content="같이하는 재밌는 운동 투게더 짐"
+          />
+          <meta property="og:site_name" content="TOGETHER GYM" />
+          <meta property="og:image" content="" />
+          <meta property="og:locale" content="ko_KR" />
+          <meta property="og:url" content="https://www.togethergym.co.kr/" />
+
+          <meta property="og:image:width" content="600" />
+          <meta property="og:image:height" content="315" />
+
+          {/* 트위터용 */}
+          <meta name="twitter:card" content="website" />
+          <meta name="twitter:title" content="TOGETHER GYM" />
+          <meta
+            name="twitter:description"
+            content="같이하는 재밌는 운동 투게더 짐"
+          />
+          <meta name="twitter:image" content="" />
+        </Head>
 
         <body>
           <Main />
