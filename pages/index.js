@@ -1,6 +1,5 @@
 import Font from '@/component/common/font';
 import styled from 'styled-components';
-import { FadeIn } from 'react-slide-fade-in';
 import Image from 'next/image';
 import main1 from '@/public/png/main1.png';
 import main2 from '@/public/png/main2.jpeg';
@@ -10,6 +9,7 @@ import main5 from '@/public/png/main5.png';
 import instagram from '@/public/png/instagram.png';
 import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
+import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
 
 const Home = () => {
@@ -23,60 +23,52 @@ const Home = () => {
         muted={true}
       ></CustomVideo>
 
-      <FadeIn
-        from="bottom"
-        positionOffset={400}
-        triggerOffset={200}
-        delayInMilliseconds={400}
-      >
-        <FontWrapper>
-          <Font fontSize="5.5rem" margin="15rem 0 0 0">
-            안녕하세요.
-          </Font>
-          <Font fontSize="5.5rem" margin="2rem 0 0 0">
-            우리는 투게더 짐입니다.
-          </Font>
-        </FontWrapper>
-      </FadeIn>
+      <FontWrapper>
+        <Font fontSize="5.5rem" margin="15rem 0 0 0">
+          안녕하세요.
+        </Font>
+        <Font fontSize="5.5rem" margin="2rem 0 0 0">
+          우리는 투게더 짐입니다.
+        </Font>
+      </FontWrapper>
 
       {/* ===== */}
 
-      <FadeIn
-        from="left"
-        positionOffset={400}
-        triggerOffset={200}
-        delayInMilliseconds={400}
+      <Font fontSize="5.5rem" margin="15rem 0 2.5rem 0">
+        투게더 짐이란?
+      </Font>
+
+      <Font fontSize="4rem" margin="1.5rem 0 0 0">
+        - 힘들기만한 운동? NO👋 운동은 원래 즐거운거에요!
+      </Font>
+      <Font fontSize="4rem" margin="1.5rem 0 0 0">
+        - 근육 운동 + 유산소 운동
+      </Font>
+      <Font fontSize="4rem" margin="1.5rem 0 0 0">
+        - 전문 트레이너와 함께하는 부상 없는 트레이닝
+      </Font>
+      <Font fontSize="4rem" margin="1.5rem 0 0 0">
+        - 운동의 재미를 찾아 스스로 운동할 수 있게 만드는데 목적이 있는 그룹
+        운동!
+      </Font>
+
+      <Font fontSize="4.5rem" margin="15rem 0 0 0">
+        투게더 짐은 PT전문 센터 남스짐에서 새롭게 런칭하는
+      </Font>
+
+      <Font fontSize="4.5rem" margin="2rem 0 0 0">
+        팀 트레이닝 전문 센터 입니다.
+      </Font>
+
+      <Font fontSize="5rem" margin="2rem 0 6rem 0"></Font>
+
+      <CustomAtag
+        href="https://www.namsgym.com/"
+        target="_blank"
+        rel="noreferrer"
       >
-        <Font fontSize="5.5rem" margin="15rem 0 2.5rem 0">
-          투게더 짐이란?
-        </Font>
-
-        <CustomPretag>
-          {`- 힘들기만한 운동? NO👋 운동은 원래 즐거운거에요!
-- 근육 운동 + 유산소 운동
-- 전문 트레이너와 함께하는 부상 없는 트레이닝
-- 운동의 재미를 찾아 스스로 운동할 수 있게 만드는데 목적이 있는 그룹 운동!
-          `}
-        </CustomPretag>
-
-        <Font fontSize="4.5rem" margin="2rem 0 0 0">
-          투게더 짐은 PT전문 센터 남스짐에서 새롭게 런칭하는
-        </Font>
-
-        <Font fontSize="4.5rem" margin="2rem 0 0 0">
-          팀 트레이닝 전문 센터 입니다.
-        </Font>
-
-        <Font fontSize="5rem" margin="2rem 0 6rem 0"></Font>
-
-        <CustomAtag
-          href="https://www.namsgym.com/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          👉 남스짐 구경하러 가기
-        </CustomAtag>
-      </FadeIn>
+        👉 남스짐 구경하러 가기
+      </CustomAtag>
 
       {/* ===== */}
 
@@ -90,93 +82,73 @@ const Home = () => {
         5가지 팀 트레이닝 철학
       </Font>
 
-      <FadeIn
-        from="left"
-        positionOffset={400}
-        triggerOffset={200}
-        delayInMilliseconds={400}
-      >
-        <Wrapper>
-          <PreTagWrapper>
-            <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
-              1. 효율성
-            </Font>
+      <Wrapper>
+        <PreTagWrapper>
+          <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
+            1. 효율성
+          </Font>
 
-            <CustomPretag fontSize="2.5rem">
-              {`50분 안에 설정한 칼로리를 소모하는데
+          <CustomPretag fontSize="2.5rem">
+            {`50분 안에 설정한 칼로리를 소모하는데
 목적이 있는 고강도 서킷 트레이닝입니다.
 짧고 강도 있게 효율적으로 운동합니다.
 그 효과는 언제나 기대 이상입니다.
 `}
-            </CustomPretag>
-          </PreTagWrapper>
+          </CustomPretag>
+        </PreTagWrapper>
 
-          <CustomImageWrapper>
-            <CustomImage
-              src={main1}
-              alt="image1"
-              priority={true}
-              quality={100}
-              ayout="intrinsic"
-              layout="fixed"
-              placeholder="blur"
-              blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-            />
-          </CustomImageWrapper>
-        </Wrapper>
-      </FadeIn>
+        <CustomImageWrapper>
+          <CustomImage
+            src={main1}
+            alt="image1"
+            priority={true}
+            quality={100}
+            ayout="intrinsic"
+            layout="fixed"
+            placeholder="blur"
+            blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+          />
+        </CustomImageWrapper>
+      </Wrapper>
 
-      <FadeIn
-        from="right"
-        positionOffset={400}
-        triggerOffset={200}
-        delayInMilliseconds={400}
-      >
-        <Wrapper>
-          <PreTagWrapper>
-            <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
-              2. 전문성
-            </Font>
+      <Wrapper>
+        <PreTagWrapper>
+          <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
+            2. 전문성
+          </Font>
 
-            <CustomPretag fontSize="2.5rem">
-              {`효율적이라고 해서 대충 운동하지 않습니다.
+          <CustomPretag fontSize="2.5rem">
+            {`효율적이라고 해서 대충 운동하지 않습니다.
 자격을 갖춘 지도자와 함께 다치치 않고
 올바르게 운동할 수 있도록 이끕니다.
 투게더 짐은 지속 가능한
 운동을 추구합니다.
 `}
-            </CustomPretag>
-          </PreTagWrapper>
+          </CustomPretag>
+        </PreTagWrapper>
 
-          <CustomImageWrapper>
-            <CustomImage
-              src={main2}
-              alt="image2"
-              priority={true}
-              quality={100}
-              ayout="intrinsic"
-              layout="fixed"
-              placeholder="blur"
-              blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-            />
-          </CustomImageWrapper>
-        </Wrapper>
-      </FadeIn>
+        <CustomImageWrapper>
+          <CustomImage
+            src={main2}
+            alt="image2"
+            priority={true}
+            quality={100}
+            ayout="intrinsic"
+            layout="fixed"
+            placeholder="blur"
+            blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+          />
+        </CustomImageWrapper>
+      </Wrapper>
 
-      <FadeIn
-        from="left"
-        positionOffset={400}
-        triggerOffset={200}
-        delayInMilliseconds={400}
-      >
-        <Wrapper>
-          <PreTagWrapper>
-            <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
-              3. 지속가능성
-            </Font>
+      <Wrapper>
+        <PreTagWrapper>
+          <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
+            3. 지속가능성
+          </Font>
 
-            <CustomPretag fontSize="2.5rem">
-              {`우리는 365일 닭가슴살과 고구마만
+          <CustomPretag fontSize="2.5rem">
+            {`우리는 365일 닭가슴살과 고구마만
 먹고 살 수 없다는 걸 알아요.
 여기서 운동하는 목적이 무대 위에 서는
 보디빌딩 선수나 경쟁을 목표하는
@@ -186,38 +158,31 @@ const Home = () => {
 있도록 노력합니다.
 스스로 운동할 수 있도록 하는 것이 투게더 짐의 궁극적인 목적입니다.
 `}
-            </CustomPretag>
-          </PreTagWrapper>
+          </CustomPretag>
+        </PreTagWrapper>
 
-          <CustomImageWrapper>
-            <CustomImage
-              src={main3}
-              alt="image3"
-              priority={true}
-              quality={100}
-              ayout="intrinsic"
-              layout="fixed"
-              placeholder="blur"
-              blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-            />
-          </CustomImageWrapper>
-        </Wrapper>
-      </FadeIn>
+        <CustomImageWrapper>
+          <CustomImage
+            src={main3}
+            alt="image3"
+            priority={true}
+            quality={100}
+            ayout="intrinsic"
+            layout="fixed"
+            placeholder="blur"
+            blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+          />
+        </CustomImageWrapper>
+      </Wrapper>
 
-      <FadeIn
-        from="right"
-        positionOffset={400}
-        triggerOffset={200}
-        delayInMilliseconds={400}
-      >
-        <Wrapper>
-          <PreTagWrapper>
-            <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
-              4. 함께하는 의미
-            </Font>
+      <Wrapper>
+        <PreTagWrapper>
+          <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
+            4. 함께하는 의미
+          </Font>
 
-            <CustomPretag fontSize="2.5rem">
-              {`빨리 가려면 혼자!
+          <CustomPretag fontSize="2.5rem">
+            {`빨리 가려면 혼자!
 멀리 가려면 함께!
 투게더 짐은 함께하는 것에 큰 의미를
 두고 있어요.
@@ -227,59 +192,51 @@ const Home = () => {
 같이 이겨내요.
 그렇게 함께하다 보면 어느새 바뀐 거울 속 내 모습에 놀라게 될 거예요.
 `}
-            </CustomPretag>
-          </PreTagWrapper>
+          </CustomPretag>
+        </PreTagWrapper>
 
-          <CustomImageWrapper>
-            <CustomImage
-              src={main4}
-              alt="image4"
-              priority={true}
-              quality={100}
-              ayout="intrinsic"
-              layout="fixed"
-              placeholder="blur"
-              blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-            />
-          </CustomImageWrapper>
-        </Wrapper>
-      </FadeIn>
+        <CustomImageWrapper>
+          <CustomImage
+            src={main4}
+            alt="image4"
+            priority={true}
+            quality={100}
+            ayout="intrinsic"
+            layout="fixed"
+            placeholder="blur"
+            blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+          />
+        </CustomImageWrapper>
+      </Wrapper>
 
-      <FadeIn
-        from="left"
-        positionOffset={400}
-        triggerOffset={200}
-        delayInMilliseconds={400}
-      >
-        <Wrapper>
-          <PreTagWrapper>
-            <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
-              5. 세일즈
-            </Font>
+      <Wrapper>
+        <PreTagWrapper>
+          <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
+            5. 세일즈
+          </Font>
 
-            <CustomPretag fontSize="2.5rem">
-              {`투게더 짐은 무료 체험 후 등록을 강요하거나
+          <CustomPretag fontSize="2.5rem">
+            {`투게더 짐은 무료 체험 후 등록을 강요하거나
 결제를 유도한 과한 세일즈를 하지 않습니다.
 PT 전문 센터를 10호점까지 운영해오면서 쌓아온 노하우와 투게더 짐이 수차례 시행착오를
 거쳐 개발한 3천여 가지의 운동 종목과 목적에 맞는 운동 프로그램에 자신 있기 때문입니다.
 `}
-            </CustomPretag>
-          </PreTagWrapper>
+          </CustomPretag>
+        </PreTagWrapper>
 
-          <CustomImageWrapper>
-            <CustomImage
-              src={main5}
-              alt="image5"
-              priority={true}
-              quality={100}
-              ayout="intrinsic"
-              layout="fixed"
-              placeholder="blur"
-              blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-            />
-          </CustomImageWrapper>
-        </Wrapper>
-      </FadeIn>
+        <CustomImageWrapper>
+          <CustomImage
+            src={main5}
+            alt="image5"
+            priority={true}
+            quality={100}
+            ayout="intrinsic"
+            layout="fixed"
+            placeholder="blur"
+            blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+          />
+        </CustomImageWrapper>
+      </Wrapper>
 
       <LineDiv />
 
@@ -307,6 +264,7 @@ PT 전문 센터를 10호점까지 운영해오면서 쌓아온 노하우와 투
         </IconWrapper>
 
         <IconWrapper>
+          <Image src={phone} alt="phone" width={30} height={30} />
           <a
             style={{ fontSize: '2.7rem', textDecoration: 'none' }}
             href={`tel:031-403-0776`}
@@ -365,6 +323,10 @@ const CustomPretag = styled.pre`
   font-size: ${props => (props.fontSize ? props.fontSize : '4rem')};
   white-space: pre-wrap;
   line-height: 5.5rem;
+
+  @media screen and (max-width: 450px) {
+    text-align: center;
+  }
 `;
 
 const PreTagWrapper = styled.div`
@@ -372,6 +334,9 @@ const PreTagWrapper = styled.div`
 
   @media screen and (max-width: 450px) {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -410,12 +375,14 @@ const CustomImage = styled(Image)`
 
 const IconFrame = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   margin: 2rem 0 0 0;
 `;
 
 const IconWrapper = styled.div`
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
   border: 1px solid #000;
