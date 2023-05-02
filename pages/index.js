@@ -6,6 +6,8 @@ import main2 from '@/public/png/main2.jpeg';
 import main3 from '@/public/png/main3.jpeg';
 import main4 from '@/public/png/main4.jpeg';
 import main5 from '@/public/png/main5.png';
+import main6 from '@/public/png/main6.jpeg';
+import main7 from '@/public/png/main7.jpeg';
 import instagram from '@/public/png/instagram.png';
 import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
@@ -51,6 +53,26 @@ const Home = () => {
         - 운동의 재미를 찾아 스스로 운동할 수 있게 만드는데 목적이 있는 그룹
         운동!
       </Font>
+
+      <CustomImage
+        style={{ margin: '4rem 0 0 0' }}
+        src={main6}
+        alt="image6"
+        priority={true}
+        quality={100}
+        placeholder="blur"
+        blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+      />
+
+      <CustomImage
+        style={{ margin: '4rem 0 0 0' }}
+        src={main7}
+        alt="image7"
+        priority={true}
+        quality={100}
+        placeholder="blur"
+        blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+      />
 
       <Font fontSize="4.5rem" margin="15rem 0 0 0">
         투게더 짐은 PT전문 센터 남스짐에서 새롭게 런칭하는
