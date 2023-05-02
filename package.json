@@ -25,7 +25,6 @@
     "react-dom": "18.2.0",
     "react-query": "^3.39.3",
     "react-slick": "^0.29.0",
-    "react-slide-fade-in": "^1.0.9",
     "react-use-draggable-scroll": "^0.4.7",
     "recoil": "^0.7.7",
     "slick-carousel": "^1.8.1",
