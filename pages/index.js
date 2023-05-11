@@ -13,8 +13,41 @@ import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
 import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
+import React, { useEffect } from 'react';
+import { db, storage } from 'utils/firebase';
 
 const Home = () => {
+  // const getTimer = async () => {
+  //   const snapshot = await db?.collection('timer').get();
+  //   snapshot.forEach(doc => {
+  //     console.log(doc.data());
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   getTimer();
+  // });
+
+  // const getAllItemNamesFromStorage = async () => {
+  //   try {
+  //     const storageRef = storage.ref();
+  //     const allItems = await storageRef.listAll();
+
+  //     // 파일과 폴더의 이름 추출
+  //     const itemNames = allItems.items.map(item => item.name);
+  //     const folderNames = allItems.prefixes.map(folder => folder.name);
+
+  //     console.log('File Names:', itemNames);
+  //     console.log('Folder Names:', folderNames);
+  //   } catch (error) {
+  //     console.error('Error retrieving item names:', error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getAllItemNamesFromStorage();
+  // }, []);
+
   return (
     <Frame>
       <CustomVideo
