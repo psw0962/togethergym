@@ -8,72 +8,56 @@ import main4 from '@/public/png/main4.jpeg';
 import main5 from '@/public/png/main5.png';
 import main6 from '@/public/png/main6.jpeg';
 import main7 from '@/public/png/main7.jpeg';
+import banner1 from '@/public/png/banner1.png';
+import banner2 from '@/public/png/banner2.jpeg';
 import instagram from '@/public/png/instagram.png';
 import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
 import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
-import React, { useEffect } from 'react';
-import { db, storage } from 'utils/firebase';
 
 const Home = () => {
-  // const getTimer = async () => {
-  //   const snapshot = await db?.collection('timer').get();
-  //   snapshot.forEach(doc => {
-  //     console.log(doc.data());
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   getTimer();
-  // });
-
-  // const getAllItemNamesFromStorage = async () => {
-  //   try {
-  //     const storageRef = storage.ref();
-  //     const allItems = await storageRef.listAll();
-
-  //     // 파일과 폴더의 이름 추출
-  //     const itemNames = allItems.items.map(item => item.name);
-  //     const folderNames = allItems.prefixes.map(folder => folder.name);
-
-  //     console.log('File Names:', itemNames);
-  //     console.log('Folder Names:', folderNames);
-  //   } catch (error) {
-  //     console.error('Error retrieving item names:', error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getAllItemNamesFromStorage();
-  // }, []);
-
   return (
     <Frame>
       <CustomVideo
-        src="/video/togethergym.mp4"
+        src="/togethergym.mp4"
         poster="/png/logo.png"
         loop={true}
         autoPlay={true}
         muted={true}
       ></CustomVideo>
 
+      <Button
+        size="large"
+        color="black"
+        margin="15rem 0 0 0"
+        onClick={() => window.open('https://naver.me/xPpeuiwB')}
+      >
+        <Font fontSize="2.5rem">일주일 무료 체험권 신청하기</Font>
+      </Button>
+
       <FontWrapper>
-        <Font fontSize="5.5rem" margin="15rem 0 0 0">
+        <Font fontSize="5rem" margin="15rem 0 0 0">
           안녕하세요.
         </Font>
-        <Font fontSize="5.5rem" margin="2rem 0 0 0">
+        <Font fontSize="5rem" margin="2rem 0 0 0">
           우리는 투게더 짐입니다.
         </Font>
       </FontWrapper>
 
       {/* ===== */}
 
-      <Font fontSize="5.5rem" margin="15rem 0 2.5rem 0">
-        투게더 짐이란?
-      </Font>
+      <CustomImage
+        style={{ margin: '4rem 0 0 0' }}
+        src={banner2}
+        alt="banner2"
+        priority={true}
+        quality={100}
+        placeholder="blur"
+        blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+      />
 
-      <Font fontSize="4rem" margin="1.5rem 0 0 0">
+      <Font fontSize="4rem" margin="4rem 0 0 0">
         - 힘들기만한 운동? NO👋 운동은 원래 즐거운거에요!
       </Font>
       <Font fontSize="4rem" margin="1.5rem 0 0 0">
@@ -107,15 +91,15 @@ const Home = () => {
         blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
       />
 
-      <Font fontSize="4.5rem" margin="15rem 0 0 0">
+      <Font fontSize="4rem" margin="15rem 0 0 0">
         투게더 짐은 PT전문 센터 남스짐에서 새롭게 런칭하는
       </Font>
 
-      <Font fontSize="4.5rem" margin="2rem 0 0 0">
+      <Font fontSize="4rem" margin="2rem 0 0 0">
         팀 트레이닝 전문 센터 입니다.
       </Font>
 
-      <Font fontSize="5rem" margin="2rem 0 6rem 0"></Font>
+      <Font fontSize="4rem" margin="2rem 0 6rem 0"></Font>
 
       <CustomAtag
         href="https://www.namsgym.com/"
@@ -129,11 +113,40 @@ const Home = () => {
 
       <LineDiv marin="100rem 0px 100rem 0px" />
 
-      <Font fontSize="6rem" margin="0rem 0 0 0">
+      <Font fontSize="4rem" margin="1rem 0 0 0">
+        3개 이상 해당된다면
+      </Font>
+
+      <Font fontSize="4rem" margin="1rem 0 0 0">
+        바로 투게더 짐 일주일 무료 체험을 신청해 보세요!
+      </Font>
+
+      <CustomImage
+        style={{ margin: '4rem 0 0 0' }}
+        src={banner1}
+        alt="banner1"
+        priority={true}
+        quality={100}
+        placeholder="blur"
+        blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+      />
+
+      <Button
+        size="large"
+        color="black"
+        margin="4rem 0 0 0"
+        onClick={() => window.open('https://naver.me/xPpeuiwB')}
+      >
+        <Font fontSize="2.5rem">일주일 무료 체험권 신청하기</Font>
+      </Button>
+
+      <LineDiv marin="100rem 0px 100rem 0px" />
+
+      <Font fontSize="4rem" margin="0rem 0 0 0">
         투게더 짐이 추구하는
       </Font>
 
-      <Font fontSize="6rem" margin="1rem 0 0 0">
+      <Font fontSize="4rem" margin="1rem 0 0 0">
         5가지 팀 트레이닝 철학
       </Font>
 
