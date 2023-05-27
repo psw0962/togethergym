@@ -14,8 +14,6 @@ const Program = () => {
 
   // 최초 셋팅 이펙트
   useEffect(() => {
-    setAudio(new Audio('/sounds/beep.mp3'));
-
     // 타이머에 따라 첫 셋팅 분기
     if (timerMethod === 'basic') {
       setFlag({
@@ -56,8 +54,10 @@ const Program = () => {
 
   // 오디오 이펙트
   useEffect(() => {
+    setAudio(new Audio('/sounds/beep.mp3'));
+
     if (flag.timer <= 3) {
-      audio.play();
+      audio?.play();
     }
   }, [flag.timer]);
 
