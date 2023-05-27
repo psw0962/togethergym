@@ -14,6 +14,12 @@ export default class CustomDocument extends Document {
           />
           <meta name="description" content="같이하는 재밌는 운동 투게더 짐" />
 
+          {/* Jua */}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+            rel="stylesheet"
+          />
+
           {/* 오픈 그래프 */}
           <meta property="og:type" content="website" />
           <meta property="og:title" content="TOGETHER GYM" />
