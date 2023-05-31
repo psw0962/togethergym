@@ -42,6 +42,13 @@ const Select = () => {
 
   const debouncedSearchKeyWord = useDebounce(searchKeyWord);
 
+  const getPrograms = async () => {
+    const snapshot = await db?.collection('together_selected').get();
+    const documents = snapshot?.docs[0].data().data;
+
+    setSelectedProgramState(documents);
+  };
+
   const customProgramData = () => {
     const result = [];
 
@@ -84,15 +91,8 @@ const Select = () => {
 
   // 새로고침 및 최초 진입 시 프로그램 셋팅
   useEffect(() => {
-    const getPrograms = async () => {
-      const snapshot = await db?.collection('together_selected').get();
-      const documents = snapshot?.docs[0].data().data;
-
-      setSelectedProgramState(documents);
-    };
-
     getPrograms();
-  }, [selectedProgramState]);
+  }, []);
 
   const onClickAddProgram = x => {
     const checkDuplication = selectedProgramState?.find(y => y.id === x.id);
@@ -118,6 +118,7 @@ const Select = () => {
     };
 
     setNewObject();
+    getPrograms();
   };
 
   const onClickDeleteProgram = async x => {
@@ -132,6 +133,7 @@ const Select = () => {
     };
 
     deleteProgram();
+    getPrograms();
   };
 
   const savePrograms = async () => {

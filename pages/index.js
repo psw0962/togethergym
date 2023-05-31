@@ -36,6 +36,32 @@ const Home = () => {
         <Font fontSize="2.5rem">일주일 무료 체험권 신청하기</Font>
       </Button>
 
+      <IconFrame>
+        <IconWrapper
+          onClick={() =>
+            window.open('https://www.instagram.com/togethergym_official/')
+          }
+        >
+          <Image src={instagram} alt="instagram" width={30} height={30} />
+          <Font fontSize="2.7rem">투게더 짐 인스타그램</Font>
+        </IconWrapper>
+
+        <IconWrapper onClick={() => window.open('http://pf.kakao.com/_nXyLxj')}>
+          <Image src={kakaotalk} alt="kakaotalk" width={30} height={30} />
+          <Font fontSize="2.7rem">카카오톡 상담하기</Font>
+        </IconWrapper>
+
+        <IconWrapper>
+          <Image src={phone} alt="phone" width={30} height={30} />
+          <a
+            style={{ fontSize: '2.7rem', textDecoration: 'none' }}
+            href={`tel:031-403-0776`}
+          >
+            전화문의
+          </a>
+        </IconWrapper>
+      </IconFrame>
+
       <FontWrapper>
         <Font fontSize="5rem" margin="15rem 0 0 0">
           안녕하세요.
