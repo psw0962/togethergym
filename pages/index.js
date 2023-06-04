@@ -15,22 +15,30 @@ import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
 import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
+import ImageWrapper from '@/component/common/image-wrapper';
+import { useRouter } from 'node_modules/next/router';
 
 const Home = () => {
+  const router = useRouter();
+
   return (
     <Frame>
-      <CustomVideo
-        src="/togethergym.mp4"
-        poster="/png/logo.png"
-        loop={true}
-        autoPlay={true}
-        muted={true}
-      ></CustomVideo>
+      <IframeWrapper>
+        <iframe
+          width="1905"
+          height="775"
+          src="https://www.youtube.com/embed/wy46l-rvzwE?autoplay=1&mute=1"
+          title='"함께할수록, 운동은 재밌어집니다." - 안산 최초의 그룹 트레이닝 센터 투게더짐 리뷰'
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </IframeWrapper>
 
       <Button
         size="large"
         color="black"
-        margin="15rem 0 0 0"
+        margin="7rem 0 0 0"
         onClick={() => window.open('https://naver.me/xPpeuiwB')}
       >
         <Font fontSize="2.5rem">일주일 무료 체험권 신청하기</Font>
@@ -493,4 +501,21 @@ const BusinessInfoWrapper = styled.div`
 
 const LogoImage = styled(Image)`
   border-radius: 10px;
+`;
+
+const IframeWrapper = styled.div`
+  position: relative;
+  margin-top: 10rem;
+  padding-top: 56%;
+  width: 100%;
+  height: 0;
+  margin-bottom: 3rem;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 `;

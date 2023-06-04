@@ -551,7 +551,7 @@ const BasicTimer = ({ flag, setFlag }) => {
           setFlag(() => {
             return {
               flagNumber: flag.flagNumber - 1,
-              timer: 120,
+              timer: 150,
               round: '1ROUND',
               current: '수분 충전!🚰💧',
               next: '2ROUND',
@@ -1103,7 +1103,7 @@ const BasicTimer = ({ flag, setFlag }) => {
           setFlag(() => {
             return {
               flagNumber: flag.flagNumber - 1,
-              timer: 120,
+              timer: 150,
               round: '2ROUND',
               current: '수분 충전!🚰💧',
               next: '3ROUND',
@@ -1652,7 +1652,7 @@ const BasicTimer = ({ flag, setFlag }) => {
         }
 
         if (parseInt(flag.timer) === 0) {
-          router.push('/together/complete');
+          router.push('/exercise/complete');
         }
       }
     }, 1000);
