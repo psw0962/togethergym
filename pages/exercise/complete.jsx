@@ -10,7 +10,7 @@ const Complete = () => {
   const [goToReady, setGoToReady] = useState('goToReady', '');
 
   useEffect(() => {
-    setGoToReady(10);
+    setGoToReady(180);
   }, []);
 
   useEffect(() => {
