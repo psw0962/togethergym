@@ -13,7 +13,8 @@ import useLocalStorage from 'node_modules/use-local-storage/dist/index';
 const TogetherHome = () => {
   const router = useRouter();
   const [play, setPlay] = useLocalStorage('play', false);
-  const [timerMethod, setTimerMethod] = useRecoilState(timerMethodStateAtom);
+  const [timerMethod, setTimerMethod] = useLocalStorage('timerMethod', 'basic');
+  const [currentPage, setCurrentPage] = useLocalStorage('currentPage', 'ready');
   const [currentProgramState, setCurrentProgramState] = useRecoilState(
     currentProgramStateAtom,
   );
@@ -107,7 +108,7 @@ const TogetherHome = () => {
                   }}
                 />
 
-                <SearchFlagLabel htmlFor="basic">{`[능곡/옥길] 기본`}</SearchFlagLabel>
+                <SearchFlagLabel htmlFor="basic">{`[고잔점] 기본`}</SearchFlagLabel>
               </SearchFlagWrapper>
 
               <SearchFlagWrapper>
@@ -122,7 +123,7 @@ const TogetherHome = () => {
                   }}
                 />
 
-                <SearchFlagLabel htmlFor="8">{`[고잔점]8개 운동 종목`}</SearchFlagLabel>
+                <SearchFlagLabel htmlFor="8">{`[고잔점] 8개`}</SearchFlagLabel>
               </SearchFlagWrapper>
 
               <SearchFlagWrapper>
@@ -152,6 +153,7 @@ const TogetherHome = () => {
                 type="button"
                 onClick={() => {
                   router.push('/exercise/program');
+                  setCurrentPage('program');
                   setPlay(true);
                   audio.play();
                 }}
