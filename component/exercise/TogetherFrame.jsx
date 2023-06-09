@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import ImageWrapper from '@/component/common/image-wrapper';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -11,10 +11,24 @@ import { useRecoilState } from 'recoil';
 import { timerMethodStateAtom } from 'atoms/index';
 import EightProgram from './eight/EightProgram';
 import CustomProgram from './custom/CustomProgram';
+import Button from '@/component/common/button';
+import useLocalStorage from 'node_modules/use-local-storage/dist/index';
+import { useRouter } from 'node_modules/next/router';
 
 const TogetherFrame = ({ flag }) => {
+  const router = useRouter();
   const [timerMethod, setTimerMethod] = useRecoilState(timerMethodStateAtom);
   const [section, setSection] = useState('section1');
+  const [currentPage, setCurrentPage] = useLocalStorage(
+    'currentPage',
+    'program',
+  );
+
+  useEffect(() => {
+    if (currentPage === 'ready') {
+      router.push('/exercise');
+    }
+  }, [currentPage]);
 
   return (
     <>
@@ -94,6 +108,19 @@ const TogetherFrame = ({ flag }) => {
           {timerMethod === 'custom' && (
             <CustomProgram flag={flag} section={section} />
           )}
+
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Button
+              margin="30rem 0 0 0"
+              fontSize="2.5rem"
+              size="large"
+              color="black"
+              type="button"
+              onClick={() => setCurrentPage('ready')}
+            >
+              뒤로가기
+            </Button>
+          </div>
         </Container>
       </Frame>
     </>

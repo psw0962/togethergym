@@ -1,7 +1,30 @@
 import styled from 'styled-components';
 import Font from '@/component/common/font';
+import Button from '@/component/common/button';
+import useLocalStorage from 'node_modules/use-local-storage/dist/index';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'node_modules/next/router';
 
 const Complete = () => {
+  const router = useRouter();
+  const [goToReady, setGoToReady] = useState('goToReady', '');
+
+  useEffect(() => {
+    setGoToReady(10);
+  }, []);
+
+  useEffect(() => {
+    if (goToReady > 0) {
+      const timer = setTimeout(() => setGoToReady(prev => prev - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+
+    if (goToReady === 0) {
+      router.push('/exercise');
+      return;
+    }
+  }, [goToReady]);
+
   return (
     <Frame>
       <Font fontSize="5rem">
@@ -13,6 +36,26 @@ const Complete = () => {
       </Font>
 
       <Font fontSize="5rem">{`Let's Go Together!!👍`}</Font>
+
+      {
+        <Font fontSize="2rem" margin="30rem 0 0 0">
+          {goToReady}초 후 준비 페이지로 이동합니다.
+        </Font>
+      }
+
+      <div style={{ display: 'flex', justifyContent: 'center', width: '50%' }}>
+        <Button
+          fontSize="2.5rem"
+          size="large"
+          color="black"
+          type="button"
+          onClick={() => {
+            router.push('/exercise');
+          }}
+        >
+          뒤로가기
+        </Button>
+      </div>
     </Frame>
   );
 };
