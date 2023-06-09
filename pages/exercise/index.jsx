@@ -20,7 +20,7 @@ const TogetherHome = () => {
   );
   const [audio, setAudio] = useState();
 
-  // 새로고침 및 최초진입 시 프로그램 셋팅
+  // 새로고침 및 최초진입 시 프로그램 셋팅!
   useEffect(() => {
     setAudio(new Audio('/sounds/beep.mp3'));
 
