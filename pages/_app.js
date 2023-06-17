@@ -4,9 +4,11 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
 import Head from 'next/head';
 import React, { useState } from 'react';
+import usePageLoading from '@/hooks/usePageLoading';
 
 const App = ({ Component, pageProps }) => {
   const [queryClient] = useState(() => new QueryClient());
+  const loading = usePageLoading();
 
   return (
     <>
@@ -24,7 +26,7 @@ const App = ({ Component, pageProps }) => {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
-            <Component {...pageProps} />
+            {loading ? <div></div> : <Component {...pageProps} />}
           </RecoilRoot>
         </Hydrate>
 

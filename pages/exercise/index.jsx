@@ -6,7 +6,7 @@ import Line from '@/component/common/line';
 import Button from '@/component/common/button';
 import { useRouter } from 'node_modules/next/router';
 import { useRecoilState } from 'recoil';
-import { timerMethodStateAtom, currentProgramStateAtom } from 'atoms/index';
+import { currentProgramStateAtom } from 'atoms/index';
 import { db } from 'utils/firebase';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
 

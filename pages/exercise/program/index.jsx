@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
-import { useRecoilState } from 'recoil';
-import { timerMethodStateAtom } from 'atoms/index';
 import BasicTimer from '@/component/exercise/basic/BasicTimer';
 import EightTimer from '@/component/exercise/eight/EightTimer';
 import CustomTimer from '@/component/exercise/custom/CustomTimer';
 
 const Program = () => {
   const [audio, setAudio] = useState();
-  const [timerMethod, setTimerMethod] = useRecoilState(timerMethodStateAtom);
+  const [timerMethod, setTimerMethod] = useLocalStorage('timerMethod');
   const [flag, setFlag] = useLocalStorage('flag', {});
 
   // 최초 셋팅 이펙트
