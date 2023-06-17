@@ -17,7 +17,7 @@ import { useRouter } from 'node_modules/next/router';
 
 const TogetherFrame = ({ flag }) => {
   const router = useRouter();
-  const [timerMethod, setTimerMethod] = useRecoilState(timerMethodStateAtom);
+  const [timerMethod, setTimerMethod] = useLocalStorage('timerMethod');
   const [section, setSection] = useState('section1');
   const [currentPage, setCurrentPage] = useLocalStorage(
     'currentPage',

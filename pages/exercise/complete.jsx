@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Font from '@/component/common/font';
 import Button from '@/component/common/button';
-import useLocalStorage from 'node_modules/use-local-storage/dist/index';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'node_modules/next/router';
 
