@@ -7,12 +7,18 @@ import styled from 'styled-components';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
 import Button from '@/component/common/button';
 import dynamic from 'next/dynamic';
+import Font from '@/component/common/font';
+import { useRouter } from 'node_modules/next/router';
+import Image from 'next/image';
+import ImageWrapper from '@/component/common/image-wrapper';
+import togetherlogo from '@/public/png/togetherlogo.png';
 
 const NumberTimer = dynamic(() =>
   import('@/component/exercise/number/NumberTimer'),
 );
 
 const SecondProgram = () => {
+  const router = useRouter();
   const [element, setElement] = useState(null);
   const [audio, setAudio] = useState();
   const [currentProgramState, setCurrentProgramState] = useRecoilState(
@@ -59,11 +65,34 @@ const SecondProgram = () => {
   return (
     <div>
       {playProgram === false && (
-        <ButtonWrapper>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: '4rem',
+            padding: '0 1.5rem',
+          }}
+        >
+          <ImageWrapper width={30} height={30}>
+            <Image
+              src={togetherlogo}
+              alt="logo"
+              priority={true}
+              quality={80}
+              placeholder="blur"
+              blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+              width={180}
+              height={200}
+            />
+          </ImageWrapper>
+
+          <Font fontSize="8rem">{router?.pathname?.split('/')[3]}ROUND</Font>
+
           <Button
-            margin="10rem"
+            width="30rem"
+            height="10rem"
             fontSize="2.5rem"
-            size="large"
             color="black"
             type="button"
             onClick={() => {
@@ -73,7 +102,7 @@ const SecondProgram = () => {
           >
             프로그램 시작
           </Button>
-        </ButtonWrapper>
+        </div>
       )}
 
       {playProgram && (

@@ -116,7 +116,9 @@ const TogetherFrame = ({ flag }) => {
               size="large"
               color="black"
               type="button"
-              onClick={() => setCurrentPage('ready')}
+              onClick={() => {
+                setCurrentPage('ready');
+              }}
             >
               뒤로가기
             </Button>
