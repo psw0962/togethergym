@@ -12,7 +12,6 @@ import useLocalStorage from 'node_modules/use-local-storage/dist/index';
 
 const TogetherHome = () => {
   const router = useRouter();
-  const [play, setPlay] = useLocalStorage('play', false);
   const [timerMethod, setTimerMethod] = useLocalStorage('timerMethod', 'basic');
   const [currentPage, setCurrentPage] = useLocalStorage('currentPage', 'ready');
   const [currentProgramState, setCurrentProgramState] = useRecoilState(
@@ -33,16 +32,6 @@ const TogetherHome = () => {
 
     getPrograms();
   }, []);
-
-  useEffect(() => {
-    if (play) {
-      router.push('/exercise/program');
-    }
-
-    return () => {
-      return setPlay(false);
-    };
-  }, [play]);
 
   return (
     <>
@@ -154,7 +143,6 @@ const TogetherHome = () => {
                 onClick={() => {
                   router.push('/exercise/program');
                   setCurrentPage('program');
-                  setPlay(true);
                   audio.play();
                 }}
               >

@@ -41,7 +41,7 @@ const Home = () => {
         margin="7rem 0 0 0"
         onClick={() => window.open('https://naver.me/xPpeuiwB')}
       >
-        <Font fontSize="2.5rem">일주일 무료 체험권 신청하기</Font>
+        <Font fontSize="2.5rem">3회 무료 체험권 신청하기</Font>
       </Button>
 
       <IconFrame>
@@ -152,7 +152,7 @@ const Home = () => {
       </Font>
 
       <Font fontSize="4rem" margin="1rem 0 0 0">
-        바로 투게더 짐 일주일 무료 체험을 신청해 보세요!
+        바로 투게더 짐 3회 무료 체험을 신청해 보세요!
       </Font>
 
       <CustomImage
@@ -171,7 +171,7 @@ const Home = () => {
         margin="4rem 0 0 0"
         onClick={() => window.open('https://naver.me/xPpeuiwB')}
       >
-        <Font fontSize="2.5rem">일주일 무료 체험권 신청하기</Font>
+        <Font fontSize="2.5rem">3회 무료 체험권 신청하기</Font>
       </Button>
 
       <LineDiv marin="100rem 0px 100rem 0px" />
@@ -337,7 +337,7 @@ PT 전문 센터를 10호점까지 운영해오면서 쌓아온 노하우와 투
         color="black"
         onClick={() => window.open('https://naver.me/xPpeuiwB')}
       >
-        <Font fontSize="2.5rem">일주일 무료 체험권 신청하기</Font>
+        <Font fontSize="2.5rem">3회 무료 체험권 신청하기</Font>
       </Button>
 
       <IconFrame>

@@ -7,8 +7,10 @@ import ImageWrapper from '@/component/common/image-wrapper';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
 import Image from 'next/image';
+import { useRouter } from 'node_modules/next/router';
 
 const NumberTimer = ({ flag, setFlag }) => {
+  const router = useRouter();
   const [playProgram, setPlayProgram] = useLocalStorage('playProgram');
 
   useEffect(() => {
@@ -1694,7 +1696,9 @@ const NumberTimer = ({ flag, setFlag }) => {
 
             {playProgram && (
               <ProgressWrapper>
-                <Font fontSize="8rem">{flag?.round}</Font>
+                <Font fontSize="8rem">
+                  {router?.pathname?.split('/')[3]}ROUND
+                </Font>
 
                 <Font color="blue" fontSize="12rem">
                   {flag?.current}
