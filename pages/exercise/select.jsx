@@ -318,7 +318,7 @@ const Select = () => {
                     autoPlay={true}
                     muted={true}
                     preload="auto"
-                    playsinline
+                    playsInline
                   ></video>
 
                   <Font fontSize="2.5rem" fontWeight="500" margin="20px 0">
@@ -379,7 +379,7 @@ const Select = () => {
                           autoPlay={true}
                           muted={true}
                           preload="auto"
-                          playsinline
+                          playsInline
                         ></video>
 
                         <Font

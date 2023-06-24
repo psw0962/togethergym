@@ -122,7 +122,7 @@ const FirstProgram = () => {
                   loop={true}
                   autoPlay={true}
                   muted={true}
-                  playsinline
+                  playsInline
                 ></video>
               ) : (
                 <video
@@ -133,7 +133,7 @@ const FirstProgram = () => {
                   loop={true}
                   autoPlay={true}
                   muted={true}
-                  playsinline
+                  playsInline
                 ></video>
               )}
             </React.Fragment>

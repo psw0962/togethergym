@@ -68,7 +68,7 @@ const TogetherHome = () => {
                           autoPlay={true}
                           muted={true}
                           preload="auto"
-                          playsinline
+                          playsInline
                         ></video>
 
                         <Font
