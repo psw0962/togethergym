@@ -24,6 +24,7 @@ const EightProgram = ({ flag, section }) => {
                     loop={true}
                     autoPlay={true}
                     muted={true}
+                    playsinline
                   ></video>
                 ) : (
                   <video
@@ -34,6 +35,7 @@ const EightProgram = ({ flag, section }) => {
                     loop={true}
                     autoPlay={true}
                     muted={true}
+                    playsinline
                   ></video>
                 )}
               </React.Fragment>
@@ -56,6 +58,7 @@ const EightProgram = ({ flag, section }) => {
                     loop={true}
                     autoPlay={true}
                     muted={true}
+                    playsinline
                   ></video>
                 ) : (
                   <video
@@ -66,6 +69,7 @@ const EightProgram = ({ flag, section }) => {
                     loop={true}
                     autoPlay={true}
                     muted={true}
+                    playsinline
                   ></video>
                 )}
               </React.Fragment>

@@ -24,6 +24,7 @@ const BasicProgram = ({ flag }) => {
                     loop={true}
                     autoPlay={true}
                     muted={true}
+                    playsinline
                   ></video>
                 ) : (
                   <video
@@ -34,6 +35,7 @@ const BasicProgram = ({ flag }) => {
                     loop={true}
                     autoPlay={true}
                     muted={true}
+                    playsinline
                   ></video>
                 )}
               </React.Fragment>
@@ -56,6 +58,7 @@ const BasicProgram = ({ flag }) => {
                     loop={true}
                     autoPlay={true}
                     muted={true}
+                    playsinline
                   ></video>
                 ) : (
                   <video
@@ -66,6 +69,7 @@ const BasicProgram = ({ flag }) => {
                     loop={true}
                     autoPlay={true}
                     muted={true}
+                    playsinline
                   ></video>
                 )}
               </React.Fragment>
@@ -88,6 +92,7 @@ const BasicProgram = ({ flag }) => {
                     loop={true}
                     autoPlay={true}
                     muted={true}
+                    playsinline
                   ></video>
                 ) : (
                   <video
@@ -98,6 +103,7 @@ const BasicProgram = ({ flag }) => {
                     loop={true}
                     autoPlay={true}
                     muted={true}
+                    playsinline
                   ></video>
                 )}
               </React.Fragment>

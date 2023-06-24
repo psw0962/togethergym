@@ -19,10 +19,7 @@ const TogetherFrame = ({ flag }) => {
   const router = useRouter();
   const [timerMethod, setTimerMethod] = useLocalStorage('timerMethod');
   const [section, setSection] = useState('section1');
-  const [currentPage, setCurrentPage] = useLocalStorage(
-    'currentPage',
-    'program',
-  );
+  const [currentPage, setCurrentPage] = useLocalStorage('currentPage');
 
   useEffect(() => {
     if (currentPage === 'ready') {
@@ -111,9 +108,10 @@ const TogetherFrame = ({ flag }) => {
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button
+              width="40rem"
+              height="20rem"
               margin="30rem 0 0 0"
               fontSize="2.5rem"
-              size="large"
               color="black"
               type="button"
               onClick={() => {

@@ -122,6 +122,7 @@ const ThirdProgram = () => {
                   loop={true}
                   autoPlay={true}
                   muted={true}
+                  playsinline
                 ></video>
               ) : (
                 <video
@@ -132,6 +133,7 @@ const ThirdProgram = () => {
                   loop={true}
                   autoPlay={true}
                   muted={true}
+                  playsinline
                 ></video>
               )}
             </React.Fragment>
@@ -143,11 +145,3 @@ const ThirdProgram = () => {
 };
 
 export default ThirdProgram;
-
-const ButtonWrapper = styled.div`
-  width: 50rem;
-  height: 28rem;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-`;
