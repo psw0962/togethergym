@@ -121,4 +121,10 @@ const Frame = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
 `;

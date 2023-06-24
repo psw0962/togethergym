@@ -5,7 +5,6 @@ import main1 from '@/public/png/main1.png';
 import main2 from '@/public/png/main2.jpeg';
 import main3 from '@/public/png/main3.jpeg';
 import main4 from '@/public/png/main4.jpeg';
-import main5 from '@/public/png/main5.png';
 import main6 from '@/public/png/main6.jpeg';
 import main7 from '@/public/png/main7.jpeg';
 import banner1 from '@/public/png/banner1.png';
@@ -15,7 +14,6 @@ import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
 import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
-import ImageWrapper from '@/component/common/image-wrapper';
 import { useRouter } from 'node_modules/next/router';
 
 const Home = () => {
@@ -181,7 +179,7 @@ const Home = () => {
       </Font>
 
       <Font fontSize="4rem" margin="1rem 0 0 0">
-        5가지 팀 트레이닝 철학
+        4가지 팀 트레이닝 철학
       </Font>
 
       <Wrapper>
@@ -295,33 +293,6 @@ const Home = () => {
           <CustomImage
             src={main4}
             alt="image4"
-            priority={true}
-            quality={100}
-            placeholder="blur"
-            blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-          />
-        </CustomImageWrapper>
-      </Wrapper>
-
-      <Wrapper>
-        <PreTagWrapper>
-          <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
-            5. 세일즈
-          </Font>
-
-          <CustomPretag fontSize="2.5rem">
-            {`투게더 짐은 무료 체험 후 등록을 강요하거나
-결제를 유도한 과한 세일즈를 하지 않습니다.
-PT 전문 센터를 10호점까지 운영해오면서 쌓아온 노하우와 투게더 짐이 수차례 시행착오를
-거쳐 개발한 3천여 가지의 운동 종목과 목적에 맞는 운동 프로그램에 자신 있기 때문입니다.
-`}
-          </CustomPretag>
-        </PreTagWrapper>
-
-        <CustomImageWrapper>
-          <CustomImage
-            src={main5}
-            alt="image5"
             priority={true}
             quality={100}
             placeholder="blur"
