@@ -68,7 +68,7 @@ const TogetherHome = () => {
                           autoPlay={true}
                           muted={true}
                           preload="auto"
-                          playsinline
+                          playsInline
                         ></video>
 
                         <Font
@@ -228,14 +228,18 @@ const CardWrapper = styled.div`
 `;
 
 const SelectedBox = styled.div`
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 40%;
   padding: 2rem;
   border: 1px solid #000;
   border-radius: 20px;
+
+  @media screen and (max-width: 450px) {
+    border: none;
+  }
 `;
 
 const SearchFlagContainer = styled.div`

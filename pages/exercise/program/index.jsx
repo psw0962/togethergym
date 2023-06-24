@@ -54,10 +54,10 @@ const Program = () => {
   useEffect(() => {
     setAudio(new Audio('/sounds/beep.mp3'));
 
-    if (flag.timer <= 3) {
+    if (flag?.timer <= 3) {
       audio?.play();
     }
-  }, [flag.timer]);
+  }, [flag?.timer]);
 
   return (
     <Frame>

@@ -7,8 +7,6 @@ import 'react-circular-progressbar/dist/styles.css';
 import Font from '../common/font';
 import togetherlogo from '@/public/png/togetherlogo.png';
 import BasicProgram from './basic/BasicProgram';
-import { useRecoilState } from 'recoil';
-import { timerMethodStateAtom } from 'atoms/index';
 import EightProgram from './eight/EightProgram';
 import CustomProgram from './custom/CustomProgram';
 import Button from '@/component/common/button';
@@ -151,6 +149,10 @@ const TitleContainer = styled.div`
 const TitleWrapper = styled.div`
   display: flex;
   align-items: flex-end;
+
+  @media screen and (max-width: 450px) {
+    display: none;
+  }
 `;
 
 const ProgressBar = styled.div`
