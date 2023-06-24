@@ -33,6 +33,16 @@ const TogetherHome = () => {
     getPrograms();
   }, []);
 
+  useEffect(() => {
+    setCurrentPage('ready');
+  }, []);
+
+  useEffect(() => {
+    if (currentPage === 'program') {
+      router.push('/exercise/program');
+    }
+  }, [currentPage]);
+
   return (
     <>
       <Container>
@@ -58,6 +68,7 @@ const TogetherHome = () => {
                           autoPlay={true}
                           muted={true}
                           preload="auto"
+                          playsinline
                         ></video>
 
                         <Font
@@ -133,22 +144,20 @@ const TogetherHome = () => {
 
             <Line margin="40px 0" width="100%" />
 
-            <ButtonWrapper>
-              <Button
-                margin="10rem"
-                fontSize="2.5rem"
-                size="large"
-                color="black"
-                type="button"
-                onClick={() => {
-                  router.push('/exercise/program');
-                  setCurrentPage('program');
-                  audio.play();
-                }}
-              >
-                프로그램 시작
-              </Button>
-            </ButtonWrapper>
+            <Button
+              width="30rem"
+              height="10rem"
+              margin="10rem"
+              fontSize="2.5rem"
+              color="black"
+              type="button"
+              onClick={() => {
+                setCurrentPage('program');
+                audio.play();
+              }}
+            >
+              프로그램 시작
+            </Button>
           </>
         </ContainerWrapper>
       </Container>
@@ -227,13 +236,6 @@ const SelectedBox = styled.div`
   padding: 2rem;
   border: 1px solid #000;
   border-radius: 20px;
-`;
-
-const ButtonWrapper = styled.div`
-  width: 50rem;
-  height: 28rem;
-  display: flex;
-  justify-content: center;
 `;
 
 const SearchFlagContainer = styled.div`

@@ -44,8 +44,9 @@ const Complete = () => {
 
       <div style={{ display: 'flex', justifyContent: 'center', width: '50%' }}>
         <Button
+          width="40rem"
+          height="10rem"
           fontSize="2.5rem"
-          size="large"
           color="black"
           type="button"
           onClick={() => {

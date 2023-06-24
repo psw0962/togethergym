@@ -5,6 +5,7 @@ const CommonFont = styled.p`
   font-size: ${props => (props.fontSize ? props.fontSize : '1.6rem')};
   letter-spacing: ${props => (props.letterSpacing ? props.letterSpacing : 0)};
   line-height: ${props => (props.lineHeight ? props.lineHeight : '')};
+  white-space: ${props => (props.whiteSpace ? props.whiteSpace : '')};
   font-weight: ${props => (props.fontWeight ? props.fontWeight : 500)};
   text-align: ${props => (props.textAlign ? props.textAlign : '')};
   text-decoration: ${props =>

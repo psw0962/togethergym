@@ -401,11 +401,6 @@ const FontWrapper = styled.div`
   margin: ${props => (props.margin ? props.margin : '')};
 `;
 
-const CustomVideo = styled.video`
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-`;
-
 const CustomAtag = styled.a`
   font-size: 4rem;
   text-decoration: underline;

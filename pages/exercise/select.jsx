@@ -175,7 +175,9 @@ const Select = () => {
     <>
       <CheckPasswordFrame active={checkPassword}>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <Font>비밀번호: </Font>
+          <Font fontSize="2rem" whiteSpace="nowrap">
+            비밀번호:{' '}
+          </Font>
 
           <input
             type="password"
@@ -316,6 +318,7 @@ const Select = () => {
                     autoPlay={true}
                     muted={true}
                     preload="auto"
+                    playsinline
                   ></video>
 
                   <Font fontSize="2.5rem" fontWeight="500" margin="20px 0">
@@ -323,7 +326,8 @@ const Select = () => {
                   </Font>
 
                   <Button
-                    size="small"
+                    width="15rem"
+                    height="6rem"
                     color="yellow"
                     type="button"
                     onClick={() => {
@@ -375,6 +379,7 @@ const Select = () => {
                           autoPlay={true}
                           muted={true}
                           preload="auto"
+                          playsinline
                         ></video>
 
                         <Font
