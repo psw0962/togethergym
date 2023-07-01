@@ -3,7 +3,6 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useRecoilState } from 'recoil';
 import { currentProgramStateAtom } from 'atoms/index';
 import { db } from 'utils/firebase';
-import styled from 'styled-components';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
 import Button from '@/component/common/button';
 import dynamic from 'next/dynamic';
@@ -26,9 +25,15 @@ const SecondProgram = () => {
   );
   const [flag, setFlag] = useLocalStorage('flag');
   const [playProgram, setPlayProgram] = useLocalStorage('playProgram', false);
+  const [stretchingState, setStretchingState] =
+    useLocalStorage('stretchingState');
 
   // 새로고침 및 최초진입 시 프로그램 셋팅!
   useEffect(() => {
+    setStretchingState({
+      isTrue: false,
+      section: 1,
+    });
     setPlayProgram(false);
     setElement(true);
     setFlag({
@@ -57,6 +62,12 @@ const SecondProgram = () => {
       audio?.play();
     }
   }, [flag?.timer]);
+
+  useEffect(() => {
+    if (stretchingState.isTrue) {
+      router.push('/stretching');
+    }
+  }, [stretchingState]);
 
   if (!element) {
     return <></>;
@@ -89,19 +100,40 @@ const SecondProgram = () => {
 
           <Font fontSize="8rem">{router?.pathname?.split('/')[3]}ROUND</Font>
 
-          <Button
-            width="30rem"
-            height="10rem"
-            fontSize="2.5rem"
-            color="black"
-            type="button"
-            onClick={() => {
-              audio.play();
-              setPlayProgram(true);
-            }}
-          >
-            프로그램 시작
-          </Button>
+          <div>
+            <Button
+              width="30rem"
+              height="10rem"
+              margin="0 0 1rem 0"
+              fontSize="2.5rem"
+              color="black"
+              type="button"
+              onClick={() => {
+                setStretchingState(prev => {
+                  return {
+                    ...prev,
+                    isTrue: true,
+                  };
+                });
+              }}
+            >
+              스트레칭 시작
+            </Button>
+
+            <Button
+              width="30rem"
+              height="10rem"
+              fontSize="2.5rem"
+              color="black"
+              type="button"
+              onClick={() => {
+                audio.play();
+                setPlayProgram(true);
+              }}
+            >
+              프로그램 시작
+            </Button>
+          </div>
         </div>
       )}
 
