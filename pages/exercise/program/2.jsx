@@ -64,7 +64,7 @@ const SecondProgram = () => {
   }, [flag?.timer]);
 
   useEffect(() => {
-    if (stretchingState.isTrue) {
+    if (stretchingState?.isTrue) {
       router.push('/stretching');
     }
   }, [stretchingState]);

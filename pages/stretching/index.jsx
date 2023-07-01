@@ -32,7 +32,7 @@ const Stretching = () => {
   }, []);
 
   useEffect(() => {
-    if (stretchingState.isTrue === false) {
+    if (stretchingState?.isTrue === false) {
       router.back();
     }
   }, [stretchingState]);
@@ -43,52 +43,56 @@ const Stretching = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', gap: '3rem' }}>
-        <SectionButton
-          fontSize="4rem"
-          active={stretchingState.section === 1}
-          onClick={() => {
-            setStretchingState(prev => {
-              return {
-                ...prev,
-                section: 1,
-              };
-            });
-          }}
-        >
-          section1
-        </SectionButton>
+      <Wrapper>
+        <div style={{ width: '35rem' }}></div>
 
-        <SectionButton
-          fontSize="4rem"
-          active={stretchingState.section === 2}
-          onClick={() => {
-            setStretchingState(prev => {
-              return {
-                ...prev,
-                section: 2,
-              };
-            });
-          }}
-        >
-          section2
-        </SectionButton>
-      </div>
+        <div style={{ display: 'flex', gap: '3rem' }}>
+          <SectionButton
+            fontSize="4rem"
+            active={stretchingState.section === 1}
+            onClick={() => {
+              setStretchingState(prev => {
+                return {
+                  ...prev,
+                  section: 1,
+                };
+              });
+            }}
+          >
+            section1
+          </SectionButton>
 
-      <Button
-        width="30rem"
-        height="10rem"
-        fontSize="2.5rem"
-        color="black"
-        type="button"
-        onClick={() =>
-          setStretchingState(() => {
-            return { isTrue: false, section: 1 };
-          })
-        }
-      >
-        뒤로가기
-      </Button>
+          <SectionButton
+            fontSize="4rem"
+            active={stretchingState.section === 2}
+            onClick={() => {
+              setStretchingState(prev => {
+                return {
+                  ...prev,
+                  section: 2,
+                };
+              });
+            }}
+          >
+            section2
+          </SectionButton>
+        </div>
+
+        <Button
+          width="30rem"
+          height="10rem"
+          fontSize="2.5rem"
+          color="black"
+          type="button"
+          onClick={() =>
+            setStretchingState(() => {
+              return { isTrue: false, section: 1 };
+            })
+          }
+        >
+          뒤로가기
+        </Button>
+      </Wrapper>
 
       {stretchingState.section === 1 && (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -168,4 +172,11 @@ const SectionButton = styled(Font)`
   border-radius: 20px;
   border: ${props => (props.active ? '3px solid #000' : '')};
   cursor: pointer;
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5rem 2rem;
 `;
