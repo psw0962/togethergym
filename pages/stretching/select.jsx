@@ -5,26 +5,35 @@ import Font from '@/component/common/font';
 import Line from '@/component/common/line';
 import Image from 'node_modules/next/image';
 import Button from '@/component/common/button';
-import programData from '@/constant/program';
+import stretchingData from '@/constant/stretching';
 import { useRecoilState } from 'recoil';
 import { selectedProgramStateAtom } from 'atoms/index';
 import ReactPaginate from 'react-paginate';
-import useDebounce from '@/hooks/useDebounce';
 import { check } from '@/public/svg';
 import { db } from 'utils/firebase';
-
-const SEARCHKEYWORDEXAMPLE = ['다리', '어깨', '팔', '등', '가슴'];
 
 const Select = () => {
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState(false);
-  const [programs, setPrograms] = useState(programData || []);
+  const [programs, setPrograms] = useState(stretchingData || []);
   const [searchKeyWord, setSearchKeyWord] = useState('');
   const [selectedProgramState, setSelectedProgramState] = useRecoilState(
     selectedProgramStateAtom,
   );
 
-  const debouncedSearchKeyWord = useDebounce(searchKeyWord);
+  const customProgramData = () => {
+    const result = [];
+
+    stretchingData?.forEach(x => {
+      result.push({
+        id: x.id,
+        name: `[${x.id}]${x.name}`,
+        image: x.image,
+      });
+    });
+
+    return result;
+  };
 
   const getPrograms = async () => {
     const snapshot = await db?.collection('together_stretching').get();
@@ -33,47 +42,16 @@ const Select = () => {
     setSelectedProgramState(documents);
   };
 
-  const customProgramData = () => {
-    const result = [];
-
-    programData?.forEach(x => {
-      result.push({
-        id: x.id,
-        name: `[${x.id}]${x.name}`,
-        image: x.image,
-        isRow: x.isRow,
-      });
-    });
-
-    return result;
-  };
-
-  // 프로그램 검색
-  useEffect(() => {
-    if (debouncedSearchKeyWord === '') {
-      return setPrograms(customProgramData());
-    }
-
-    const nameResult = customProgramData()?.filter(x => {
-      return x.name.includes(debouncedSearchKeyWord);
-    });
-
-    const numberResult = customProgramData()?.filter(x => {
-      return x.id.toString() === debouncedSearchKeyWord;
-    });
-
-    setPage(0);
-  }, [debouncedSearchKeyWord]);
-
   // 새로고침 및 최초 진입 시 프로그램 셋팅
   useEffect(() => {
     getPrograms();
+    setPrograms(customProgramData());
   }, []);
 
   const onClickAddProgram = x => {
     const checkDuplication = selectedProgramState?.find(y => y.id === x.id);
     if (checkDuplication !== undefined) {
-      return alert('같은 운동 종목은 선택할 수 없습니다.');
+      return alert('같은 종목은 선택할 수 없습니다.');
     }
 
     const newObject = {
@@ -83,7 +61,6 @@ const Select = () => {
           id: x?.id,
           name: x?.name,
           image: x?.image,
-          isRow: x?.isRow,
         },
       ],
     };
@@ -165,32 +142,9 @@ const Select = () => {
 
       <Container>
         <ContainerWrapper>
-          <Font fontSize="4.5rem" fontWeight={500}>
-            프로그램 선택하기
+          <Font fontSize="4.5rem" fontWeight={500} margin="0 0 8rem 0">
+            스트레칭 선택하기
           </Font>
-
-          <SearchKeyWordExampleWrapper>
-            <Font fontSize="1.4rem">검색 키워드 :</Font>
-
-            {SEARCHKEYWORDEXAMPLE.map((x, index) => {
-              return (
-                <React.Fragment key={index}>
-                  <Font
-                    fontSize="1.4rem"
-                    pointer={true}
-                    textDecoration="underline"
-                    onClick={() => {
-                      setSearchKeyWord(x);
-                      setPage(0);
-                      setItemOffset(0);
-                    }}
-                  >
-                    {x}
-                  </Font>
-                </React.Fragment>
-              );
-            })}
-          </SearchKeyWordExampleWrapper>
 
           {currentItems?.length === 0 && (
             <Font fontSize="1.6rem">검색 결과가 없습니다</Font>
@@ -393,12 +347,6 @@ const SelectedBox = styled.div`
   padding: 2rem;
   border: 1px solid #000;
   border-radius: 20px;
-`;
-
-const SearchKeyWordExampleWrapper = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin: 4rem 0 4rem 0;
 `;
 
 const SelectedCheck = styled.div`
