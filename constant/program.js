@@ -312,6 +312,15 @@ const programData = [
   { id: 310, name: '슬레드', image: '/video/IMG_0999.MOV', isRow: false },
   { id: 311, name: '슬레드', image: '/video/IMG_1004.mov', isRow: false },
   { id: 312, name: '슬레드', image: '/video/IMG_1005.MOV', isRow: false },
+
+  //4
+  { id: 313, name: '불가리안백', image: '/video/IMG_2870.MOV', isRow: false },
+  { id: 314, name: '불가리안백', image: '/video/IMG_2871.MOV', isRow: false },
+  { id: 315, name: '불가리안백', image: '/video/IMG_2872.MOV', isRow: false },
+  { id: 316, name: '케틀벨', image: '/video/IMG_2873.MOV', isRow: false },
+  { id: 317, name: '케틀벨', image: '/video/IMG_2874.MOV', isRow: false },
+  { id: 318, name: '밴드', image: '/video/IMG_2876.MOV', isRow: false },
+  { id: 319, name: '밴드', image: '/video/IMG_2877.MOV', isRow: false },
 ];
 
 export default programData;
