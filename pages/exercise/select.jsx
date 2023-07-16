@@ -11,7 +11,8 @@ import { selectedProgramStateAtom } from 'atoms/index';
 import ReactPaginate from 'react-paginate';
 import useDebounce from '@/hooks/useDebounce';
 import { check } from '@/public/svg';
-import { db } from 'utils/firebase';
+import { db, realTimeDB } from 'utils/firebase';
+import { useRouter } from 'node_modules/next/router';
 
 const SEARCHKEYWORDEXAMPLE = [
   '맨몸운동',
@@ -34,6 +35,7 @@ const SEARCHKEYWORDEXAMPLE = [
 ];
 
 const Select = () => {
+  const router = useRouter();
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState(false);
   const [programs, setPrograms] = useState(programData || []);
