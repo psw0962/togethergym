@@ -27,9 +27,9 @@ const Home = () => {
           height="775"
           src="https://www.youtube.com/embed/wy46l-rvzwE?autoplay=1&mute=1"
           title='"함께할수록, 운동은 재밌어집니다." - 안산 최초의 그룹 트레이닝 센터 투게더짐 리뷰'
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
+          allowFullScreen
         ></iframe>
       </IframeWrapper>
 

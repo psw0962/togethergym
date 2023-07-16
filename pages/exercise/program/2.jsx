@@ -28,7 +28,7 @@ const SecondProgram = () => {
   const [stretchingState, setStretchingState] =
     useLocalStorage('stretchingState');
 
-  // 새로고침 및 최초진입 시 프로그램 셋팅!
+  // 새로고침 및 최초 진입 시 프로그램 셋팅!
   useEffect(() => {
     setStretchingState({
       isTrue: false,

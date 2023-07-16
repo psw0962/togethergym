@@ -11,6 +11,7 @@ import { useRouter } from 'node_modules/next/router';
 import Image from 'next/image';
 import ImageWrapper from '@/component/common/image-wrapper';
 import togetherlogo from '@/public/png/togetherlogo.png';
+import Control from '@/component/common/control';
 
 const NumberTimer = dynamic(() =>
   import('@/component/exercise/number/NumberTimer'),
@@ -19,7 +20,8 @@ const NumberTimer = dynamic(() =>
 const FirstProgram = () => {
   const router = useRouter();
   const [element, setElement] = useState(null);
-  const [audio, setAudio] = useState();
+  const [audio, setAudio] = useState(null);
+
   const [currentProgramState, setCurrentProgramState] = useRecoilState(
     currentProgramStateAtom,
   );
@@ -28,13 +30,13 @@ const FirstProgram = () => {
   const [stretchingState, setStretchingState] =
     useLocalStorage('stretchingState');
 
-  // 새로고침 및 최초진입 시 프로그램 셋팅!
+  // 새로고침 및 최초 진입 시 프로그램 셋팅!
   useEffect(() => {
+    setPlayProgram(false);
     setStretchingState({
       isTrue: false,
       section: 1,
     });
-    setPlayProgram(false);
     setElement(true);
     setFlag({
       flagNumber: 72,
@@ -127,7 +129,7 @@ const FirstProgram = () => {
               color="black"
               type="button"
               onClick={() => {
-                audio.play();
+                audio?.play();
                 setPlayProgram(true);
               }}
             >
@@ -137,7 +139,7 @@ const FirstProgram = () => {
         </div>
       )}
 
-      {playProgram && (
+      {playProgram === true && (
         <NumberTimer flag={flag} setFlag={setFlag} audio={audio} />
       )}
 
@@ -171,6 +173,10 @@ const FirstProgram = () => {
             </React.Fragment>
           );
         })}
+      </div>
+
+      <div style={{ marginTop: '100rem' }}>
+        <Control />
       </div>
     </div>
   );

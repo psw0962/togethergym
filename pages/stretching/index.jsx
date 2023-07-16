@@ -8,6 +8,7 @@ import { useRouter } from 'node_modules/next/router';
 import Button from '@/component/common/button';
 import styled from 'styled-components';
 import Font from '@/component/common/font';
+import { realTimeDB } from 'utils/firebase';
 
 const Stretching = () => {
   const router = useRouter();
@@ -36,6 +37,19 @@ const Stretching = () => {
       router.back();
     }
   }, [stretchingState]);
+
+  const updateFlagValue = newValue => {
+    const flagRef = realTimeDB.ref('/flag');
+
+    flagRef
+      .set(newValue)
+      .then(() => {
+        console.log('Flag value updated successfully');
+      })
+      .catch(error => {
+        console.error('Error updating flag value:', error);
+      });
+  };
 
   if (!element) {
     return <></>;
@@ -84,11 +98,12 @@ const Stretching = () => {
           fontSize="2.5rem"
           color="black"
           type="button"
-          onClick={() =>
+          onClick={() => {
             setStretchingState(() => {
               return { isTrue: false, section: 1 };
-            })
-          }
+            });
+            updateFlagValue('ready');
+          }}
         >
           뒤로가기
         </Button>
