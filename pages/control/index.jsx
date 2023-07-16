@@ -67,6 +67,31 @@ const Control = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // 이벤트 리스너 등록
+    const sectionRef = realTimeDB?.ref('/section');
+    sectionRef.on('value', snapshot => {
+      const sectionValue = snapshot.val();
+
+      if (sectionValue === '1') {
+        setStretchingState(prev => {
+          return { ...prev, section: '1' };
+        });
+      }
+
+      if (sectionValue === '2') {
+        setStretchingState(prev => {
+          return { ...prev, section: '2' };
+        });
+      }
+    });
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      sectionRef.off('value');
+    };
+  }, []);
+
   const updateFlagValue = newValue => {
     const flagRef = realTimeDB.ref('/flag');
 
@@ -93,10 +118,23 @@ const Control = () => {
       });
   };
 
+  const updateSectionValue = newValue => {
+    const sectionRef = realTimeDB.ref('/section');
+
+    sectionRef
+      .set(newValue)
+      .then(() => {
+        console.log('updated successfully');
+      })
+      .catch(error => {
+        console.error('Error updating value:', error);
+      });
+  };
+
   return (
     <Frame>
       <Button
-        height="10rem"
+        height="8rem"
         size="large"
         color="black"
         onClick={() => {
@@ -107,18 +145,18 @@ const Control = () => {
         <Font fontSize="2.5rem">START</Font>
       </Button>
 
-      {/* <Button
-        height="10rem"
-        size="large"
+      <Button
+        height="8rem"
+        padding="1.5rem"
         color="black"
         onClick={() => updateFlagValue('ready')}
       >
         <Font fontSize="2.5rem">READY</Font>
-      </Button> */}
+      </Button>
 
       <Button
-        height="10rem"
-        size="large"
+        height="8rem"
+        padding="1.5rem"
         color="black"
         onClick={() => updateFlagValue('stretching')}
       >
@@ -126,7 +164,7 @@ const Control = () => {
       </Button>
 
       <Button
-        height="10rem"
+        height="8rem"
         size="large"
         color="black"
         onClick={() => {
@@ -135,6 +173,28 @@ const Control = () => {
       >
         <Font fontSize="2.5rem">RESET</Font>
       </Button>
+
+      <Button
+        height="8rem"
+        size="large"
+        color="black"
+        onClick={() => {
+          updateSectionValue('1');
+        }}
+      >
+        <Font fontSize="2.5rem">SECTION1</Font>
+      </Button>
+
+      <Button
+        height="8rem"
+        size="large"
+        color="black"
+        onClick={() => {
+          updateSectionValue('2');
+        }}
+      >
+        <Font fontSize="2.5rem">SECTION2</Font>
+      </Button>
     </Frame>
   );
 };
@@ -142,12 +202,7 @@ const Control = () => {
 export default Control;
 
 const Frame = styled.div`
-  height: 100%;
   display: flex;
-  gap: 6rem;
+  gap: 2rem;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5rem;
-  margin: 0 auto;
 `;

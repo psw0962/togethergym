@@ -4,14 +4,12 @@ import { useRecoilState } from 'recoil';
 import { currentProgramStateAtom } from 'atoms/index';
 import { db } from 'utils/firebase';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
-import Button from '@/component/common/button';
 import dynamic from 'next/dynamic';
 import Font from '@/component/common/font';
 import { useRouter } from 'node_modules/next/router';
 import Image from 'next/image';
 import ImageWrapper from '@/component/common/image-wrapper';
 import togetherlogo from '@/public/png/togetherlogo.png';
-import Control from '@/component/common/control';
 
 const NumberTimer = dynamic(() =>
   import('@/component/exercise/number/NumberTimer'),
@@ -20,8 +18,7 @@ const NumberTimer = dynamic(() =>
 const FirstProgram = () => {
   const router = useRouter();
   const [element, setElement] = useState(null);
-  const [audio, setAudio] = useState(null);
-
+  const [audio, setAudio] = useState();
   const [currentProgramState, setCurrentProgramState] = useRecoilState(
     currentProgramStateAtom,
   );
@@ -32,11 +29,11 @@ const FirstProgram = () => {
 
   // 새로고침 및 최초 진입 시 프로그램 셋팅!
   useEffect(() => {
-    setPlayProgram(false);
     setStretchingState({
       isTrue: false,
-      section: 1,
+      section: '1',
     });
+    setPlayProgram(false);
     setElement(true);
     setFlag({
       flagNumber: 72,
@@ -101,41 +98,6 @@ const FirstProgram = () => {
           </ImageWrapper>
 
           <Font fontSize="8rem">{router?.pathname?.split('/')[3]}ROUND</Font>
-
-          <div>
-            <Button
-              width="30rem"
-              height="10rem"
-              margin="0 0 1rem 0"
-              fontSize="2.5rem"
-              color="black"
-              type="button"
-              onClick={() => {
-                setStretchingState(prev => {
-                  return {
-                    ...prev,
-                    isTrue: true,
-                  };
-                });
-              }}
-            >
-              스트레칭 시작
-            </Button>
-
-            <Button
-              width="30rem"
-              height="10rem"
-              fontSize="2.5rem"
-              color="black"
-              type="button"
-              onClick={() => {
-                audio?.play();
-                setPlayProgram(true);
-              }}
-            >
-              프로그램 시작
-            </Button>
-          </div>
         </div>
       )}
 
@@ -173,10 +135,6 @@ const FirstProgram = () => {
             </React.Fragment>
           );
         })}
-      </div>
-
-      <div style={{ marginTop: '100rem' }}>
-        <Control />
       </div>
     </div>
   );

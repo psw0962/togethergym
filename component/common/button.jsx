@@ -9,6 +9,7 @@ const CommonButton = styled.button`
   align-items: center;
   cursor: pointer;
   border: none;
+  padding: ${props => (props.padding ? props.padding : '')};
   border-radius: ${props => (props.size === 'xsmall' ? '50px' : '3px')};
   margin: ${props => (props.margin ? props.margin : '')};
   font-size: ${props => (props.fontSize ? props.fontSize : '')};
