@@ -9,6 +9,7 @@ import Button from '@/component/common/button';
 import styled from 'styled-components';
 import Font from '@/component/common/font';
 import { realTimeDB } from 'utils/firebase';
+import Control from '@/component/common/control';
 
 const Stretching = () => {
   const router = useRouter();
@@ -99,9 +100,9 @@ const Stretching = () => {
           color="black"
           type="button"
           onClick={() => {
-            setStretchingState(() => {
-              return { isTrue: false, section: 1 };
-            });
+            // setStretchingState(() => {
+            //   return { isTrue: false, section: 1 };
+            // });
             updateFlagValue('ready');
           }}
         >
@@ -176,6 +177,8 @@ const Stretching = () => {
           })}
         </div>
       )}
+
+      <Control />
     </>
   );
 };
