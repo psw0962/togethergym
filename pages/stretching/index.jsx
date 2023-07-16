@@ -5,11 +5,9 @@ import { currentProgramStateAtom } from 'atoms/index';
 import { db } from 'utils/firebase';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
 import { useRouter } from 'node_modules/next/router';
-import Button from '@/component/common/button';
 import styled from 'styled-components';
 import Font from '@/component/common/font';
 import { realTimeDB } from 'utils/firebase';
-import Control from '@/component/common/control';
 
 const Stretching = () => {
   const router = useRouter();
@@ -59,17 +57,15 @@ const Stretching = () => {
   return (
     <>
       <Wrapper>
-        <div style={{ width: '35rem' }}></div>
-
         <div style={{ display: 'flex', gap: '3rem' }}>
           <SectionButton
             fontSize="4rem"
-            active={stretchingState.section === 1}
+            active={stretchingState.section === '1'}
             onClick={() => {
               setStretchingState(prev => {
                 return {
                   ...prev,
-                  section: 1,
+                  section: '1',
                 };
               });
             }}
@@ -79,12 +75,12 @@ const Stretching = () => {
 
           <SectionButton
             fontSize="4rem"
-            active={stretchingState.section === 2}
+            active={stretchingState.section === '2'}
             onClick={() => {
               setStretchingState(prev => {
                 return {
                   ...prev,
-                  section: 2,
+                  section: '2',
                 };
               });
             }}
@@ -93,24 +89,21 @@ const Stretching = () => {
           </SectionButton>
         </div>
 
-        <Button
+        {/* <Button
           width="30rem"
           height="10rem"
           fontSize="2.5rem"
           color="black"
           type="button"
           onClick={() => {
-            // setStretchingState(() => {
-            //   return { isTrue: false, section: 1 };
-            // });
             updateFlagValue('ready');
           }}
         >
           뒤로가기
-        </Button>
+        </Button> */}
       </Wrapper>
 
-      {stretchingState.section === 1 && (
+      {stretchingState.section === '1' && (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           {currentProgramState?.slice(0, 3).map((x, index) => {
             return (
@@ -144,7 +137,7 @@ const Stretching = () => {
         </div>
       )}
 
-      {stretchingState.section === 2 && (
+      {stretchingState.section === '2' && (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           {currentProgramState?.slice(3, 6).map((x, index) => {
             return (
@@ -177,8 +170,6 @@ const Stretching = () => {
           })}
         </div>
       )}
-
-      <Control />
     </>
   );
 };
@@ -195,6 +186,6 @@ const SectionButton = styled(Font)`
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 5rem 2rem;
 `;
