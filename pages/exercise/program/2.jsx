@@ -10,6 +10,7 @@ import { useRouter } from 'node_modules/next/router';
 import Image from 'next/image';
 import ImageWrapper from '@/component/common/image-wrapper';
 import togetherlogo from '@/public/png/togetherlogo.png';
+import Control from '@/component/common/control';
 
 const NumberTimer = dynamic(() =>
   import('@/component/exercise/number/NumberTimer'),
@@ -135,6 +136,10 @@ const SecondProgram = () => {
             </React.Fragment>
           );
         })}
+      </div>
+
+      <div style={{ visibility: 'hidden' }}>
+        <Control />
       </div>
     </div>
   );

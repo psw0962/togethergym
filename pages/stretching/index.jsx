@@ -8,6 +8,7 @@ import { useRouter } from 'node_modules/next/router';
 import styled from 'styled-components';
 import Font from '@/component/common/font';
 import { realTimeDB } from 'utils/firebase';
+import Control from '@/component/common/control';
 
 const Stretching = () => {
   const router = useRouter();
@@ -170,6 +171,10 @@ const Stretching = () => {
           })}
         </div>
       )}
+
+      <div style={{ visibility: 'hidden' }}>
+        <Control />
+      </div>
     </>
   );
 };
