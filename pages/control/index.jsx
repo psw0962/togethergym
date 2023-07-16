@@ -132,77 +132,81 @@ const Control = () => {
   };
 
   return (
-    <Frame>
-      <Button
-        height="8rem"
-        size="large"
-        color="black"
-        onClick={() => {
-          updatePlayProgramValue(true);
-          audio?.play();
-        }}
-      >
-        <Font fontSize="2.5rem">START</Font>
-      </Button>
+    <div style={{ width: '50%', margin: '0 auto', height: '100vh' }}>
+      <Frame>
+        <Button
+          height="8rem"
+          size="large"
+          color="black"
+          onClick={() => {
+            updatePlayProgramValue(true);
+            audio?.play();
+          }}
+        >
+          <Font fontSize="2.5rem">START</Font>
+        </Button>
 
-      <Button
-        height="8rem"
-        padding="1.5rem"
-        color="black"
-        onClick={() => updateFlagValue('ready')}
-      >
-        <Font fontSize="2.5rem">READY</Font>
-      </Button>
+        <Button
+          height="8rem"
+          padding="1.5rem"
+          color="black"
+          onClick={() => updateFlagValue('ready')}
+        >
+          <Font fontSize="2.5rem">READY</Font>
+        </Button>
 
-      <Button
-        height="8rem"
-        padding="1.5rem"
-        color="black"
-        onClick={() => updateFlagValue('stretching')}
-      >
-        <Font fontSize="2.5rem">STRETCHING</Font>
-      </Button>
+        <Button
+          height="8rem"
+          padding="1.5rem"
+          color="black"
+          onClick={() => updateFlagValue('stretching')}
+        >
+          <Font fontSize="2.5rem">STRETCHING</Font>
+        </Button>
 
-      <Button
-        height="8rem"
-        size="large"
-        color="black"
-        onClick={() => {
-          updatePlayProgramValue(false);
-        }}
-      >
-        <Font fontSize="2.5rem">RESET</Font>
-      </Button>
+        <Button
+          height="8rem"
+          size="large"
+          color="black"
+          onClick={() => {
+            updatePlayProgramValue(false);
+          }}
+        >
+          <Font fontSize="2.5rem">RESET</Font>
+        </Button>
 
-      <Button
-        height="8rem"
-        size="large"
-        color="black"
-        onClick={() => {
-          updateSectionValue('1');
-        }}
-      >
-        <Font fontSize="2.5rem">SECTION1</Font>
-      </Button>
+        <Button
+          height="8rem"
+          size="large"
+          color="black"
+          onClick={() => {
+            updateSectionValue('1');
+          }}
+        >
+          <Font fontSize="2.5rem">SECTION1</Font>
+        </Button>
 
-      <Button
-        height="8rem"
-        size="large"
-        color="black"
-        onClick={() => {
-          updateSectionValue('2');
-        }}
-      >
-        <Font fontSize="2.5rem">SECTION2</Font>
-      </Button>
-    </Frame>
+        <Button
+          height="8rem"
+          size="large"
+          color="black"
+          onClick={() => {
+            updateSectionValue('2');
+          }}
+        >
+          <Font fontSize="2.5rem">SECTION2</Font>
+        </Button>
+      </Frame>
+    </div>
   );
 };
 
 export default Control;
 
 const Frame = styled.div`
+  height: 100%;
   display: flex;
-  gap: 2rem;
+  gap: 5rem;
   flex-direction: column;
+  justify-content: center;
 `;
