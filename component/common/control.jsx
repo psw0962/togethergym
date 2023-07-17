@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '@/component/common/button';
 import Font from '@/component/common/font';
 import { realTimeDB } from 'utils/firebase';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
 
-const Control = () => {
-  const [audio, setAudio] = useState();
+const ControlComponent = () => {
   const [playProgram, setPlayProgram] = useLocalStorage('playProgram', false);
   const [flag, setFlag] = useLocalStorage('flag');
   const [stretchingState, setStretchingState] =
     useLocalStorage('stretchingState');
-
-  useEffect(() => {
-    setAudio(new Audio('/sounds/beep.mp3'));
-  }, []);
 
   useEffect(() => {
     // 이벤트 리스너 등록
@@ -140,7 +135,6 @@ const Control = () => {
           color="black"
           onClick={() => {
             updatePlayProgramValue(true);
-            audio?.play();
           }}
         >
           <Font fontSize="2.5rem">START</Font>
@@ -201,7 +195,7 @@ const Control = () => {
   );
 };
 
-export default Control;
+export default ControlComponent;
 
 const Frame = styled.div`
   height: 100%;
