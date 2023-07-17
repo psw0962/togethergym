@@ -10,7 +10,8 @@ import { useRouter } from 'node_modules/next/router';
 import Image from 'next/image';
 import ImageWrapper from '@/component/common/image-wrapper';
 import togetherlogo from '@/public/png/togetherlogo.png';
-import Control from '@/component/common/control';
+import ControlComponent from '@/component/common/control';
+import { realTimeDB } from 'utils/firebase';
 
 const NumberTimer = dynamic(() =>
   import('@/component/exercise/number/NumberTimer'),
@@ -68,6 +69,22 @@ const ThirdProgram = () => {
       router.push('/stretching');
     }
   }, [stretchingState]);
+
+  useEffect(() => {
+    // 이벤트 리스너 등록
+    const playProgramRef = realTimeDB?.ref('/playProgram');
+    playProgramRef.on('value', snapshot => {
+      const playProgramValue = snapshot.val();
+      if (playProgramValue) {
+        audio?.play();
+      }
+    });
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      playProgramRef.off('value');
+    };
+  }, []);
 
   if (!element) {
     return <></>;
@@ -139,7 +156,7 @@ const ThirdProgram = () => {
       </div>
 
       <div style={{ visibility: 'hidden' }}>
-        <Control />
+        <ControlComponent />
       </div>
     </div>
   );

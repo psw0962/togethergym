@@ -7,9 +7,25 @@ import ImageWrapper from '@/component/common/image-wrapper';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import Image from 'next/image';
 import { useRouter } from 'node_modules/next/router';
+import useLocalStorage from 'node_modules/use-local-storage/dist/index';
+import { realTimeDB } from 'utils/firebase';
 
 const NumberTimer = ({ flag, setFlag }) => {
   const router = useRouter();
+  const [playProgram, setPlayProgram] = useLocalStorage('playProgram');
+
+  const updatePlayProgramValue = newValue => {
+    const playProgramRef = realTimeDB.ref('/playProgram');
+
+    playProgramRef
+      .set(newValue)
+      .then(() => {
+        console.log('updated successfully');
+      })
+      .catch(error => {
+        console.error('Error updating value:', error);
+      });
+  };
 
   useEffect(() => {
     const countdown = setInterval(() => {
@@ -1658,6 +1674,7 @@ const NumberTimer = ({ flag, setFlag }) => {
         }
 
         if (parseInt(flag?.timer) === 0) {
+          updatePlayProgramValue(false);
           window.location.reload();
         }
       }
