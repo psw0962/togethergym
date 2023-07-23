@@ -11,8 +11,9 @@ import { selectedProgramStateAtom } from 'atoms/index';
 import ReactPaginate from 'react-paginate';
 import useDebounce from '@/hooks/useDebounce';
 import { check } from '@/public/svg';
-import { db, realTimeDB } from 'utils/firebase';
+import { db } from 'utils/firebase';
 import { useRouter } from 'node_modules/next/router';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const SEARCHKEYWORDEXAMPLE = [
   '맨몸운동',
@@ -45,6 +46,8 @@ const Select = () => {
     selectedProgramStateAtom,
   );
 
+  console.log(selectedProgramState);
+
   const debouncedSearchKeyWord = useDebounce(searchKeyWord);
 
   const getPrograms = async () => {
@@ -59,7 +62,7 @@ const Select = () => {
 
     programData?.forEach(x => {
       result.push({
-        id: x.id,
+        id: x.id.toString(),
         name: `[${x.id}]${x.name}`,
         image: x.image,
         isRow: x.isRow,
@@ -67,6 +70,18 @@ const Select = () => {
     });
 
     return result;
+  };
+
+  const onDragEnd = result => {
+    if (!result.destination) {
+      return;
+    }
+
+    const reorderedItems = Array.from(selectedProgramState);
+    const [removed] = reorderedItems.splice(result.source.index, 1);
+    reorderedItems.splice(result.destination.index, 0, removed);
+
+    setSelectedProgramState(reorderedItems);
   };
 
   // 프로그램 검색
@@ -148,7 +163,14 @@ const Select = () => {
       });
     };
 
+    const saveSelectedPrograms = async () => {
+      await db.collection('together_selected').doc('programs').update({
+        data: selectedProgramState,
+      });
+    };
+
     save();
+    saveSelectedPrograms();
   };
 
   // pagination
@@ -367,6 +389,81 @@ const Select = () => {
 
             {selectedProgramState?.length > 0 ? (
               <SelectedBox>
+                <DragDropContext onDragEnd={onDragEnd}>
+                  <Droppable droppableId="droppable" direction="horizontal">
+                    {provided => (
+                      <DragBox
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                      >
+                        {selectedProgramState?.map((item, index) => (
+                          <Draggable
+                            key={item?.id}
+                            draggableId={item?.id}
+                            direction="horizontal"
+                            index={index}
+                          >
+                            {provided => (
+                              <ListItem
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                              >
+                                <DragHandle {...provided.dragHandleProps}>
+                                  <div key={item?.id}>
+                                    <Font fontSize="4rem">{index + 1}</Font>
+                                    <CardWrapper>
+                                      <video
+                                        src={item?.image}
+                                        poster="/png/logo.png"
+                                        width="200"
+                                        height="200"
+                                        loop={true}
+                                        autoPlay={true}
+                                        muted={true}
+                                        preload="auto"
+                                        playsInline
+                                      ></video>
+
+                                      <Font
+                                        fontSize="2.5rem"
+                                        fontWeight="500"
+                                        margin="20px 0"
+                                      >
+                                        {item?.name}
+                                      </Font>
+
+                                      <Button
+                                        size="small"
+                                        color="black"
+                                        type="button"
+                                        onClick={() => {
+                                          onClickDeleteProgram(item);
+                                        }}
+                                      >
+                                        삭제하기
+                                      </Button>
+                                    </CardWrapper>
+                                  </div>
+                                </DragHandle>
+                                {item?.content}
+                              </ListItem>
+                            )}
+                          </Draggable>
+                        ))}
+                        {provided.placeholder}
+                      </DragBox>
+                    )}
+                  </Droppable>
+                </DragDropContext>
+              </SelectedBox>
+            ) : (
+              <NoContents>
+                <Font fontSize="4rem">선택한 프로그램이 없습니다</Font>
+              </NoContents>
+            )}
+
+            {/* {selectedProgramState?.length > 0 ? (
+              <SelectedBox>
                 {selectedProgramState?.map((x, index) => {
                   return (
                     <div key={x?.id}>
@@ -411,17 +508,7 @@ const Select = () => {
               <NoContents>
                 <Font fontSize="4rem">선택한 프로그램이 없습니다</Font>
               </NoContents>
-            )}
-
-            <Font fontSize="2rem" color="red" margin="10rem 0 0 0">
-              *저장하기 버튼을 누르면 현재 진행되고 있는 전 지점의 수업
-              프로그램도 바뀝니다.(이 페이지에서 선택한 프로그램은 따로 저장하지
-              않아도 저장됩니다.)
-            </Font>
-
-            <Font fontSize="2rem" color="red" margin="1rem 0 1rem 0">
-              전 지점의 수업이 모두 종료된 후 저장하기 버튼을 눌러주세요.
-            </Font>
+            )} */}
 
             <ButtonWrapper>
               <Button
@@ -510,19 +597,14 @@ const CardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
   position: relative;
 `;
 
 const SelectedBox = styled.div`
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
   width: 80%;
-  padding: 2rem;
+  padding: 4rem;
   border: 1px solid #000;
-  border-radius: 20px;
+  border-radius: 10px;
 `;
 
 const SearchKeyWordExampleWrapper = styled.div`
@@ -541,7 +623,7 @@ const SelectedCheck = styled.div`
 
 const ButtonWrapper = styled.div`
   width: 50rem;
-  /* height: 28rem; */
+  margin-top: 6rem;
   display: flex;
   justify-content: center;
 `;
@@ -594,4 +676,27 @@ const CheckPasswordFrame = styled.div`
   height: 100%;
   background: #ffffff;
   z-index: 200;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  border: 1px solid #ddd;
+  margin: 5px;
+  background-color: ${props => (props.isDragging ? 'lightblue' : '#fff')};
+`;
+
+const DragHandle = styled.div`
+  /* 드래그 핸들 스타일 */
+  cursor: grab;
+  padding: 4px;
+  user-select: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+`;
+
+const DragBox = styled.div`
+  display: flex;
+  overflow: auto;
 `;

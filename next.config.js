@@ -2,7 +2,7 @@
 // const withInterceptStdout = require('next-intercept-stdout');
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   // images: {
   //   domains: [],
   // },
