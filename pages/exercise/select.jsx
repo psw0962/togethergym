@@ -33,6 +33,8 @@ const SEARCHKEYWORDEXAMPLE = [
   '파트너',
   '로잉/스키',
   '슬레드',
+  'TRX',
+  '폴리오박스',
 ];
 
 const Select = () => {
