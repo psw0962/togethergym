@@ -10,7 +10,7 @@ export default class CustomDocument extends Document {
           <meta name="author" content="togethergym" />
           <meta
             name="keywords"
-            content="투게더짐, togethergym, 남스짐, health, fitness, gym, pt, PT, crossfit,team training, weight training, 헬스장, 헬스클럽"
+            content="투게더짐, 안산그룹pt, 안산크로스핏, 안산pt, 안산헬스장"
           />
           <meta name="description" content="같이하는 재밌는 운동 투게더 짐" />
 

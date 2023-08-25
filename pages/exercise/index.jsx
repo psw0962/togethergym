@@ -7,8 +7,9 @@ import Button from '@/component/common/button';
 import { useRouter } from 'node_modules/next/router';
 import { useRecoilState } from 'recoil';
 import { currentProgramStateAtom } from 'atoms/index';
-import { db } from 'utils/firebase';
+import { db, auth } from 'utils/firebase';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
+import withAuth from '@/hoc/withAuth';
 
 const TogetherHome = () => {
   const router = useRouter();
@@ -42,6 +43,23 @@ const TogetherHome = () => {
       router.push('/exercise/program');
     }
   }, [currentPage]);
+
+  useEffect(() => {
+    const checkLogin = auth?.onAuthStateChanged(async user => {
+      if (user) {
+        const snapshot = await db?.collection('test').get();
+        const documents = snapshot?.docs[0].data().program;
+
+        const findMyData = documents?.find(x => {
+          return x.email === user.email;
+        });
+
+        console.log(findMyData);
+      }
+    });
+
+    return () => checkLogin();
+  }, []);
 
   return (
     <>
@@ -165,7 +183,7 @@ const TogetherHome = () => {
   );
 };
 
-export default React.memo(TogetherHome);
+export default withAuth(React.memo(TogetherHome));
 
 const Container = styled.div`
   position: relative;

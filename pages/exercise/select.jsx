@@ -48,8 +48,6 @@ const Select = () => {
     selectedProgramStateAtom,
   );
 
-  console.log(selectedProgramState);
-
   const debouncedSearchKeyWord = useDebounce(searchKeyWord);
 
   const getPrograms = async () => {
