@@ -22,12 +22,12 @@ export default class CustomDocument extends Document {
 
           {/* 오픈 그래프 */}
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="TOGETHER GYM" />
+          <meta property="og:title" content="투게더짐" />
           <meta
             property="og:description"
             content="같이하는 재밌는 운동 투게더 짐"
           />
-          <meta property="og:site_name" content="TOGETHER GYM" />
+          <meta property="og:site_name" content="투게더짐" />
           <meta property="og:image" content="" />
           <meta property="og:locale" content="ko_KR" />
           <meta property="og:url" content="https://www.togethergym.co.kr/" />
@@ -37,7 +37,7 @@ export default class CustomDocument extends Document {
 
           {/* 트위터용 */}
           <meta name="twitter:card" content="website" />
-          <meta name="twitter:title" content="TOGETHER GYM" />
+          <meta name="twitter:title" content="투게더짐" />
           <meta
             name="twitter:description"
             content="같이하는 재밌는 운동 투게더 짐"
