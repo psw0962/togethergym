@@ -10,7 +10,7 @@ export default class CustomDocument extends Document {
           <meta name="author" content="togethergym" />
           <meta
             name="keywords"
-            content="투게더짐, togethergym, 남스짐, health, fitness, gym, pt, PT, crossfit,team training, weight training, 헬스장, 헬스클럽"
+            content="투게더짐, 안산그룹pt, 안산크로스핏, 안산pt, 안산헬스장"
           />
           <meta name="description" content="같이하는 재밌는 운동 투게더 짐" />
 
@@ -22,12 +22,12 @@ export default class CustomDocument extends Document {
 
           {/* 오픈 그래프 */}
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="TOGETHER GYM" />
+          <meta property="og:title" content="투게더짐" />
           <meta
             property="og:description"
             content="같이하는 재밌는 운동 투게더 짐"
           />
-          <meta property="og:site_name" content="TOGETHER GYM" />
+          <meta property="og:site_name" content="투게더짐" />
           <meta property="og:image" content="" />
           <meta property="og:locale" content="ko_KR" />
           <meta property="og:url" content="https://www.togethergym.co.kr/" />
@@ -37,7 +37,7 @@ export default class CustomDocument extends Document {
 
           {/* 트위터용 */}
           <meta name="twitter:card" content="website" />
-          <meta name="twitter:title" content="TOGETHER GYM" />
+          <meta name="twitter:title" content="투게더짐" />
           <meta
             name="twitter:description"
             content="같이하는 재밌는 운동 투게더 짐"
