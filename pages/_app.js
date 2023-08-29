@@ -18,7 +18,7 @@ const App = ({ Component, pageProps }) => {
           content="initial-scale=1.0, user-scalable=no, maximum-scale=1, width=device-width"
         />
 
-        <title>TOGETHER GYM</title>
+        <title>투게더짐</title>
       </Head>
 
       <GlobalStyle />

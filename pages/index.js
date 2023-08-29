@@ -14,11 +14,8 @@ import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
 import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
-import { useRouter } from 'node_modules/next/router';
 
 const Home = () => {
-  const router = useRouter();
-
   return (
     <Frame>
       <IframeWrapper>
@@ -37,9 +34,13 @@ const Home = () => {
         size="large"
         color="black"
         margin="7rem 0 0 0"
-        onClick={() => window.open('https://naver.me/xPpeuiwB')}
+        onClick={() =>
+          window.open(
+            'https://map.naver.com/v5/search/%ED%88%AC%EA%B2%8C%EB%8D%94%EC%A7%90/place/1616639182?placePath=%3Fentry=pll%26from=nx%26fromNxList=true&c=15,0,0,0,dh',
+          )
+        }
       >
-        <Font fontSize="2.5rem">3회 무료 체험권 신청하기</Font>
+        <Font fontSize="2.5rem">2회 체험권 예약하기</Font>
       </Button>
 
       <IconFrame>
@@ -150,7 +151,7 @@ const Home = () => {
       </Font>
 
       <Font fontSize="4rem" margin="1rem 0 0 0">
-        바로 투게더 짐 3회 무료 체험을 신청해 보세요!
+        바로 투게더 짐 2회 체험권을 예약해 보세요!
       </Font>
 
       <CustomImage
@@ -167,9 +168,13 @@ const Home = () => {
         size="large"
         color="black"
         margin="4rem 0 0 0"
-        onClick={() => window.open('https://naver.me/xPpeuiwB')}
+        onClick={() =>
+          window.open(
+            'https://map.naver.com/v5/search/%ED%88%AC%EA%B2%8C%EB%8D%94%EC%A7%90/place/1616639182?placePath=%3Fentry=pll%26from=nx%26fromNxList=true&c=15,0,0,0,dh',
+          )
+        }
       >
-        <Font fontSize="2.5rem">3회 무료 체험권 신청하기</Font>
+        <Font fontSize="2.5rem">2회 체험권 예약하기</Font>
       </Button>
 
       <LineDiv marin="100rem 0px 100rem 0px" />
@@ -306,9 +311,13 @@ const Home = () => {
       <Button
         size="large"
         color="black"
-        onClick={() => window.open('https://naver.me/xPpeuiwB')}
+        onClick={() =>
+          window.open(
+            'https://map.naver.com/v5/search/%ED%88%AC%EA%B2%8C%EB%8D%94%EC%A7%90/place/1616639182?placePath=%3Fentry=pll%26from=nx%26fromNxList=true&c=15,0,0,0,dh',
+          )
+        }
       >
-        <Font fontSize="2.5rem">3회 무료 체험권 신청하기</Font>
+        <Font fontSize="2.5rem">2회 체험권 예약하기</Font>
       </Button>
 
       <IconFrame>

@@ -7,12 +7,15 @@ export default class CustomDocument extends Document {
       <Html>
         <Head>
           {/* 홈페이지 */}
-          <meta name="author" content="togethergym" />
+          <meta name="author" content="투게더짐" />
           <meta
             name="keywords"
-            content="투게더짐, 안산그룹pt, 안산크로스핏, 안산pt, 안산헬스장"
+            content="투게더짐, 안산그룹pt, 안산크로스핏, 안산pt, 안산헬스장, 그룹pt"
           />
-          <meta name="description" content="같이하는 재밌는 운동 투게더 짐" />
+          <meta
+            name="description"
+            content="안산최초 안산그룹pt 1:1 전문PT 코치들이 진행하는 그룹pt"
+          />
 
           {/* Jua */}
           <link
@@ -25,7 +28,7 @@ export default class CustomDocument extends Document {
           <meta property="og:title" content="투게더짐" />
           <meta
             property="og:description"
-            content="같이하는 재밌는 운동 투게더 짐"
+            content="안산최초 안산그룹pt 1:1 전문PT 코치들이 진행하는 그룹pt"
           />
           <meta property="og:site_name" content="투게더짐" />
           <meta property="og:image" content="" />
