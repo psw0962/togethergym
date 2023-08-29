@@ -140,23 +140,23 @@ const ControlComponent = () => {
           <Font fontSize="2.5rem">START</Font>
         </Button>
 
-        <Button
+        {/* <Button
           height="8rem"
           padding="1.5rem"
           color="black"
           onClick={() => updateFlagValue('ready')}
         >
           <Font fontSize="2.5rem">READY</Font>
-        </Button>
+        </Button> */}
 
-        <Button
+        {/* <Button
           height="8rem"
           padding="1.5rem"
           color="black"
           onClick={() => updateFlagValue('stretching')}
         >
           <Font fontSize="2.5rem">STRETCHING</Font>
-        </Button>
+        </Button> */}
 
         <Button
           height="8rem"
@@ -169,7 +169,7 @@ const ControlComponent = () => {
           <Font fontSize="2.5rem">RESET</Font>
         </Button>
 
-        <Button
+        {/* <Button
           height="8rem"
           size="large"
           color="black"
@@ -178,9 +178,9 @@ const ControlComponent = () => {
           }}
         >
           <Font fontSize="2.5rem">SECTION1</Font>
-        </Button>
+        </Button> */}
 
-        <Button
+        {/* <Button
           height="8rem"
           size="large"
           color="black"
@@ -189,7 +189,7 @@ const ControlComponent = () => {
           }}
         >
           <Font fontSize="2.5rem">SECTION2</Font>
-        </Button>
+        </Button> */}
       </Frame>
     </div>
   );
