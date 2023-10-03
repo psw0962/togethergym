@@ -13,9 +13,7 @@ import togetherlogo from '@/public/png/togetherlogo.png';
 import ControlComponent from '@/component/common/control';
 import { realTimeDB } from 'utils/firebase';
 
-const NumberTimer = dynamic(() =>
-  import('@/component/exercise/number/NumberTimer'),
-);
+const BasicTimer = dynamic(() => import('@/component/timer/BasicTimer'));
 
 const SecondProgram = () => {
   const router = useRouter();
@@ -120,7 +118,7 @@ const SecondProgram = () => {
       )}
 
       {playProgram && (
-        <NumberTimer flag={flag} setFlag={setFlag} audio={audio} />
+        <BasicTimer flag={flag} setFlag={setFlag} audio={audio} />
       )}
 
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>

@@ -7,53 +7,18 @@ import useLocalStorage from 'node_modules/use-local-storage/dist/index';
 
 const ControlComponent = () => {
   const [playProgram, setPlayProgram] = useLocalStorage('playProgram', false);
+  const [timerMethod, setTimerMethod] = useLocalStorage('timerMethod');
   const [flag, setFlag] = useLocalStorage('flag');
   const [stretchingState, setStretchingState] =
     useLocalStorage('stretchingState');
 
-  useEffect(() => {
-    // 이벤트 리스너 등록
-    const flagRef = realTimeDB?.ref('/flag');
-    flagRef.on('value', snapshot => {
-      const flagValue = snapshot.val();
-      if (flagValue === 'stretching') {
-        setStretchingState(prev => {
-          return { ...prev, isTrue: true };
-        });
-      }
-
-      if (flagValue === 'ready') {
-        setStretchingState(prev => {
-          return { ...prev, isTrue: false };
-        });
-      }
-    });
-
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거
-    return () => {
-      flagRef.off('value');
-    };
-  }, []);
-
+  // playProgram effect
   useEffect(() => {
     // 이벤트 리스너 등록
     const playProgramRef = realTimeDB?.ref('/playProgram');
     playProgramRef.on('value', snapshot => {
       const playProgramValue = snapshot.val();
-      if (playProgramValue) {
-        setPlayProgram(true);
-      }
-
-      if (playProgramValue === false) {
-        setPlayProgram(false);
-        setFlag({
-          flagNumber: 72,
-          timer: 10,
-          round: '1ROUND',
-          current: '준비!',
-          next: '1set',
-        });
-      }
+      setPlayProgram(playProgramValue);
     });
 
     // 컴포넌트 언마운트 시 이벤트 리스너 제거
@@ -62,43 +27,71 @@ const ControlComponent = () => {
     };
   }, []);
 
+  // // timerMethod effect
   useEffect(() => {
     // 이벤트 리스너 등록
-    const sectionRef = realTimeDB?.ref('/section');
-    sectionRef.on('value', snapshot => {
-      const sectionValue = snapshot.val();
-
-      if (sectionValue === '1') {
-        setStretchingState(prev => {
-          return { ...prev, section: '1' };
-        });
-      }
-
-      if (sectionValue === '2') {
-        setStretchingState(prev => {
-          return { ...prev, section: '2' };
-        });
-      }
+    const timerMethodRef = realTimeDB?.ref('/timerMethod');
+    timerMethodRef.on('value', snapshot => {
+      const timerMethodValue = snapshot.val();
+      setTimerMethod(timerMethodValue);
     });
 
     // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
-      sectionRef.off('value');
+      timerMethodRef.off('value');
     };
   }, []);
 
-  const updateFlagValue = newValue => {
-    const flagRef = realTimeDB.ref('/flag');
+  // flag effect
+  // useEffect(() => {
+  //   // 이벤트 리스너 등록
+  //   const flagRef = realTimeDB?.ref('/flag');
+  //   flagRef.on('value', snapshot => {
+  //     const flagValue = snapshot.val();
+  //     if (flagValue === 'stretching') {
+  //       setStretchingState(prev => {
+  //         return { ...prev, isTrue: true };
+  //       });
+  //     }
 
-    flagRef
-      .set(newValue)
-      .then(() => {
-        console.log('Flag value updated successfully');
-      })
-      .catch(error => {
-        console.error('Error updating flag value:', error);
-      });
-  };
+  //     if (flagValue === 'ready') {
+  //       setStretchingState(prev => {
+  //         return { ...prev, isTrue: false };
+  //       });
+  //     }
+  //   });
+
+  //   // 컴포넌트 언마운트 시 이벤트 리스너 제거
+  //   return () => {
+  //     flagRef.off('value');
+  //   };
+  // }, []);
+
+  // stretching section effect
+  // useEffect(() => {
+  //   // 이벤트 리스너 등록
+  //   const sectionRef = realTimeDB?.ref('/section');
+  //   sectionRef.on('value', snapshot => {
+  //     const sectionValue = snapshot.val();
+
+  //     if (sectionValue === '1') {
+  //       setStretchingState(prev => {
+  //         return { ...prev, section: '1' };
+  //       });
+  //     }
+
+  //     if (sectionValue === '2') {
+  //       setStretchingState(prev => {
+  //         return { ...prev, section: '2' };
+  //       });
+  //     }
+  //   });
+
+  //   // 컴포넌트 언마운트 시 이벤트 리스너 제거
+  //   return () => {
+  //     sectionRef.off('value');
+  //   };
+  // }, []);
 
   const updatePlayProgramValue = newValue => {
     const playProgramRef = realTimeDB.ref('/playProgram');
@@ -113,10 +106,10 @@ const ControlComponent = () => {
       });
   };
 
-  const updateSectionValue = newValue => {
-    const sectionRef = realTimeDB.ref('/section');
+  const updateTimerMethodValue = newValue => {
+    const timerMethodRef = realTimeDB.ref('/timerMethod');
 
-    sectionRef
+    timerMethodRef
       .set(newValue)
       .then(() => {
         console.log('updated successfully');
@@ -126,9 +119,96 @@ const ControlComponent = () => {
       });
   };
 
+  // const updateFlagValue = newValue => {
+  //   const flagRef = realTimeDB.ref('/flag');
+
+  //   flagRef
+  //     .set(newValue)
+  //     .then(() => {
+  //       console.log('Flag value updated successfully');
+  //     })
+  //     .catch(error => {
+  //       console.error('Error updating flag value:', error);
+  //     });
+  // };
+
+  // const updateSectionValue = newValue => {
+  //   const sectionRef = realTimeDB.ref('/section');
+
+  //   sectionRef
+  //     .set(newValue)
+  //     .then(() => {
+  //       console.log('updated successfully');
+  //     })
+  //     .catch(error => {
+  //       console.error('Error updating value:', error);
+  //     });
+  // };
+
+  const setFlagData = () => {
+    const timerMethodRef = realTimeDB?.ref('/timerMethod');
+    timerMethodRef.on('value', snapshot => {
+      const timerMethodValue = snapshot.val();
+
+      if (timerMethodValue === 'basicTimer') {
+        setFlag({
+          flagNumber: 72,
+          timer: 10,
+          round: '1ROUND',
+          current: '준비!',
+          next: '1set',
+        });
+      }
+
+      if (timerMethodValue === 'descentTimer') {
+        setFlag({
+          flagNumber: 76,
+          timer: 10,
+          round: '1ROUND',
+          current: '준비!',
+          next: '1set',
+        });
+      }
+    });
+  };
+
   return (
     <div style={{ width: '50%', margin: '0 auto', height: '100vh' }}>
       <Frame>
+        <SearchFlagContainer>
+          <SearchFlagWrapper>
+            <input
+              type="radio"
+              id="basicTimer"
+              name="timer"
+              value="basicTimer"
+              checked={timerMethod === 'basicTimer'}
+              onChange={() => {
+                updateTimerMethodValue('basicTimer');
+                setFlagData();
+              }}
+            />
+
+            <SearchFlagLabel htmlFor="basicTimer">{`basicTimer`}</SearchFlagLabel>
+          </SearchFlagWrapper>
+
+          <SearchFlagWrapper>
+            <input
+              type="radio"
+              id="descentTimer"
+              name="timer"
+              value="descentTimer"
+              checked={timerMethod === 'descentTimer'}
+              onChange={() => {
+                updateTimerMethodValue('descentTimer');
+                setFlagData();
+              }}
+            />
+
+            <SearchFlagLabel htmlFor="descentTimer">{`descentTimer`}</SearchFlagLabel>
+          </SearchFlagWrapper>
+        </SearchFlagContainer>
+
         <Button
           height="8rem"
           size="large"
@@ -138,6 +218,18 @@ const ControlComponent = () => {
           }}
         >
           <Font fontSize="2.5rem">START</Font>
+        </Button>
+
+        <Button
+          height="8rem"
+          size="large"
+          color="black"
+          onClick={() => {
+            updatePlayProgramValue(false);
+            setFlagData();
+          }}
+        >
+          <Font fontSize="2.5rem">RESET</Font>
         </Button>
 
         {/* <Button
@@ -157,17 +249,6 @@ const ControlComponent = () => {
         >
           <Font fontSize="2.5rem">STRETCHING</Font>
         </Button> */}
-
-        <Button
-          height="8rem"
-          size="large"
-          color="black"
-          onClick={() => {
-            updatePlayProgramValue(false);
-          }}
-        >
-          <Font fontSize="2.5rem">RESET</Font>
-        </Button>
 
         {/* <Button
           height="8rem"
@@ -203,4 +284,22 @@ const Frame = styled.div`
   gap: 5rem;
   flex-direction: column;
   justify-content: center;
+`;
+
+const SearchFlagContainer = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin: 6rem 0 2rem 0;
+`;
+
+const SearchFlagWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  white-space: nowrap;
+`;
+
+const SearchFlagLabel = styled.label`
+  font-size: 2rem;
 `;
