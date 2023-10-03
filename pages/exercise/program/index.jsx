@@ -13,6 +13,7 @@ import togetherlogo from '@/public/png/togetherlogo.png';
 import ControlComponent from '@/component/common/control';
 import { realTimeDB } from 'utils/firebase';
 import styled from 'styled-components';
+import setFlagData from '@/function/setFlagData';
 
 const BasicTimer = dynamic(() => import('@/component/timer/BasicTimer'));
 const DescentTimer = dynamic(() => import('@/component/timer/DescentTimer'));
@@ -35,6 +36,10 @@ const Program = () => {
   useEffect(() => {
     if (sessionStorage.getItem('section')) {
       setSection(sessionStorage.getItem('section'));
+    }
+
+    if (playProgram === false) {
+      setFlagData(setFlag);
     }
 
     setElement(true);
