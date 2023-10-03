@@ -4,6 +4,7 @@ import Button from '@/component/common/button';
 import Font from '@/component/common/font';
 import { realTimeDB } from 'utils/firebase';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
+import setFlagData from '@/function/setFlagData';
 
 const ControlComponent = () => {
   const [playProgram, setPlayProgram] = useLocalStorage('playProgram', false);
@@ -145,33 +146,6 @@ const ControlComponent = () => {
   //     });
   // };
 
-  const setFlagData = () => {
-    const timerMethodRef = realTimeDB?.ref('/timerMethod');
-    timerMethodRef.on('value', snapshot => {
-      const timerMethodValue = snapshot.val();
-
-      if (timerMethodValue === 'basicTimer') {
-        setFlag({
-          flagNumber: 72,
-          timer: 10,
-          round: '1ROUND',
-          current: '준비!',
-          next: '1set',
-        });
-      }
-
-      if (timerMethodValue === 'descentTimer') {
-        setFlag({
-          flagNumber: 76,
-          timer: 10,
-          round: '1ROUND',
-          current: '준비!',
-          next: '1set',
-        });
-      }
-    });
-  };
-
   return (
     <div style={{ width: '50%', margin: '0 auto', height: '100vh' }}>
       <Frame>
@@ -185,7 +159,7 @@ const ControlComponent = () => {
               checked={timerMethod === 'basicTimer'}
               onChange={() => {
                 updateTimerMethodValue('basicTimer');
-                setFlagData();
+                setFlagData(setFlag);
               }}
             />
 
@@ -201,7 +175,7 @@ const ControlComponent = () => {
               checked={timerMethod === 'descentTimer'}
               onChange={() => {
                 updateTimerMethodValue('descentTimer');
-                setFlagData();
+                setFlagData(setFlag);
               }}
             />
 
@@ -226,7 +200,7 @@ const ControlComponent = () => {
           color="black"
           onClick={() => {
             updatePlayProgramValue(false);
-            setFlagData();
+            setFlagData(setFlag);
           }}
         >
           <Font fontSize="2.5rem">RESET</Font>
@@ -296,6 +270,7 @@ const SearchFlagContainer = styled.div`
 
 const SearchFlagWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 1rem;
   white-space: nowrap;
 `;
