@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { Analytics } from '@vercel/analytics/react';
 
 export default class CustomDocument extends Document {
   render() {
@@ -50,6 +51,7 @@ export default class CustomDocument extends Document {
 
         <body>
           <Main />
+          <Analytics />
         </body>
 
         <NextScript />
