@@ -14,17 +14,29 @@ import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
 import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
+import { useRouter } from 'node_modules/next/router';
 
 const Home = () => {
+  const router = useRouter();
+
   return (
     <Frame>
+      <Navigation>
+        <LogoImage
+          src={logo}
+          alt="logo"
+          width={100}
+          height={100}
+          onClick={() => router.push('/')}
+        />
+      </Navigation>
+
       <IframeWrapper>
         <iframe
           width="1905"
           height="775"
           src="https://www.youtube.com/embed/wy46l-rvzwE?autoplay=1&mute=1"
           title='"함께할수록, 운동은 재밌어집니다." - 안산 최초의 그룹 트레이닝 센터 투게더짐 리뷰'
-          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         ></iframe>
@@ -144,7 +156,7 @@ const Home = () => {
 
       {/* ===== */}
 
-      <LineDiv marin="100rem 0px 100rem 0px" />
+      <LineDiv />
 
       <Font fontSize="4rem" margin="1rem 0 0 0">
         3개 이상 해당된다면
@@ -177,7 +189,7 @@ const Home = () => {
         <Font fontSize="2.5rem">2회 체험권 예약하기</Font>
       </Button>
 
-      <LineDiv marin="100rem 0px 100rem 0px" />
+      <LineDiv />
 
       <Font fontSize="4rem" margin="0rem 0 0 0">
         투게더 짐이 추구하는
@@ -369,10 +381,21 @@ const Frame = styled.div`
   max-width: 100rem;
   margin: 0 auto;
   padding: 0 3rem 10rem 3rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+`;
+
+const Navigation = styled.nav`
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+  width: calc(100% + 3rem * 2);
+  margin: 0px -3rem 0px -3rem;
 `;
 
 const FontWrapper = styled.div`
@@ -430,7 +453,7 @@ const CustomImageWrapper = styled.div`
 
 const LineDiv = styled.div`
   width: 100%;
-  margin: 10rem 0;
+  margin: ${props => (props.margin ? props.margin : '10rem 0')};
   border: 1px solid #989898;
 `;
 
@@ -475,7 +498,8 @@ const BusinessInfoWrapper = styled.div`
 `;
 
 const LogoImage = styled(Image)`
-  border-radius: 10px;
+  border-radius: 25%;
+  cursor: pointer;
 `;
 
 const IframeWrapper = styled.div`
