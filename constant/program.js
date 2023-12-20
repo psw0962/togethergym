@@ -313,7 +313,7 @@ const programData = [
   { id: 311, name: '슬레드', image: '/video/IMG_1004.mov', isRow: false },
   { id: 312, name: '슬레드', image: '/video/IMG_1005.MOV', isRow: false },
 
-  //4
+  // 4
   { id: 313, name: '불가리안백', image: '/video/IMG_2870.MOV', isRow: false },
   { id: 314, name: '불가리안백', image: '/video/IMG_2871.MOV', isRow: false },
   { id: 315, name: '불가리안백', image: '/video/IMG_2872.MOV', isRow: false },
@@ -322,7 +322,7 @@ const programData = [
   { id: 318, name: '밴드', image: '/video/IMG_2876.MOV', isRow: false },
   { id: 319, name: '밴드', image: '/video/IMG_2877.MOV', isRow: false },
 
-  //5
+  // 5
   { id: 320, name: 'TRX', image: '/video/IMG_3761.MOV', isRow: false },
   { id: 321, name: 'TRX', image: '/video/IMG_3763.MOV', isRow: false },
   { id: 322, name: 'TRX', image: '/video/IMG_3764.MOV', isRow: false },
@@ -376,7 +376,7 @@ const programData = [
   { id: 370, name: '폴리오박스', image: '/video/IMG_3837.MOV', isRow: false },
   { id: 371, name: '맨몸운동', image: '/video/IMG_3839.MOV', isRow: false },
 
-  //6
+  // 6
   { id: 372, name: '사다리', image: '/video/IMG_4973.MOV', isRow: false },
   { id: 373, name: '사다리', image: '/video/IMG_4974.MOV', isRow: false },
   { id: 374, name: '사다리', image: '/video/IMG_4975.MOV', isRow: false },
@@ -409,6 +409,58 @@ const programData = [
   { id: 401, name: '밴드', image: '/video/IMG_5010.MOV', isRow: false },
   { id: 402, name: '밴드', image: '/video/IMG_5012.MOV', isRow: false },
   { id: 403, name: '밴드', image: '/video/IMG_5013.MOV', isRow: false },
+
+  // 7
+  { id: 404, name: '슬램볼', image: '/video/IMG_5014.MOV', isRow: false },
+  { id: 405, name: '슬램볼', image: '/video/IMG_5015.MOV', isRow: false },
+  { id: 406, name: '슬램볼', image: '/video/IMG_5016.MOV', isRow: false },
+  { id: 407, name: '슬램볼', image: '/video/IMG_5017.MOV', isRow: false },
+  { id: 408, name: '보수볼', image: '/video/IMG_5018.MOV', isRow: false },
+  { id: 409, name: '보수볼', image: '/video/IMG_5019.MOV', isRow: false },
+  { id: 410, name: '보수볼', image: '/video/IMG_5020.MOV', isRow: false },
+  { id: 411, name: '보수볼', image: '/video/IMG_5021.MOV', isRow: false },
+  { id: 412, name: '보수볼', image: '/video/IMG_5022.MOV', isRow: false },
+  { id: 413, name: '맨몸운동', image: '/video/IMG_5023.MOV', isRow: false },
+  { id: 414, name: '맨몸운동', image: '/video/IMG_5024.MOV', isRow: false },
+  { id: 415, name: '맨몸운동', image: '/video/IMG_5025.MOV', isRow: false },
+  { id: 416, name: '맨몸운동', image: '/video/IMG_2026.MOV', isRow: false },
+  { id: 417, name: '보수볼', image: '/video/IMG_5027.MOV', isRow: false },
+  { id: 418, name: '보수볼', image: '/video/IMG_5028.MOV', isRow: false },
+  { id: 419, name: '보수볼', image: '/video/IMG_5029.MOV', isRow: false },
+  { id: 420, name: '보수볼', image: '/video/IMG_5030.MOV', isRow: false },
+  { id: 421, name: '슬램볼', image: '/video/IMG_5031.MOV', isRow: false },
+  { id: 422, name: '슬램볼', image: '/video/IMG_5032.MOV', isRow: false },
+  { id: 423, name: '슬램볼', image: '/video/IMG_5033.MOV', isRow: false },
+  { id: 424, name: '슬램볼', image: '/video/IMG_5034.MOV', isRow: false },
+  { id: 425, name: '슬램볼', image: '/video/IMG_5035.MOV', isRow: false },
+  { id: 426, name: '슬램볼', image: '/video/IMG_5036.MOV', isRow: false },
+  { id: 427, name: '슬램볼', image: '/video/IMG_5037.MOV', isRow: false },
+  { id: 428, name: '슬램볼', image: '/video/IMG_5038.MOV', isRow: false },
+  { id: 429, name: '맨몸운동', image: '/video/IMG_5039.MOV', isRow: false },
+  { id: 430, name: '맨몸운동', image: '/video/IMG_5040.MOV', isRow: false },
+  { id: 431, name: '덤벨', image: '/video/IMG_5041.MOV', isRow: false },
+  { id: 432, name: '맨몸운동', image: '/video/IMG_5042.MOV', isRow: false },
+  { id: 433, name: '맨몸운동', image: '/video/IMG_5043.MOV', isRow: false },
+  { id: 434, name: '사다리', image: '/video/IMG_5044.MOV', isRow: false },
+  { id: 435, name: '사다리', image: '/video/IMG_5045.MOV', isRow: false },
+  { id: 436, name: '사다리', image: '/video/IMG_5046.MOV', isRow: false },
+  { id: 437, name: '사다리', image: '/video/IMG_5047.MOV', isRow: false },
+  { id: 438, name: '사다리', image: '/video/IMG_5048.MOV', isRow: false },
+  { id: 439, name: '사다리', image: '/video/IMG_5049.MOV', isRow: false },
+  { id: 440, name: '사다리', image: '/video/IMG_5050.MOV', isRow: false },
+  { id: 441, name: '사다리', image: '/video/IMG_5051.MOV', isRow: false },
+  { id: 442, name: '사다리', image: '/video/IMG_5052.MOV', isRow: false },
+  { id: 443, name: '케틀벨', image: '/video/IMG_5053.MOV', isRow: false },
+  { id: 444, name: '케틀벨', image: '/video/IMG_5054.MOV', isRow: false },
+  { id: 445, name: '케틀벨', image: '/video/IMG_5055.MOV', isRow: false },
+  { id: 446, name: '케틀벨', image: '/video/IMG_5056.MOV', isRow: false },
+  { id: 447, name: '스텝박스', image: '/video/IMG_5057.MOV', isRow: false },
+  { id: 448, name: '스텝박스', image: '/video/IMG_5058.MOV', isRow: false },
+  { id: 449, name: '스텝박스', image: '/video/IMG_5059.MOV', isRow: false },
+  { id: 450, name: '덤벨', image: '/video/IMG_5060.MOV', isRow: false },
+  { id: 451, name: '스텝박스', image: '/video/IMG_5061.MOV', isRow: false },
+  { id: 452, name: '스텝박스', image: '/video/IMG_5062.MOV', isRow: false },
+  { id: 453, name: '밴드', image: '/video/IMG_5063.MOV', isRow: false },
 ];
 
 export default programData;
