@@ -15,7 +15,7 @@ export default class CustomDocument extends Document {
           />
           <meta
             name="description"
-            content="안산최초 안산그룹pt 1:1 전문PT 코치들이 진행하는 그룹pt"
+            content="안산최초 안산그룹pt 1:1 전문PT 코치들이 진행하는 그룹피티"
           />
 
           {/* Jua */}
