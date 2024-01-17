@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "sitemap": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "next lint"
   },
@@ -19,6 +20,7 @@
     "next": "13.3.1",
     "next-compose-plugins": "^2.2.1",
     "next-intercept-stdout": "^1.0.1",
+    "next-sitemap": "^4.2.3",
     "query-string": "^8.1.0",
     "react": "18.2.0",
     "react-beautiful-dnd": "^13.1.1",
@@ -31,6 +33,7 @@
     "react-slick": "^0.29.0",
     "react-use-draggable-scroll": "^0.4.7",
     "recoil": "^0.7.7",
+    "rss": "^1.2.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.10",
     "styled-reset": "^4.4.6",
