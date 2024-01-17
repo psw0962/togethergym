@@ -3,6 +3,8 @@
 
 const nextConfig = {
   reactStrictMode: false,
+  siteUrl: 'https://www.salon5120.com',
+  generateRobotsTxt: true,
   // images: {
   //   domains: [],
   // },
