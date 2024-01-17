@@ -47,6 +47,12 @@ export default class CustomDocument extends Document {
             content="같이하는 재밌는 운동 투게더 짐"
           />
           <meta name="twitter:image" content="" />
+
+          {/* 네이버 검색엔진 */}
+          <meta
+            name="naver-site-verification"
+            content="1eeea84df0d3764c6719412f49f36b534cb31480"
+          />
         </Head>
 
         <body>
