@@ -33,7 +33,7 @@ export default class CustomDocument extends Document {
           <meta property="og:site_name" content="투게더짐" />
           <meta property="og:image" content="" />
           <meta property="og:locale" content="ko_KR" />
-          <meta property="og:url" content="https://www.togethergym.co.kr/" />
+          <meta property="og:url" content="https://www.togethergym.co.kr" />
 
           <meta property="og:image:width" content="600" />
           <meta property="og:image:height" content="315" />
