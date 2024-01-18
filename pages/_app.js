@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil';
 import Head from 'next/head';
 import React, { useState } from 'react';
 import usePageLoading from '@/hooks/usePageLoading';
+import { Analytics } from '@vercel/analytics/react';
 
 const App = ({ Component, pageProps }) => {
   const [queryClient] = useState(() => new QueryClient());
@@ -26,7 +27,14 @@ const App = ({ Component, pageProps }) => {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
-            {loading ? <div></div> : <Component {...pageProps} />}
+            {loading ? (
+              <div></div>
+            ) : (
+              <>
+                <Component {...pageProps} />
+                <Analytics />
+              </>
+            )}
           </RecoilRoot>
         </Hydrate>
 
