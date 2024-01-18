@@ -10,7 +10,7 @@ const Today = () => {
     currentProgramStateAtom,
   );
 
-  // 새로고침 및 최초진입 시 프로그램 셋팅!
+  // 새로고침 및 최초진입 시 프로그램 셋팅
   useEffect(() => {
     const getPrograms = async () => {
       const snapshot = await db?.collection('together_current').get();
