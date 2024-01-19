@@ -52,6 +52,12 @@ export default class CustomDocument extends Document {
             name="naver-site-verification"
             content="1eeea84df0d3764c6719412f49f36b534cb31480"
           />
+
+          {/* 구글 애드센스 */}
+          <meta
+            name="google-adsense-account"
+            content="ca-pub-2830847395912425"
+          ></meta>
         </Head>
 
         <body>
