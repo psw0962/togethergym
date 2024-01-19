@@ -82,9 +82,10 @@ const Home = () => {
       </IconFrame>
 
       <FontWrapper>
-        <Font fontSize="5rem" margin="15rem 0 0 0">
-          안녕하세요.
-        </Font>
+        <Title fontSize="5rem" margin="15rem 0 0 0">
+          안녕하세요. 안산 최초 그룹PT
+        </Title>
+
         <Font fontSize="5rem" margin="2rem 0 0 0">
           우리는 투게더 짐입니다.
         </Font>
@@ -102,16 +103,17 @@ const Home = () => {
         blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
       />
 
-      <Font fontSize="4rem" margin="4rem 0 0 0">
-        - 힘들기만한 운동? NO👋 운동은 원래 즐거운거에요!
+      <Font fontSize="4rem" margin="4rem 0 0 0" lineHeight="1.3">
+        - 힘들기만한 운동? NO👋 투게더 짐과 함께하는 그룹피티 운동은
+        즐거운거에요!
       </Font>
-      <Font fontSize="4rem" margin="1.5rem 0 0 0">
+      <Font fontSize="4rem" margin="1.5rem 0 0 0" lineHeight="1.3">
         - 근육 운동 + 유산소 운동
       </Font>
-      <Font fontSize="4rem" margin="1.5rem 0 0 0">
+      <Font fontSize="4rem" margin="1.5rem 0 0 0" lineHeight="1.3">
         - 전문 트레이너와 함께하는 부상 없는 트레이닝
       </Font>
-      <Font fontSize="4rem" margin="1.5rem 0 0 0">
+      <Font fontSize="4rem" margin="1.5rem 0 0 0" lineHeight="1.3">
         - 운동의 재미를 찾아 스스로 운동할 수 있게 만드는데 목적이 있는 그룹
         운동!
       </Font>
@@ -517,4 +519,17 @@ const IframeWrapper = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+
+const Title = styled.h1`
+  color: ${props => (props.color ? props.color : '')};
+  font-size: ${props => (props.fontSize ? props.fontSize : '1.6rem')};
+  letter-spacing: ${props => (props.letterSpacing ? props.letterSpacing : 0)};
+  line-height: ${props => (props.lineHeight ? props.lineHeight : '')};
+  white-space: ${props => (props.whiteSpace ? props.whiteSpace : '')};
+  font-weight: ${props => (props.fontWeight ? props.fontWeight : 500)};
+  text-align: ${props => (props.textAlign ? props.textAlign : '')};
+  text-decoration: ${props =>
+    props.textDecoration ? props.textDecoration : ''};
+  margin: ${({ margin }) => margin};
 `;
