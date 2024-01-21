@@ -15,22 +15,14 @@ import logo from '@/public/png/logo.png';
 import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
 import { useRouter } from 'node_modules/next/router';
+import { useState } from 'react';
 
 const Home = () => {
   const router = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <Frame>
-      <Navigation>
-        <LogoImage
-          src={logo}
-          alt="logo"
-          width={100}
-          height={100}
-          onClick={() => router.push('/')}
-        />
-      </Navigation>
-
       <IframeWrapper>
         <iframe
           width="1905"
@@ -41,7 +33,6 @@ const Home = () => {
           allowFullScreen
         ></iframe>
       </IframeWrapper>
-
       <Button
         size="large"
         color="black"
@@ -54,7 +45,6 @@ const Home = () => {
       >
         <Font fontSize="2.5rem">2회 체험권 예약하기</Font>
       </Button>
-
       <IconFrame>
         <IconWrapper
           onClick={() =>
@@ -80,19 +70,7 @@ const Home = () => {
           </a>
         </IconWrapper>
       </IconFrame>
-
-      <FontWrapper>
-        <Title fontSize="5rem" margin="15rem 0 0 0">
-          안녕하세요. 안산 최초 그룹PT
-        </Title>
-
-        <Font fontSize="5rem" margin="2rem 0 0 0">
-          우리는 투게더 짐입니다.
-        </Font>
-      </FontWrapper>
-
       {/* ===== */}
-
       <CustomImage
         style={{ margin: '4rem 0 0 0' }}
         src={banner2}
@@ -102,22 +80,23 @@ const Home = () => {
         placeholder="blur"
         blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
       />
-
-      <Font fontSize="4rem" margin="4rem 0 0 0" lineHeight="1.3">
+      <Title fontSize="5rem" margin="15rem 0 0 0" fon>
+        안산 그룹PT 전문 투게더 짐
+      </Title>
+      <Font fontSize="3rem" margin="4rem 0 0 0" lineHeight="1.3">
         - 힘들기만한 운동? NO👋 투게더 짐과 함께하는 그룹피티 운동은
         즐거운거에요!
       </Font>
-      <Font fontSize="4rem" margin="1.5rem 0 0 0" lineHeight="1.3">
+      <Font fontSize="3rem" margin="1.5rem 0 0 0" lineHeight="1.3">
         - 근육 운동 + 유산소 운동
       </Font>
-      <Font fontSize="4rem" margin="1.5rem 0 0 0" lineHeight="1.3">
+      <Font fontSize="3rem" margin="1.5rem 0 0 0" lineHeight="1.3">
         - 전문 트레이너와 함께하는 부상 없는 트레이닝
       </Font>
-      <Font fontSize="4rem" margin="1.5rem 0 0 0" lineHeight="1.3">
+      <Font fontSize="3rem" margin="1.5rem 0 0 0" lineHeight="1.3">
         - 운동의 재미를 찾아 스스로 운동할 수 있게 만드는데 목적이 있는 그룹
         운동!
       </Font>
-
       <CustomImage
         style={{ margin: '4rem 0 0 0' }}
         src={main6}
@@ -127,7 +106,6 @@ const Home = () => {
         placeholder="blur"
         blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
       />
-
       <CustomImage
         style={{ margin: '4rem 0 0 0' }}
         src={main7}
@@ -137,17 +115,11 @@ const Home = () => {
         placeholder="blur"
         blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
       />
-
-      <Font fontSize="4rem" margin="15rem 0 0 0">
-        투게더 짐은 PT전문 센터 남스짐에서 새롭게 런칭하는
-      </Font>
-
-      <Font fontSize="4rem" margin="2rem 0 0 0">
-        팀 트레이닝 전문 센터 입니다.
-      </Font>
-
-      <Font fontSize="4rem" margin="2rem 0 6rem 0"></Font>
-
+      <Pretag fontSize="3rem" margin="10rem 0 0 0" lineHeight="1.3">
+        {`투게더 짐은 개인 퍼스널 트레이닝 전문 센터
+남스짐에서 새롭게 런칭하는 팀 트레이닝 전문 센터 입니다.`}
+      </Pretag>
+      <Font fontSize="4rem" margin="2rem 0 0 0"></Font>
       <CustomAtag
         href="https://www.namsgym.com/"
         target="_blank"
@@ -155,19 +127,14 @@ const Home = () => {
       >
         👉 남스짐 구경하러 가기
       </CustomAtag>
-
       {/* ===== */}
-
       <LineDiv />
-
       <Font fontSize="4rem" margin="1rem 0 0 0">
         3개 이상 해당된다면
       </Font>
-
       <Font fontSize="4rem" margin="1rem 0 0 0">
         바로 투게더 짐 2회 체험권을 예약해 보세요!
       </Font>
-
       <CustomImage
         style={{ margin: '4rem 0 0 0' }}
         src={banner1}
@@ -177,7 +144,6 @@ const Home = () => {
         placeholder="blur"
         blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
       />
-
       <Button
         size="large"
         color="black"
@@ -190,17 +156,13 @@ const Home = () => {
       >
         <Font fontSize="2.5rem">2회 체험권 예약하기</Font>
       </Button>
-
       <LineDiv />
-
       <Font fontSize="4rem" margin="0rem 0 0 0">
         투게더 짐이 추구하는
       </Font>
-
       <Font fontSize="4rem" margin="1rem 0 0 0">
         4가지 팀 트레이닝 철학
       </Font>
-
       <Wrapper>
         <PreTagWrapper>
           <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
@@ -208,10 +170,8 @@ const Home = () => {
           </Font>
 
           <CustomPretag fontSize="2.5rem">
-            {`50분 안에 설정한 칼로리를 소모하는데
-목적이 있는 고강도 서킷 트레이닝입니다.
-짧고 강도 있게 효율적으로 운동합니다.
-그 효과는 언제나 기대 이상입니다.
+            {`50분 안에 설정한 칼로리를 소모하는데 목적이 있는 고강도 서킷 트레이닝입니다.
+짧고 강도 있게 그룹PT 커리큘럼을 통해 효율적으로 운동하고 그 효과는 언제나 기대 이상입니다.
 `}
           </CustomPretag>
         </PreTagWrapper>
@@ -227,7 +187,6 @@ const Home = () => {
           />
         </CustomImageWrapper>
       </Wrapper>
-
       <Wrapper>
         <PreTagWrapper>
           <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
@@ -236,10 +195,8 @@ const Home = () => {
 
           <CustomPretag fontSize="2.5rem">
             {`효율적이라고 해서 대충 운동하지 않습니다.
-자격을 갖춘 지도자와 함께 다치치 않고
-올바르게 운동할 수 있도록 이끕니다.
-투게더 짐은 지속 가능한
-운동을 추구합니다.
+자격을 갖춘 지도자와 함께 다치치 않고 올바르게 운동할 수 있도록 이끕니다.
+투게더 짐은 지속 가능한 운동을 추구합니다.
 `}
           </CustomPretag>
         </PreTagWrapper>
@@ -255,7 +212,6 @@ const Home = () => {
           />
         </CustomImageWrapper>
       </Wrapper>
-
       <Wrapper>
         <PreTagWrapper>
           <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
@@ -263,14 +219,9 @@ const Home = () => {
           </Font>
 
           <CustomPretag fontSize="2.5rem">
-            {`우리는 365일 닭가슴살과 고구마만
-먹고 살 수 없다는 걸 알아요.
-여기서 운동하는 목적이 무대 위에 서는
-보디빌딩 선수나 경쟁을 목표하는
-전문 운동선수가 아니란 걸 알고 있습니다.
-운동하는 즐거움과 재미를 느껴 매일 오는
-이 공간이 당신에게 웃음 짓는 공간일 수
-있도록 노력합니다.
+            {`우리는 365일 닭가슴살과 고구마만 먹고 살 수 없다는 걸 알아요.
+여기서 운동하는 목적이 무대 위에 서는 보디빌딩 선수나 경쟁을 목표하는 전문 운동선수가 아니란 걸 알고 있습니다.
+운동하는 즐거움과 재미를 느껴 매일 오는 이 공간이 당신에게 웃음 짓는 공간일 수 있도록 노력합니다.
 스스로 운동할 수 있도록 하는 것이 투게더 짐의 궁극적인 목적입니다.
 `}
           </CustomPretag>
@@ -287,7 +238,6 @@ const Home = () => {
           />
         </CustomImageWrapper>
       </Wrapper>
-
       <Wrapper>
         <PreTagWrapper>
           <Font fontSize="4.5rem" margin="7rem 0 2.5rem 0">
@@ -297,13 +247,7 @@ const Home = () => {
           <CustomPretag fontSize="2.5rem">
             {`빨리 가려면 혼자!
 멀리 가려면 함께!
-투게더 짐은 함께하는 것에 큰 의미를
-두고 있어요.
-투게더 짐의 강력한 커뮤니티를
-기반으로 서로에게 파이팅을 외치며
-혼자서는 이겨낼 수 없는 힘듦을
-같이 이겨내요.
-그렇게 함께하다 보면 어느새 바뀐 거울 속 내 모습에 놀라게 될 거예요.
+투게더 짐은 함께하는 것에 큰 의미를 두고 있어요. 투게더 짐의 강력한 커뮤니티를 기반으로 서로에게 파이팅을 외치며 혼자서는 이겨낼 수 없는 힘듦을 같이 이겨내요. 그렇게 함께하다 보면 어느새 바뀐 거울 속 내 모습에 놀라게 될 거예요.
 `}
           </CustomPretag>
         </PreTagWrapper>
@@ -319,9 +263,7 @@ const Home = () => {
           />
         </CustomImageWrapper>
       </Wrapper>
-
       <LineDiv />
-
       <Button
         size="large"
         color="black"
@@ -333,7 +275,6 @@ const Home = () => {
       >
         <Font fontSize="2.5rem">2회 체험권 예약하기</Font>
       </Button>
-
       <IconFrame>
         <IconWrapper
           onClick={() =>
@@ -359,16 +300,14 @@ const Home = () => {
           </a>
         </IconWrapper>
       </IconFrame>
-
       <LineDiv />
-
       <BusinessInfoFrame>
         <LogoImage src={logo} alt="logo" width={100} height={100} />
 
         <BusinessInfoWrapper>
           <Font>상호명 : 투게더 짐 고잔점</Font>
           <Font>사업자등록번호 : 889-06-02586</Font>
-          <Font>대표자 : 황재민 외 1명</Font>
+          <Font>대표자 : 황재민</Font>
           <Font>{`주소 : 경기도 안산시 단원구 광덕서로 66 B101~B107호 (고잔동)`}</Font>
           <Font>전화번호 : 031-403-0776 | 이메일 : xnrpejwla@naver.com</Font>
         </BusinessInfoWrapper>
@@ -390,31 +329,31 @@ const Frame = styled.div`
   justify-content: center;
 `;
 
-const Navigation = styled.nav`
-  display: flex;
-  justify-content: center;
-  padding: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-
-  width: calc(100% + 3rem * 2);
-  margin: 0px -3rem 0px -3rem;
-`;
-
-const FontWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: ${props => (props.margin ? props.margin : '')};
+const Pretag = styled.pre`
+  color: ${props => (props.color ? props.color : '')};
+  font-size: ${props => (props.fontSize ? props.fontSize : '1.6rem')};
+  letter-spacing: ${props => (props.letterSpacing ? props.letterSpacing : 0)};
+  line-height: ${props => (props.lineHeight ? props.lineHeight : '')};
+  white-space: ${props => (props.whiteSpace ? props.whiteSpace : '')};
+  font-weight: ${props => (props.fontWeight ? props.fontWeight : 600)};
+  text-align: ${props => (props.textAlign ? props.textAlign : '')};
+  text-decoration: ${props =>
+    props.textDecoration ? props.textDecoration : ''};
+  margin: ${({ margin }) => margin};
+  cursor: ${props => (props.pointer ? 'pointer' : '')};
 `;
 
 const CustomAtag = styled.a`
-  font-size: 4rem;
+  font-size: 2rem;
+  font-weight: 700;
   text-decoration: underline;
 `;
 
 const CustomPretag = styled.pre`
   font-size: ${props => (props.fontSize ? props.fontSize : '4rem')};
   white-space: pre-wrap;
-  line-height: 5.5rem;
+  line-height: 1.6;
+  font-weight: 700;
 
   @media screen and (max-width: 450px) {
     text-align: center;
@@ -527,7 +466,7 @@ const Title = styled.h1`
   letter-spacing: ${props => (props.letterSpacing ? props.letterSpacing : 0)};
   line-height: ${props => (props.lineHeight ? props.lineHeight : '')};
   white-space: ${props => (props.whiteSpace ? props.whiteSpace : '')};
-  font-weight: ${props => (props.fontWeight ? props.fontWeight : 500)};
+  font-weight: ${props => (props.fontWeight ? props.fontWeight : 700)};
   text-align: ${props => (props.textAlign ? props.textAlign : '')};
   text-decoration: ${props =>
     props.textDecoration ? props.textDecoration : ''};

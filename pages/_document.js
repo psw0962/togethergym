@@ -14,7 +14,7 @@ export default class CustomDocument extends Document {
           />
           <meta
             name="description"
-            content="안산최초 안산그룹pt 1:1 전문PT 코치들이 진행하는 그룹피티"
+            content="안산그룹PT전문 퍼스널트레이닝 전문 코치들이 진행하는 그룹피티"
           />
 
           {/* Jua */}
@@ -28,7 +28,7 @@ export default class CustomDocument extends Document {
           <meta property="og:title" content="투게더짐" />
           <meta
             property="og:description"
-            content="안산최초 안산그룹pt 1:1 전문PT 코치들이 진행하는 그룹피티"
+            content="안산그룹PT전문 퍼스널트레이닝 전문 코치들이 진행하는 그룹피티"
           />
           <meta property="og:site_name" content="투게더짐" />
           <meta property="og:image" content="" />
