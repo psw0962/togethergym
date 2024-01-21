@@ -14,25 +14,21 @@ import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
 import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
-import { useRouter } from 'node_modules/next/router';
-import { useState } from 'react';
 
 const Home = () => {
-  const router = useRouter();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <Frame>
       <IframeWrapper>
         <iframe
-          width="1905"
-          height="775"
-          src="https://www.youtube.com/embed/wy46l-rvzwE?autoplay=1&mute=1"
-          title='"함께할수록, 운동은 재밌어집니다." - 안산 최초의 그룹 트레이닝 센터 투게더짐 리뷰'
+          // src="https://www.youtube.com/embed/wy46l-rvzwE?autoplay=1&mute=1"
+          src="https://www.youtube.com/embed/wy46l-rvzwE"
+          title={`"함께할수록, 운동은 재밌어집니다." - 안산 최초의 그룹 트레이닝 센터 투게더짐 리뷰`}
+          frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         ></iframe>
       </IframeWrapper>
+
       <Button
         size="large"
         color="black"
@@ -318,16 +314,7 @@ const Home = () => {
 
 export default Home;
 
-const Frame = styled.div`
-  max-width: 100rem;
-  margin: 0 auto;
-  padding: 0 3rem 10rem 3rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
+const Frame = styled.div``;
 
 const Pretag = styled.pre`
   color: ${props => (props.color ? props.color : '')};
@@ -445,10 +432,10 @@ const LogoImage = styled(Image)`
 
 const IframeWrapper = styled.div`
   position: relative;
-  margin-top: 10rem;
   padding-top: 56%;
   width: 100%;
   height: 0;
+  margin-top: 6rem;
   margin-bottom: 3rem;
 
   iframe {

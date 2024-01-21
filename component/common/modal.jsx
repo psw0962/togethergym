@@ -99,7 +99,7 @@ const DialogFrame = styled.div`
   background-color: #fff;
   transition: all 0.2s ease-in-out;
   box-sizing: border-box;
-  z-index: 103;
+  z-index: 100;
   overflow-x: ${props => (props.isOverflow ? 'auto' : '')};
 
   .close-wrapper {
