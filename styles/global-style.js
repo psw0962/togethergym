@@ -37,8 +37,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    font-family: 'Gothic A1', sans-serif;
     /* font-family: 'Noto Sans KR', sans-serif; */
-    font-family: 'Jua', sans-serif;
 
     // android 환경 클릭 시 highlight 제거
     outline: none;

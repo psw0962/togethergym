@@ -6,6 +6,7 @@ import Head from 'next/head';
 import React, { useState } from 'react';
 import usePageLoading from '@/hooks/usePageLoading';
 import { Analytics } from '@vercel/analytics/react';
+import Navigation from '@/component/common/navigation';
 
 const App = ({ Component, pageProps }) => {
   const [queryClient] = useState(() => new QueryClient());
@@ -27,14 +28,18 @@ const App = ({ Component, pageProps }) => {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
-            {loading ? (
-              <div></div>
-            ) : (
-              <>
-                <Component {...pageProps} />
-                <Analytics />
-              </>
-            )}
+            <React.Fragment>
+              <Navigation />
+
+              {loading ? (
+                <div></div>
+              ) : (
+                <>
+                  <Component {...pageProps} />
+                  <Analytics />
+                </>
+              )}
+            </React.Fragment>
           </RecoilRoot>
         </Hydrate>
 
