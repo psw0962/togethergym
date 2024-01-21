@@ -81,14 +81,12 @@ const Navigation = () => {
 export default Navigation;
 
 const Container = styled.nav`
-  max-width: 100rem;
-  margin: 0 auto;
-  padding: 0 3rem 0 3rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-
   position: sticky;
   top: 0px;
   z-index: 10;
+  width: calc(100% + 3rem * 2);
+  margin: 0px -3rem 0px -3rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: #fff;
 `;
 
@@ -96,11 +94,7 @@ const Frame = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2.5rem;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-
-  width: calc(100% + 3rem * 2);
-  margin: 0px -3rem 0px -3rem;
+  padding: 1rem 3rem;
 `;
 
 const Pretag = styled.pre`

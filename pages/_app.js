@@ -8,6 +8,7 @@ import usePageLoading from '@/hooks/usePageLoading';
 import { Analytics } from '@vercel/analytics/react';
 import Navigation from '@/component/common/navigation';
 import { useRouter } from 'node_modules/next/router';
+import styled from 'styled-components';
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -30,22 +31,19 @@ const App = ({ Component, pageProps }) => {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
-            <React.Fragment>
-              {loading ? (
-                <div></div>
-              ) : (
-                <>
-                  {router?.pathname?.includes('/exercise') === false &&
-                    router?.pathname?.includes('/control') === false && (
-                      <Navigation />
-                    )}
-
-                  <Component {...pageProps} />
-
-                  <Analytics />
-                </>
-              )}
-            </React.Fragment>
+            {router?.pathname?.includes('/exercise') === false &&
+            router?.pathname?.includes('/control') === false ? (
+              <Frame>
+                <Navigation />
+                <Component {...pageProps} />
+                <Analytics />
+              </Frame>
+            ) : (
+              <>
+                <Component {...pageProps} />
+                <Analytics />
+              </>
+            )}
           </RecoilRoot>
         </Hydrate>
 
@@ -56,3 +54,13 @@ const App = ({ Component, pageProps }) => {
 };
 
 export default App;
+
+const Frame = styled.div`
+  width: 100vw;
+  max-width: 1000px;
+  height: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 3rem 10rem 3rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+`;
