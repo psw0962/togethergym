@@ -7,10 +7,12 @@ import React, { useState } from 'react';
 import usePageLoading from '@/hooks/usePageLoading';
 import { Analytics } from '@vercel/analytics/react';
 import Navigation from '@/component/common/navigation';
+import { useRouter } from 'node_modules/next/router';
 
 const App = ({ Component, pageProps }) => {
-  const [queryClient] = useState(() => new QueryClient());
+  const router = useRouter();
   const loading = usePageLoading();
+  const [queryClient] = useState(() => new QueryClient());
 
   return (
     <>
@@ -29,13 +31,17 @@ const App = ({ Component, pageProps }) => {
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
             <React.Fragment>
-              <Navigation />
-
               {loading ? (
                 <div></div>
               ) : (
                 <>
+                  {router?.pathname?.includes('/exercise') === false &&
+                    router?.pathname?.includes('/control') === false && (
+                      <Navigation />
+                    )}
+
                   <Component {...pageProps} />
+
                   <Analytics />
                 </>
               )}
