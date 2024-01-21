@@ -4,7 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
-  html {
+  html, body {
     overflow-x: hidden;
   }
 
