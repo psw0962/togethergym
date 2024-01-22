@@ -3,7 +3,7 @@
 
 const nextConfig = {
   reactStrictMode: false,
-  siteUrl: 'https://www.salon5120.com',
+  siteUrl: 'https://www.togethergym.co.kr',
   generateRobotsTxt: true,
   // images: {
   //   domains: [],

@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   html, body {
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
   }
 
   @media (min-width: 1201px) {

@@ -314,7 +314,9 @@ const Home = () => {
 
 export default Home;
 
-const Frame = styled.div``;
+const Frame = styled.div`
+  overflow-x: hidden;
+`;
 
 const Pretag = styled.pre`
   color: ${props => (props.color ? props.color : '')};
