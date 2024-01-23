@@ -316,6 +316,10 @@ export default Home;
 
 const Frame = styled.div`
   overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Pretag = styled.pre`
