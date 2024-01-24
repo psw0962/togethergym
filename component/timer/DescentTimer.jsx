@@ -1811,13 +1811,17 @@ const DescentTimer = ({ flag, setFlag, section }) => {
             </TitleWrapper>
 
             <ProgressWrapper>
-              <Font fontSize="8rem">{section}</Font>
+              <Font color="#fff" fontSize="8rem">
+                {section}
+              </Font>
 
-              <Font color="blue" fontSize="12rem">
+              <Font color="red" fontSize="12rem">
                 {flag?.current}
               </Font>
 
-              <Font fontSize="5rem">NEXT ➡️ {flag?.next}</Font>
+              <Font color="#fff" fontSize="5rem">
+                NEXT ➡️ {flag?.next}
+              </Font>
             </ProgressWrapper>
 
             <ProgressBar
@@ -1866,13 +1870,14 @@ const TitleWrapper = styled.div`
 
 const ProgressBar = styled.div`
   .CircularProgressbar-path {
-    stroke: ${props => (props.timer <= 3 ? 'red' : 'blue')};
+    stroke: ${props => (props.timer <= 3 ? 'red' : '#fff')};
   }
   .CircularProgressbar-trail {
     stroke: gray;
   }
   .CircularProgressbar-text {
-    fill: ${props => (props.timer <= 3 ? 'red' : 'blue')};
+    font-weight: 700;
+    fill: ${props => (props.timer <= 3 ? 'red' : '#fff')};
   }
   .CircularProgressbar-background {
     fill: green;

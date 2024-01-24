@@ -8,7 +8,7 @@ import {
 import { db } from 'utils/firebase';
 
 const getPrograms = async () => {
-  const snapshot = await db?.collection('together_stretching').get();
+  const snapshot = await db?.collection('together_current').get();
   const documents = snapshot?.docs[0].data().data;
 
   return documents;
