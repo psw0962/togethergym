@@ -147,7 +147,7 @@ const ControlComponent = () => {
   // };
 
   return (
-    <div style={{ width: '50%', margin: '0 auto', height: '100vh' }}>
+    <Container>
       <Frame>
         <SearchFlagContainer>
           <SearchFlagWrapper>
@@ -246,11 +246,17 @@ const ControlComponent = () => {
           <Font fontSize="2.5rem">SECTION2</Font>
         </Button> */}
       </Frame>
-    </div>
+    </Container>
   );
 };
 
 export default ControlComponent;
+
+const Container = styled.div`
+  width: 50%;
+  margin: 0 auto;
+  height: 100vh;
+`;
 
 const Frame = styled.div`
   height: 100%;
