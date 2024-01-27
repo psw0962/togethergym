@@ -10,8 +10,6 @@ const ControlComponent = () => {
   const [playProgram, setPlayProgram] = useLocalStorage('playProgram', false);
   const [timerMethod, setTimerMethod] = useLocalStorage('timerMethod');
   const [flag, setFlag] = useLocalStorage('flag');
-  const [stretchingState, setStretchingState] =
-    useLocalStorage('stretchingState');
 
   // playProgram effect
   useEffect(() => {
@@ -43,57 +41,6 @@ const ControlComponent = () => {
     };
   }, []);
 
-  // flag effect
-  // useEffect(() => {
-  //   // 이벤트 리스너 등록
-  //   const flagRef = realTimeDB?.ref('/flag');
-  //   flagRef.on('value', snapshot => {
-  //     const flagValue = snapshot.val();
-  //     if (flagValue === 'stretching') {
-  //       setStretchingState(prev => {
-  //         return { ...prev, isTrue: true };
-  //       });
-  //     }
-
-  //     if (flagValue === 'ready') {
-  //       setStretchingState(prev => {
-  //         return { ...prev, isTrue: false };
-  //       });
-  //     }
-  //   });
-
-  //   // 컴포넌트 언마운트 시 이벤트 리스너 제거
-  //   return () => {
-  //     flagRef.off('value');
-  //   };
-  // }, []);
-
-  // stretching section effect
-  // useEffect(() => {
-  //   // 이벤트 리스너 등록
-  //   const sectionRef = realTimeDB?.ref('/section');
-  //   sectionRef.on('value', snapshot => {
-  //     const sectionValue = snapshot.val();
-
-  //     if (sectionValue === '1') {
-  //       setStretchingState(prev => {
-  //         return { ...prev, section: '1' };
-  //       });
-  //     }
-
-  //     if (sectionValue === '2') {
-  //       setStretchingState(prev => {
-  //         return { ...prev, section: '2' };
-  //       });
-  //     }
-  //   });
-
-  //   // 컴포넌트 언마운트 시 이벤트 리스너 제거
-  //   return () => {
-  //     sectionRef.off('value');
-  //   };
-  // }, []);
-
   const updatePlayProgramValue = newValue => {
     const playProgramRef = realTimeDB.ref('/playProgram');
 
@@ -119,32 +66,6 @@ const ControlComponent = () => {
         console.error('Error updating value:', error);
       });
   };
-
-  // const updateFlagValue = newValue => {
-  //   const flagRef = realTimeDB.ref('/flag');
-
-  //   flagRef
-  //     .set(newValue)
-  //     .then(() => {
-  //       console.log('Flag value updated successfully');
-  //     })
-  //     .catch(error => {
-  //       console.error('Error updating flag value:', error);
-  //     });
-  // };
-
-  // const updateSectionValue = newValue => {
-  //   const sectionRef = realTimeDB.ref('/section');
-
-  //   sectionRef
-  //     .set(newValue)
-  //     .then(() => {
-  //       console.log('updated successfully');
-  //     })
-  //     .catch(error => {
-  //       console.error('Error updating value:', error);
-  //     });
-  // };
 
   return (
     <Container>
@@ -205,46 +126,6 @@ const ControlComponent = () => {
         >
           <Font fontSize="2.5rem">RESET</Font>
         </Button>
-
-        {/* <Button
-          height="8rem"
-          padding="1.5rem"
-          color="black"
-          onClick={() => updateFlagValue('ready')}
-        >
-          <Font fontSize="2.5rem">READY</Font>
-        </Button> */}
-
-        {/* <Button
-          height="8rem"
-          padding="1.5rem"
-          color="black"
-          onClick={() => updateFlagValue('stretching')}
-        >
-          <Font fontSize="2.5rem">STRETCHING</Font>
-        </Button> */}
-
-        {/* <Button
-          height="8rem"
-          size="large"
-          color="black"
-          onClick={() => {
-            updateSectionValue('1');
-          }}
-        >
-          <Font fontSize="2.5rem">SECTION1</Font>
-        </Button> */}
-
-        {/* <Button
-          height="8rem"
-          size="large"
-          color="black"
-          onClick={() => {
-            updateSectionValue('2');
-          }}
-        >
-          <Font fontSize="2.5rem">SECTION2</Font>
-        </Button> */}
       </Frame>
     </Container>
   );
