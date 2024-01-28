@@ -12,7 +12,6 @@ import ReactPaginate from 'react-paginate';
 import useDebounce from '@/hooks/useDebounce';
 import { check } from '@/public/svg';
 import { db } from 'utils/firebase';
-import { useRouter } from 'node_modules/next/router';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const SEARCHKEYWORDEXAMPLE = [
@@ -38,7 +37,6 @@ const SEARCHKEYWORDEXAMPLE = [
 ];
 
 const Select = () => {
-  const router = useRouter();
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState(false);
   const [programs, setPrograms] = useState(programData || []);
@@ -461,54 +459,6 @@ const Select = () => {
                 <Font fontSize="4rem">선택한 프로그램이 없습니다</Font>
               </NoContents>
             )}
-
-            {/* {selectedProgramState?.length > 0 ? (
-              <SelectedBox>
-                {selectedProgramState?.map((x, index) => {
-                  return (
-                    <div key={x?.id}>
-                      <Font fontSize="4rem">{index + 1}</Font>
-                      <CardWrapper>
-                        <video
-                          src={x?.image}
-                          poster="/png/logo.png"
-                          width="200"
-                          height="200"
-                          loop={true}
-                          autoPlay={true}
-                          muted={true}
-                          preload="auto"
-                          playsInline
-                        ></video>
-
-                        <Font
-                          fontSize="2.5rem"
-                          fontWeight="500"
-                          margin="20px 0"
-                        >
-                          {x.name}
-                        </Font>
-
-                        <Button
-                          size="small"
-                          color="black"
-                          type="button"
-                          onClick={() => {
-                            onClickDeleteProgram(x);
-                          }}
-                        >
-                          삭제하기
-                        </Button>
-                      </CardWrapper>
-                    </div>
-                  );
-                })}
-              </SelectedBox>
-            ) : (
-              <NoContents>
-                <Font fontSize="4rem">선택한 프로그램이 없습니다</Font>
-              </NoContents>
-            )} */}
 
             <ButtonWrapper>
               <Button
