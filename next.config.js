@@ -17,6 +17,12 @@ module.exports = withInterceptStdout(nextConfig, text =>
 module.exports = withInterceptStdout(
   {
     reactStrictMode: true,
+    experimental: {
+      forceSwcTransforms: true,
+    },
+    compiler: {
+      styledComponents: true,
+    },
     images: {
       domains: [],
     },
