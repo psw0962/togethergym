@@ -8,11 +8,16 @@ import Button from '@/component/common/button';
 import programData from '@/constant/program';
 import { useRecoilState } from 'recoil';
 import { selectedProgramStateAtom } from 'atoms/index';
-import ReactPaginate from 'react-paginate';
 import useDebounce from '@/hooks/useDebounce';
 import { check } from '@/public/svg';
 import { db } from 'utils/firebase';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Draggable } from 'react-beautiful-dnd';
+import { StrictModeDroppable } from '@/component/common/strict-mode-droppable';
+import dynamic from 'node_modules/next/dynamic';
+
+const ReactPaginate = dynamic(() => import('react-paginate'), {
+  ssr: false,
+});
 
 const SEARCHKEYWORDEXAMPLE = [
   '맨몸운동',
@@ -388,7 +393,10 @@ const Select = () => {
             {selectedProgramState?.length > 0 ? (
               <SelectedBox>
                 <DragDropContext onDragEnd={onDragEnd}>
-                  <Droppable droppableId="droppable" direction="horizontal">
+                  <StrictModeDroppable
+                    droppableId="droppable"
+                    direction="horizontal"
+                  >
                     {provided => (
                       <DragBox
                         {...provided.droppableProps}
@@ -451,7 +459,7 @@ const Select = () => {
                         {provided.placeholder}
                       </DragBox>
                     )}
-                  </Droppable>
+                  </StrictModeDroppable>
                 </DragDropContext>
               </SelectedBox>
             ) : (
