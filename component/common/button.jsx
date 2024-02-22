@@ -40,10 +40,10 @@ const CommonButton = styled.button`
             color: #d1d1d6;
           }
         `;
-      case 'yellow':
+      case 'blue':
         return css`
           color: #fff;
-          background-color: #b49445;
+          background-color: #114784;
           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
           &:disabled {
             background-color: #d1d1d6;

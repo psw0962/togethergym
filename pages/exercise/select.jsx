@@ -218,10 +218,7 @@ const Select = () => {
             }}
           />
 
-          <Button
-            color="yellow"
-            onClick={() => onClickSubmitPassword(password)}
-          >
+          <Button color="blue" onClick={() => onClickSubmitPassword(password)}>
             submit
           </Button>
         </div>
@@ -284,7 +281,7 @@ const Select = () => {
             <div style={{ width: '8rem' }}>
               <Button
                 size="small"
-                color="yellow"
+                color="blue"
                 type="button"
                 onClick={() => {
                   setSearchFlag('number');
@@ -355,7 +352,7 @@ const Select = () => {
                   <Button
                     width="15rem"
                     height="6rem"
-                    color="yellow"
+                    color="blue"
                     type="button"
                     onClick={() => {
                       onClickAddProgram(x);
