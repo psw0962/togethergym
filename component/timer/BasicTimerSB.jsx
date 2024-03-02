@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 import styled from 'styled-components';
 import Font from '@/component/common/font';
@@ -14,9 +14,20 @@ import { useRouter } from 'node_modules/next/router';
 const BasicTimerSB = ({ flag, setFlag, section }) => {
   const router = useRouter();
 
+  const [audio, setAudio] = useState();
+
   const [toastState, setToastState] = useRecoilState(toastStateAtom);
 
   const { mutate } = usePatchFlagData(setToastState, router);
+
+  // 최초 시작 시 삑
+  useEffect(() => {
+    setAudio(new Audio('/sounds/beep.mp3'));
+
+    if (flag?.flagNumber === 72 && flag?.timer === 9) {
+      audio?.play();
+    }
+  }, [flag?.timer]);
 
   useEffect(() => {
     const countdown = setInterval(() => {

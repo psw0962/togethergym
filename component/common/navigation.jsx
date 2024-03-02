@@ -90,6 +90,16 @@ const Navigation = () => {
 
         <ModalMenuWrapper
           onClick={() => {
+            router.push('/exercise/index-sb');
+            setIsMenuOpen(false);
+            e => e.stopPropagation();
+          }}
+        >
+          {`오늘의 운동`}
+        </ModalMenuWrapper>
+
+        <ModalMenuWrapper
+          onClick={() => {
             window.open('https://www.togethergym.co.kr/contact', '_self');
             setIsMenuOpen(false);
             e => e.stopPropagation();

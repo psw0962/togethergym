@@ -28,12 +28,45 @@ export const useGetSeletedData = (setToastState, router) => {
     enabled: true,
     staleTime: 1000 * 60 * 5,
 
-    onError: () => {
+    onError: error => {
+      console.log(error);
       setToastState({
         isOpen: true,
         value: '로그인 후 이용해 주세요.',
       });
       router.push('/auth/sign-in');
+    },
+  });
+};
+
+// =========================================
+// ============== get selected data today
+// =========================================
+const getSeletedDataToday = async center => {
+  const makeUserId = () => {
+    if (center === '고잔점') return 'b29c168e-4a78-4f44-a099-fc311abd3020';
+  };
+
+  const { data, error } = await supabase
+    .from('selected')
+    .select('*')
+    .eq('user_id', makeUserId());
+
+  if (error) throw new Error(error);
+
+  return data;
+};
+
+export const useGetSeletedDataToday = center => {
+  return useQuery(['seletedToday', center], () => getSeletedDataToday(center), {
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    enabled: true,
+    staleTime: 1000 * 60 * 5,
+
+    onError: error => {
+      console.log(error);
     },
   });
 };
@@ -82,7 +115,8 @@ export const usePatchSelectedData = (setToastState, router) => {
       queryClient.invalidateQueries(['seleted']);
     },
 
-    onError: () => {
+    onError: error => {
+      console.log(error);
       setToastState({
         isOpen: true,
         value: '로그인 후 이용해 주세요.',
@@ -120,7 +154,8 @@ export const useDeleteSelectedData = (setToastState, router) => {
       queryClient.invalidateQueries(['seleted']);
     },
 
-    onError: () => {
+    onError: error => {
+      console.log(error);
       setToastState({
         isOpen: true,
         value: '로그인 후 이용해 주세요.',

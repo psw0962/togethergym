@@ -71,7 +71,7 @@ export const usePatchFlagData = (setToastState, router) => {
 
   return useMutation(patchData => patchFlagData(patchData), {
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['flagData'] });
+      queryClient.invalidateQueries(['flagData']);
     },
 
     onError: error => {
@@ -81,40 +81,6 @@ export const usePatchFlagData = (setToastState, router) => {
         value: '로그인 후 이용해 주세요.',
       });
       router.push('/auth/sign-in');
-    },
-  });
-};
-
-// =========================================
-// ============== patch flag data(timer)
-// =========================================
-const patchFlagTimerData = async patchData => {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  const { error } = await supabase
-    .from('flag')
-    .update(patchData)
-    .eq('user_id', user?.id)
-    .select();
-
-  if (error) throw new Error(error);
-
-  return;
-};
-
-export const usePatchFlagTimerData = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation(patchData => patchFlagTimerData(patchData), {
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['flagData'] });
-    },
-
-    onError: error => {
-      console.log(error);
-      alert('네트워크 연결이 원활하지 않습니다. 잠시 후 다시 시도해 주세요.');
     },
   });
 };

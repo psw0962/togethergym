@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 import styled from 'styled-components';
 import Font from '@/component/common/font';
@@ -14,14 +14,25 @@ import { useRouter } from 'node_modules/next/router';
 const DescentTimerSB = ({ flag, setFlag, section }) => {
   const router = useRouter();
 
+  const [audio, setAudio] = useState();
+
   const [toastState, setToastState] = useRecoilState(toastStateAtom);
 
-  const { mutate } = usePatchFlagData();
+  const { mutate } = usePatchFlagData(setToastState, router);
+
+  // 최초 시작 시 삑
+  useEffect(() => {
+    setAudio(new Audio('/sounds/beep.mp3'));
+
+    if (flag?.flagNumber === 76 && flag?.timer === 9) {
+      audio?.play();
+    }
+  }, [flag?.timer]);
 
   useEffect(() => {
     const countdown = setInterval(() => {
       // ========================= 1R =========================
-      if (flag?.flag_number === 76) {
+      if (flag?.flagNumber === 76) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -34,7 +45,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '1ROUND',
               current: '1set',
@@ -44,7 +55,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 75) {
+      if (flag?.flagNumber === 75) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -57,7 +68,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '1ROUND',
               current: '1set 휴식',
@@ -67,7 +78,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 74) {
+      if (flag?.flagNumber === 74) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -80,7 +91,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '1ROUND',
               current: '2set',
@@ -90,7 +101,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 73) {
+      if (flag?.flagNumber === 73) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -103,7 +114,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '1ROUND',
               current: '2set 휴식',
@@ -113,7 +124,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 72) {
+      if (flag?.flagNumber === 72) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -126,7 +137,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '1ROUND',
               current: '3set',
@@ -136,7 +147,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 71) {
+      if (flag?.flagNumber === 71) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -149,7 +160,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '1ROUND',
               current: '3set 휴식',
@@ -159,7 +170,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 70) {
+      if (flag?.flagNumber === 70) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -172,7 +183,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '1ROUND',
               current: '4set',
@@ -182,7 +193,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 69) {
+      if (flag?.flagNumber === 69) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -195,7 +206,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '1ROUND',
               current: '4set 휴식',
@@ -205,7 +216,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 68) {
+      if (flag?.flagNumber === 68) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -218,7 +229,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '1ROUND',
               current: '5set',
@@ -228,7 +239,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 67) {
+      if (flag?.flagNumber === 67) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -241,7 +252,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '1ROUND',
               current: '5set 휴식',
@@ -251,7 +262,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 66) {
+      if (flag?.flagNumber === 66) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -264,7 +275,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '1ROUND',
               current: '6set',
@@ -274,7 +285,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 65) {
+      if (flag?.flagNumber === 65) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -287,7 +298,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '1ROUND',
               current: '6set 휴식',
@@ -297,7 +308,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 64) {
+      if (flag?.flagNumber === 64) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -310,7 +321,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '1ROUND',
               current: '7set',
@@ -320,7 +331,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 63) {
+      if (flag?.flagNumber === 63) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -333,7 +344,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '1ROUND',
               current: '7set 휴식',
@@ -343,7 +354,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 62) {
+      if (flag?.flagNumber === 62) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -356,7 +367,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '1ROUND',
               current: '8set',
@@ -366,7 +377,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 61) {
+      if (flag?.flagNumber === 61) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -379,7 +390,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '1ROUND',
               current: '8set 휴식',
@@ -389,7 +400,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 60) {
+      if (flag?.flagNumber === 60) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -402,7 +413,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '1ROUND',
               current: '9set',
@@ -412,7 +423,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 59) {
+      if (flag?.flagNumber === 59) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -425,7 +436,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 90,
               round: '1ROUND',
               current: '수분 충전!🚰💧',
@@ -437,7 +448,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
 
       // ========================= 2R =========================
 
-      if (flag?.flag_number === 58) {
+      if (flag?.flagNumber === 58) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -450,7 +461,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 40,
               round: '2ROUND',
               current: '1set',
@@ -460,7 +471,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 57) {
+      if (flag?.flagNumber === 57) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -473,7 +484,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '2ROUND',
               current: '1set 휴식',
@@ -483,7 +494,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 56) {
+      if (flag?.flagNumber === 56) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -496,7 +507,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 40,
               round: '2ROUND',
               current: '2set',
@@ -506,7 +517,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 55) {
+      if (flag?.flagNumber === 55) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -519,7 +530,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '2ROUND',
               current: '2set 휴식',
@@ -529,7 +540,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 54) {
+      if (flag?.flagNumber === 54) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -542,7 +553,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 40,
               round: '2ROUND',
               current: '3set',
@@ -552,7 +563,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 53) {
+      if (flag?.flagNumber === 53) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -565,7 +576,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '2ROUND',
               current: '3set 휴식',
@@ -575,7 +586,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 52) {
+      if (flag?.flagNumber === 52) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -588,7 +599,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 40,
               round: '2ROUND',
               current: '4set',
@@ -598,7 +609,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 51) {
+      if (flag?.flagNumber === 51) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -611,7 +622,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '2ROUND',
               current: '4set 휴식',
@@ -621,7 +632,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 50) {
+      if (flag?.flagNumber === 50) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -634,7 +645,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 40,
               round: '2ROUND',
               current: '5set',
@@ -644,7 +655,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 49) {
+      if (flag?.flagNumber === 49) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -657,7 +668,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '2ROUND',
               current: '5set 휴식',
@@ -667,7 +678,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 48) {
+      if (flag?.flagNumber === 48) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -680,7 +691,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 40,
               round: '2ROUND',
               current: '6set',
@@ -690,7 +701,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 47) {
+      if (flag?.flagNumber === 47) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -703,7 +714,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '2ROUND',
               current: '6set 휴식',
@@ -713,7 +724,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 46) {
+      if (flag?.flagNumber === 46) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -726,7 +737,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 40,
               round: '2ROUND',
               current: '7set',
@@ -736,7 +747,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 45) {
+      if (flag?.flagNumber === 45) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -749,7 +760,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '2ROUND',
               current: '7set 휴식',
@@ -759,7 +770,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 44) {
+      if (flag?.flagNumber === 44) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -772,7 +783,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 40,
               round: '2ROUND',
               current: '8set',
@@ -782,7 +793,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 43) {
+      if (flag?.flagNumber === 43) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -795,7 +806,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '2ROUND',
               current: '8set 휴식',
@@ -805,7 +816,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 42) {
+      if (flag?.flagNumber === 42) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -818,7 +829,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 40,
               round: '2ROUND',
               current: '9set',
@@ -828,7 +839,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 41) {
+      if (flag?.flagNumber === 41) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -841,7 +852,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 90,
               round: '2ROUND',
               current: '수분 충전!🚰💧',
@@ -853,7 +864,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
 
       // ========================= 3R =========================
 
-      if (flag?.flag_number === 40) {
+      if (flag?.flagNumber === 40) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -866,7 +877,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '3ROUND',
               current: '1set',
@@ -876,7 +887,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 39) {
+      if (flag?.flagNumber === 39) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -889,7 +900,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 15,
               round: '3ROUND',
               current: '1set 휴식',
@@ -899,7 +910,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 38) {
+      if (flag?.flagNumber === 38) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -912,7 +923,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '3ROUND',
               current: '2set',
@@ -922,7 +933,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 37) {
+      if (flag?.flagNumber === 37) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -935,7 +946,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 15,
               round: '3ROUND',
               current: '2set 휴식',
@@ -945,7 +956,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 36) {
+      if (flag?.flagNumber === 36) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -958,7 +969,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '3ROUND',
               current: '3set',
@@ -968,7 +979,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 35) {
+      if (flag?.flagNumber === 35) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -981,7 +992,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 15,
               round: '3ROUND',
               current: '3set 휴식',
@@ -991,7 +1002,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 34) {
+      if (flag?.flagNumber === 34) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1004,7 +1015,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '3ROUND',
               current: '4set',
@@ -1014,7 +1025,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 33) {
+      if (flag?.flagNumber === 33) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1027,7 +1038,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 15,
               round: '3ROUND',
               current: '4set 휴식',
@@ -1037,7 +1048,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 32) {
+      if (flag?.flagNumber === 32) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1050,7 +1061,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '3ROUND',
               current: '5set',
@@ -1060,7 +1071,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 31) {
+      if (flag?.flagNumber === 31) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1073,7 +1084,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 15,
               round: '3ROUND',
               current: '5set 휴식',
@@ -1083,7 +1094,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 30) {
+      if (flag?.flagNumber === 30) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1096,7 +1107,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '3ROUND',
               current: '6set',
@@ -1106,7 +1117,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 29) {
+      if (flag?.flagNumber === 29) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1119,7 +1130,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 15,
               round: '3ROUND',
               current: '6set 휴식',
@@ -1129,7 +1140,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 28) {
+      if (flag?.flagNumber === 28) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1142,7 +1153,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '3ROUND',
               current: '7set',
@@ -1152,7 +1163,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 27) {
+      if (flag?.flagNumber === 27) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1165,7 +1176,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 15,
               round: '3ROUND',
               current: '7set 휴식',
@@ -1175,7 +1186,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 26) {
+      if (flag?.flagNumber === 26) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1188,7 +1199,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '3ROUND',
               current: '8set',
@@ -1198,7 +1209,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 25) {
+      if (flag?.flagNumber === 25) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1211,7 +1222,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 15,
               round: '3ROUND',
               current: '8set 휴식',
@@ -1221,7 +1232,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 24) {
+      if (flag?.flagNumber === 24) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1234,7 +1245,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 30,
               round: '3ROUND',
               current: '9set',
@@ -1244,7 +1255,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 23) {
+      if (flag?.flagNumber === 23) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1257,7 +1268,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 90,
               round: '3ROUND',
               current: '수분 충전!🚰💧',
@@ -1269,7 +1280,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
 
       // ========================= 4R =========================
 
-      if (flag?.flag_number === 22) {
+      if (flag?.flagNumber === 22) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1282,7 +1293,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '4ROUND',
               current: '1set',
@@ -1292,7 +1303,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 21) {
+      if (flag?.flagNumber === 21) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1305,7 +1316,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 10,
               round: '4ROUND',
               current: '1set 휴식',
@@ -1315,7 +1326,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 20) {
+      if (flag?.flagNumber === 20) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1328,7 +1339,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '4ROUND',
               current: '2set',
@@ -1338,7 +1349,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 19) {
+      if (flag?.flagNumber === 19) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1351,7 +1362,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 10,
               round: '4ROUND',
               current: '2set 휴식',
@@ -1361,7 +1372,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 18) {
+      if (flag?.flagNumber === 18) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1374,7 +1385,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '4ROUND',
               current: '3set',
@@ -1384,7 +1395,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 17) {
+      if (flag?.flagNumber === 17) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1397,7 +1408,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 10,
               round: '4ROUND',
               current: '3set 휴식',
@@ -1407,7 +1418,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 16) {
+      if (flag?.flagNumber === 16) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1420,7 +1431,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '4ROUND',
               current: '4set',
@@ -1430,7 +1441,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 15) {
+      if (flag?.flagNumber === 15) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1443,7 +1454,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 10,
               round: '4ROUND',
               current: '4set 휴식',
@@ -1453,7 +1464,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 14) {
+      if (flag?.flagNumber === 14) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1466,7 +1477,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '4ROUND',
               current: '5set',
@@ -1476,7 +1487,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 13) {
+      if (flag?.flagNumber === 13) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1489,7 +1500,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 10,
               round: '4ROUND',
               current: '5set 휴식',
@@ -1499,7 +1510,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 12) {
+      if (flag?.flagNumber === 12) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1512,7 +1523,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '4ROUND',
               current: '6set',
@@ -1522,7 +1533,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 11) {
+      if (flag?.flagNumber === 11) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1535,7 +1546,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 10,
               round: '4ROUND',
               current: '6set 휴식',
@@ -1545,7 +1556,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 10) {
+      if (flag?.flagNumber === 10) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1558,7 +1569,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '4ROUND',
               current: '7set',
@@ -1568,7 +1579,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 9) {
+      if (flag?.flagNumber === 9) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1581,7 +1592,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 10,
               round: '4ROUND',
               current: '7set 휴식',
@@ -1591,7 +1602,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 8) {
+      if (flag?.flagNumber === 8) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1604,7 +1615,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '4ROUND',
               current: '8set',
@@ -1614,7 +1625,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 7) {
+      if (flag?.flagNumber === 7) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1627,7 +1638,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 10,
               round: '4ROUND',
               current: '8set 휴식',
@@ -1637,7 +1648,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 6) {
+      if (flag?.flagNumber === 6) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1650,7 +1661,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '4ROUND',
               current: '9set',
@@ -1660,7 +1671,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 5) {
+      if (flag?.flagNumber === 5) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1673,7 +1684,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '4ROUND',
               current: '수분 충전!🚰💧',
@@ -1685,7 +1696,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
 
       // ========================= 5R =========================
 
-      if (flag?.flag_number === 4) {
+      if (flag?.flagNumber === 4) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1698,7 +1709,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '5ROUND',
               current: '1set',
@@ -1708,7 +1719,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 3) {
+      if (flag?.flagNumber === 3) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1721,7 +1732,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 20,
               round: '5ROUND',
               current: '1set 휴식',
@@ -1731,7 +1742,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 2) {
+      if (flag?.flagNumber === 2) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1744,7 +1755,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         if (parseInt(flag?.timer) === 0) {
           setFlag(() => {
             return {
-              flag_number: flag?.flag_number - 1,
+              flagNumber: flag?.flagNumber - 1,
               timer: 60,
               round: '5ROUND',
               current: '2set',
@@ -1754,7 +1765,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
         }
       }
 
-      if (flag?.flag_number === 1) {
+      if (flag?.flagNumber === 1) {
         if (parseInt(flag?.timer) > 0) {
           setFlag(() => {
             return {
@@ -1768,7 +1779,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
           mutate({ type: 'playProgram', newValue: false });
 
           setFlag({
-            flag_number: 76,
+            flagNumber: 76,
             timer: 10,
             round: '1ROUND',
             current: '준비!',
@@ -1779,7 +1790,7 @@ const DescentTimerSB = ({ flag, setFlag, section }) => {
     }, 1000);
 
     return () => clearInterval(countdown);
-  }, [flag?.flag_number, flag?.timer]);
+  }, [flag?.flagNumber, flag?.timer]);
 
   return (
     <div>

@@ -1,19 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Font from '@/component/common/font';
 import styled from 'styled-components';
-import { useGetSeletedData } from '@/api/seleted';
+import { useGetSeletedDataToday } from '@/api/seleted';
 import DotSpinner from '@/component/common/dot-spinner';
 import ImageWrapper from '@/component/common/image-wrapper';
-import { toastStateAtom } from 'atoms';
-import { useRecoilState } from 'recoil';
-import { useRouter } from 'node_modules/next/router';
 
 const TodaySB = () => {
-  const router = useRouter();
+  const [center, setCenter] = useState('고잔점');
 
-  const [toastState, setToastState] = useRecoilState(toastStateAtom);
-
-  const { data, isLoading } = useGetSeletedData(setToastState, router);
+  const { data, isLoading } = useGetSeletedDataToday(center);
 
   return (
     <Frame>
@@ -22,6 +17,23 @@ const TodaySB = () => {
       <Font fontSize="4.5rem" fontWeight={500} margin="4rem 0 4rem 0">
         오늘의 운동 🏋️‍♀️
       </Font>
+
+      <SearchFlagContainer>
+        <SearchFlagWrapper>
+          <input
+            type="radio"
+            id="고잔점"
+            name="gojan"
+            value="고잔점"
+            checked={center === '고잔점'}
+            onChange={e => {
+              setCenter(e.target.value);
+            }}
+          />
+
+          <SearchFlagLabel htmlFor="고잔점">{`고잔점`}</SearchFlagLabel>
+        </SearchFlagWrapper>
+      </SearchFlagContainer>
 
       {data && data[0].current?.length > 0 ? (
         <SelectedBox>
@@ -69,6 +81,7 @@ const Frame = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 4rem 0rem 10rem 0rem;
 `;
 
 const SelectedBox = styled.div`
@@ -125,4 +138,25 @@ const CardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const SearchFlagContainer = styled.div`
+  width: 100%;
+  margin-bottom: 3rem;
+  display: flex;
+  gap: 3.5rem;
+  justify-content: center;
+`;
+
+const SearchFlagLabel = styled.label`
+  font-size: 3rem;
+  color: #000;
+  transform: translateY(3px);
+`;
+
+const SearchFlagWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  white-space: nowrap;
+  color: #fff;
 `;
