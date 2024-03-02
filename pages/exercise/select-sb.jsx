@@ -6,38 +6,48 @@ import Line from '@/component/common/line';
 import Image from 'node_modules/next/image';
 import Button from '@/component/common/button';
 import programData from '@/constant/program';
-import { useRecoilState } from 'recoil';
-import { selectedProgramStateAtom } from 'atoms/index';
 import useDebounce from '@/hooks/useDebounce';
 import { check } from '@/public/svg';
-import { db } from 'utils/firebase';
 import { DragDropContext, Draggable } from 'react-beautiful-dnd';
 import { StrictModeDroppable } from '@/component/common/strict-mode-droppable';
+import DotSpinner from '@/component/common/dot-spinner';
 import dynamic from 'node_modules/next/dynamic';
 import { SEARCHKEYWORDEXAMPLE } from '@/constant/select-keyword';
+import {
+  useDeleteSelectedData,
+  useGetSeletedData,
+  usePatchSelectedData,
+} from '@/api/seleted';
+import { useRouter } from 'next/router';
+import { toastStateAtom } from 'atoms';
+import { useRecoilState } from 'recoil';
 
 const ReactPaginate = dynamic(() => import('react-paginate'), {
   ssr: false,
 });
 
-const Select = () => {
-  const [password, setPassword] = useState('');
-  const [checkPassword, setCheckPassword] = useState(false);
+const SelectSB = () => {
+  const router = useRouter();
+
   const [programs, setPrograms] = useState(programData || []);
   const [searchKeyWord, setSearchKeyWord] = useState('');
   const [searchFlag, setSearchFlag] = useState('number');
-  const [selectedProgramState, setSelectedProgramState] = useRecoilState(
-    selectedProgramStateAtom,
-  );
-
   const debouncedSearchKeyWord = useDebounce(searchKeyWord);
 
-  const getPrograms = async () => {
-    const snapshot = await db?.collection('together_selected').get();
-    const documents = snapshot?.docs[0].data().data;
+  const [toastState, setToastState] = useRecoilState(toastStateAtom);
 
-    setSelectedProgramState(documents);
-  };
+  const { data: selectedData, isLoading: selectedDataIsLoading } =
+    useGetSeletedData(setToastState, router);
+
+  const {
+    mutate: selectedPatchDataMutate,
+    isLoading: selectedPatchDataMutateIsLoading,
+  } = usePatchSelectedData(setToastState, router);
+
+  const {
+    mutate: selectedDeleteDataMutate,
+    isLoading: selectedDeleteDataMutateIsLoading,
+  } = useDeleteSelectedData(setToastState, router);
 
   const customProgramData = () => {
     const result = [];
@@ -59,12 +69,28 @@ const Select = () => {
       return;
     }
 
-    const reorderedItems = Array.from(selectedProgramState);
+    const reorderedItems = [...selectedData[0].previous];
     const [removed] = reorderedItems.splice(result.source.index, 1);
     reorderedItems.splice(result.destination.index, 0, removed);
 
-    setSelectedProgramState(reorderedItems);
+    selectedPatchDataMutate({
+      type: 'previous',
+      data: reorderedItems,
+    });
   };
+
+  // 로그인 여부 확인
+  useEffect(() => {
+    if (localStorage.getItem('sb-pickvaiiskvmynzynbcg-auth-token') === null) {
+      router.push('/auth/sign-in');
+      setToastState({
+        isOpen: true,
+        value: '로그인 후 이용해 주세요.',
+      });
+
+      return;
+    }
+  }, []);
 
   // 프로그램 검색
   useEffect(() => {
@@ -91,68 +117,44 @@ const Select = () => {
     }
   }, [debouncedSearchKeyWord]);
 
-  // 새로고침 및 최초 진입 시 프로그램 셋팅
-  useEffect(() => {
-    getPrograms();
-  }, []);
+  const onClickAddProgram = async x => {
+    const checkDuplication = await selectedData[0].previous?.find(
+      y => y.id === x.id,
+    );
 
-  const onClickAddProgram = x => {
-    const checkDuplication = selectedProgramState?.find(y => y.id === x.id);
     if (checkDuplication !== undefined) {
       return alert('같은 운동 종목은 선택할 수 없습니다.');
     }
 
-    const newObject = {
-      data: [
-        ...selectedProgramState,
-        {
-          id: x?.id,
-          name: x?.name,
-          image: x?.image,
-          isRow: x?.isRow,
-        },
-      ],
-    };
+    const newObject = [
+      ...selectedData[0].previous,
+      {
+        id: x?.id,
+        name: x?.name,
+        image: x?.image,
+        isRow: x?.isRow,
+      },
+    ];
 
-    const docRef = db?.collection('together_selected').doc('programs');
-    const setNewObject = async () => {
-      await docRef.set(newObject);
-    };
-
-    setNewObject();
-    getPrograms();
+    await selectedPatchDataMutate({
+      type: 'previous',
+      data: newObject,
+    });
   };
 
   const onClickDeleteProgram = async x => {
-    const snapshot = await db?.collection('together_selected').get();
-    const documents = snapshot?.docs[0].data().data;
+    const updatedArray = await selectedData[0].previous?.filter(
+      item => item.id !== x.id,
+    );
 
-    const deleteProgram = async () => {
-      const updatedArray = documents.filter(item => item.id !== x.id);
-      await db.collection('together_selected').doc('programs').update({
-        data: updatedArray,
-      });
-    };
-
-    deleteProgram();
-    getPrograms();
+    selectedDeleteDataMutate(updatedArray);
   };
 
-  const savePrograms = async () => {
-    const save = async () => {
-      await db.collection('together_current').doc('programs').update({
-        data: selectedProgramState,
-      });
-    };
-
-    const saveSelectedPrograms = async () => {
-      await db.collection('together_selected').doc('programs').update({
-        data: selectedProgramState,
-      });
-    };
-
-    save();
-    saveSelectedPrograms();
+  const savePrograms = async data => {
+    await selectedPatchDataMutate({
+      type: 'current',
+      data,
+    });
   };
 
   // pagination
@@ -169,42 +171,18 @@ const Select = () => {
     setPage(event.selected);
   };
 
-  const onClickSubmitPassword = password => {
-    if (password === '890890') {
-      return setCheckPassword(true);
-    } else {
-      return setCheckPassword(false);
-    }
-  };
-
   return (
     <>
-      <CheckPasswordFrame active={checkPassword}>
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <Font fontSize="2rem" whiteSpace="nowrap">
-            비밀번호:
-          </Font>
-
-          <input
-            type="password"
-            onChange={e => {
-              setPassword(e.target.value);
-            }}
-            onKeyUp={e => {
-              if (e.key === 'Enter') {
-                onClickSubmitPassword(password);
-              }
-            }}
-          />
-
-          <Button color="blue" onClick={() => onClickSubmitPassword(password)}>
-            submit
-          </Button>
-        </div>
-      </CheckPasswordFrame>
-
       <Container>
+        {/* 로딩 처리 */}
+        {selectedDataIsLoading ||
+        selectedPatchDataMutateIsLoading ||
+        selectedDeleteDataMutateIsLoading ? (
+          <DotSpinner />
+        ) : null}
+
         <ContainerWrapper>
+          {/* 프로그램 선택 */}
           <Font fontSize="4.5rem" fontWeight={500}>
             프로그램 선택하기
           </Font>
@@ -307,7 +285,7 @@ const Select = () => {
               return (
                 <CardWrapper key={x?.id}>
                   <SelectedCheck
-                    active={selectedProgramState?.some(y => x.id === y.id)}
+                    active={selectedData?.some(y => x.id === y.id)}
                   >
                     <Image src={check} alt="check" />
                   </SelectedCheck>
@@ -362,11 +340,12 @@ const Select = () => {
           <>
             <Line margin="40px 0" width="100%" />
 
+            {/* 선택한 프로그램 */}
             <Font fontSize="4.5rem" fontWeight={500} margin="0 0 2rem 0">
               선택한 프로그램
             </Font>
 
-            {selectedProgramState?.length > 0 ? (
+            {selectedData && selectedData[0].previous?.length > 0 ? (
               <SelectedBox>
                 <DragDropContext onDragEnd={onDragEnd}>
                   <StrictModeDroppable
@@ -378,60 +357,61 @@ const Select = () => {
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                       >
-                        {selectedProgramState?.map((item, index) => (
-                          <Draggable
-                            key={item?.id}
-                            draggableId={item?.id}
-                            direction="horizontal"
-                            index={index}
-                          >
-                            {provided => (
-                              <ListItem
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                              >
-                                <DragHandle {...provided.dragHandleProps}>
-                                  <div key={item?.id}>
-                                    <Font fontSize="4rem">{index + 1}</Font>
-                                    <CardWrapper>
-                                      <video
-                                        src={item?.image}
-                                        poster="/png/logo.png"
-                                        width="200"
-                                        height="200"
-                                        loop={true}
-                                        autoPlay={true}
-                                        muted={true}
-                                        preload="auto"
-                                        playsInline
-                                      ></video>
+                        {selectedData &&
+                          selectedData[0].previous?.map((item, index) => (
+                            <Draggable
+                              key={item?.id}
+                              draggableId={item?.id}
+                              direction="horizontal"
+                              index={index}
+                            >
+                              {provided => (
+                                <ListItem
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                >
+                                  <DragHandle {...provided.dragHandleProps}>
+                                    <div key={item?.id}>
+                                      <Font fontSize="4rem">{index + 1}</Font>
+                                      <CardWrapper>
+                                        <video
+                                          src={item?.image}
+                                          poster="/png/logo.png"
+                                          width="200"
+                                          height="200"
+                                          loop={true}
+                                          autoPlay={true}
+                                          muted={true}
+                                          preload="auto"
+                                          playsInline
+                                        ></video>
 
-                                      <Font
-                                        fontSize="2.5rem"
-                                        fontWeight="500"
-                                        margin="20px 0"
-                                      >
-                                        {item?.name}
-                                      </Font>
+                                        <Font
+                                          fontSize="2.5rem"
+                                          fontWeight="500"
+                                          margin="20px 0"
+                                        >
+                                          {item?.name}
+                                        </Font>
 
-                                      <Button
-                                        size="small"
-                                        color="black"
-                                        type="button"
-                                        onClick={() => {
-                                          onClickDeleteProgram(item);
-                                        }}
-                                      >
-                                        삭제하기
-                                      </Button>
-                                    </CardWrapper>
-                                  </div>
-                                </DragHandle>
-                                {item?.content}
-                              </ListItem>
-                            )}
-                          </Draggable>
-                        ))}
+                                        <Button
+                                          size="small"
+                                          color="black"
+                                          type="button"
+                                          onClick={() => {
+                                            onClickDeleteProgram(item);
+                                          }}
+                                        >
+                                          삭제하기
+                                        </Button>
+                                      </CardWrapper>
+                                    </div>
+                                  </DragHandle>
+                                  {item?.content}
+                                </ListItem>
+                              )}
+                            </Draggable>
+                          ))}
                         {provided.placeholder}
                       </DragBox>
                     )}
@@ -451,7 +431,7 @@ const Select = () => {
                 color="blue"
                 type="button"
                 onClick={() => {
-                  savePrograms();
+                  savePrograms(selectedData[0]?.previous);
                   alert('프로그램이 저장되었습니다.');
                 }}
               >
@@ -465,12 +445,12 @@ const Select = () => {
   );
 };
 
-export default React.memo(Select);
+export default SelectSB;
 
 const Container = styled.div`
   position: relative;
   width: 100%;
-  padding: 3rem;
+  padding: 10rem 3rem;
 
   input {
     width: 100%;
@@ -600,22 +580,11 @@ const NoContents = styled.div`
   border-radius: 20px;
 `;
 
-const CheckPasswordFrame = styled.div`
-  display: ${props => (props.active ? 'none' : 'flex')};
-  justify-content: center;
-  align-items: center;
-
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #ffffff;
-  z-index: 200;
-`;
-
 const ListItem = styled.li`
   display: flex;
   border: 1px solid #ddd;
   margin: 5px;
+  padding: 2rem;
   background-color: ${props => (props.isDragging ? 'lightblue' : '#fff')};
 `;
 

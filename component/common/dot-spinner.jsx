@@ -1,30 +1,41 @@
 import styled from 'styled-components';
 
-const DotSpinner = ({ width, height, marginRight, dotColor }) => {
+const DotSpinner = ({ width, height, dotColor }) => {
   return (
-    <Spinner
-      width={width}
-      height={height}
-      marginRight={marginRight}
-      dotColor={dotColor}
-    >
-      <div className="bounce1"></div>
-      <div className="bounce2"></div>
-      <div className="bounce3"></div>
-    </Spinner>
+    <SpinnerFrame>
+      <Spinner width={width} height={height} dotColor={dotColor}>
+        <div className="bounce1"></div>
+        <div className="bounce2"></div>
+        <div className="bounce3"></div>
+      </Spinner>
+    </SpinnerFrame>
   );
 };
 
 export default DotSpinner;
+
+const SpinnerFrame = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
 
 const Spinner = styled.div`
   margin: 0 auto;
   text-align: center;
 
   div {
-    width: ${({ width }) => `${width}px`};
-    height: ${({ height }) => `${height}px`};
-    background-color: ${({ dotColor }) => (dotColor ? dotColor : '#fff')};
+    width: ${props => (props.width ? props.width : '3rem')};
+    height: ${props => (props.height ? props.height : '3rem')};
+    background-color: ${({ dotColor }) => (dotColor ? dotColor : '#114784')};
     &:not(&:last-child) {
       margin-right: ${({ marginRight }) => `${marginRight}px`};
     }

@@ -8,6 +8,7 @@
       "@/constant/*": ["constant/*"],
       "@/function/*": ["function/*"],
       "@/hoc/*": ["hoc/*"],
+      "@/config/*": ["config/*"],
       "@/hooks/*": ["hooks/*"],
       "@/pages/*": ["pages/*"],
       "@/public/*": ["public/*"],
