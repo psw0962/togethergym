@@ -191,6 +191,7 @@ const ProgramSB = () => {
           </Font>
         </ChooseWrapper>
       )}
+
       {section === '1SECTION' && (
         <ExerciseVideoWrapper>
           {selectedData &&
@@ -229,6 +230,7 @@ const ProgramSB = () => {
             })}
         </ExerciseVideoWrapper>
       )}
+
       {section === '2SECTION' && (
         <ExerciseVideoWrapper>
           {selectedData &&
@@ -267,6 +269,7 @@ const ProgramSB = () => {
             })}
         </ExerciseVideoWrapper>
       )}
+
       {section === '3SECTION' && (
         <ExerciseVideoWrapper>
           {selectedData &&
@@ -305,6 +308,7 @@ const ProgramSB = () => {
             })}
         </ExerciseVideoWrapper>
       )}
+
       <div style={{ visibility: 'hidden' }}>
         <ControlComponentSB />
       </div>
@@ -357,13 +361,31 @@ const ExerciseVideoWrapper = styled.div`
 `;
 
 const RowVideoWrapper = styled.div`
+  @keyframes neon {
+    0%,
+    100% {
+      box-shadow: 0 0 0.5vw #1e4488, 0 0 0.5vw #1e4488, 0 0 5vw #272424,
+        0 0 5vw #1e4488, 0 0 0.2vw #fed128, 0.3vw 0.3vw 0.1vw #806914;
+      color: #fed128;
+    }
+    50% {
+      box-shadow: 0 0 0.2vw #1e4488, 0 0 0.5vw #1e4488, 0 0 2vw #1e4488,
+        0 0 2vw #1e4488, 0 0 0.1vw #1e4488, 0.3vw 0.3vw 0.1vw #40340a;
+      color: #806914;
+    }
+  }
+
+  animation: neon 1s ease infinite;
+  -moz-animation: neon 1s ease infinite;
+  -webkit-animation: neon 1s ease infinite;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
   width: 650px;
   height: 350px;
-  border: 4px solid #ad3132;
+  border: 4px solid #1e4488;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -377,13 +399,31 @@ const RowVideoWrapper = styled.div`
 `;
 
 const ColumnVideoWrapper = styled.div`
+  @keyframes neon {
+    0%,
+    100% {
+      box-shadow: 0 0 0.5vw #1e4488, 0 0 0.5vw #1e4488, 0 0 5vw #272424,
+        0 0 5vw #1e4488, 0 0 0.2vw #fed128, 0.3vw 0.3vw 0.1vw #806914;
+      color: #fed128;
+    }
+    50% {
+      box-shadow: 0 0 0.2vw #1e4488, 0 0 0.5vw #1e4488, 0 0 2vw #1e4488,
+        0 0 2vw #1e4488, 0 0 0.1vw #1e4488, 0.3vw 0.3vw 0.1vw #40340a;
+      color: #806914;
+    }
+  }
+
+  animation: neon 1s ease infinite;
+  -moz-animation: neon 1s ease infinite;
+  -webkit-animation: neon 1s ease infinite;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
   width: 420px;
   height: 750px;
-  border: 4px solid #ad3132;
+  border: 4px solid #1e4488;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
