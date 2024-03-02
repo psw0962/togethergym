@@ -14,18 +14,17 @@ import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
 import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
+import Toast from '@/component/common/toast';
 
 const Home = () => {
   return (
     <Frame>
       <IframeWrapper>
         <iframe
-          // src="https://www.youtube.com/embed/wy46l-rvzwE?autoplay=1&mute=1"
           src="https://www.youtube.com/embed/wy46l-rvzwE"
           title={`"함께할수록, 운동은 재밌어집니다." - 안산 최초의 그룹 트레이닝 센터 투게더짐 리뷰`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-          // frameborder="0"
         ></iframe>
       </IframeWrapper>
 

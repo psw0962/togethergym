@@ -1,6 +1,6 @@
 import { realTimeDB } from 'utils/firebase';
 
-const setFlagData = setFlag => {
+const setTimerFlag = setFlag => {
   const timerMethodRef = realTimeDB?.ref('/timerMethod');
   timerMethodRef.on('value', snapshot => {
     const timerMethodValue = snapshot.val();
@@ -13,6 +13,8 @@ const setFlagData = setFlag => {
         current: '준비!',
         next: '1set',
       });
+
+      return;
     }
 
     if (timerMethodValue === 'descentTimer') {
@@ -23,8 +25,10 @@ const setFlagData = setFlag => {
         current: '준비!',
         next: '1set',
       });
+
+      return;
     }
   });
 };
 
-export default setFlagData;
+export default setTimerFlag;

@@ -1,4 +1,3 @@
-import Font from '@/component/common/font';
 import styled from 'styled-components';
 import Image from 'next/image';
 import logo from '@/public/png/logo.png';
@@ -7,14 +6,88 @@ import ImageWrapper from '@/component/common/image-wrapper';
 import { menu } from '@/public/svg';
 import { useState } from 'react';
 import Modal from '@/component/common/modal';
+import { toastStateAtom } from 'atoms';
+import { useRecoilState } from 'recoil';
+import { usePostSignOut } from '@/api/auth';
+import useAuthCheck from '@/hooks/useAuthCheck';
 
 const Navigation = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isLoggedIn = useAuthCheck();
+
+  const [toastState, setToastState] = useRecoilState(toastStateAtom);
+
+  // const { mutate } = usePostSignOut(setToastState, router);
 
   return (
     <Container>
       <Modal state={isMenuOpen} setState={setIsMenuOpen}>
+        {isLoggedIn ? (
+          <ModalMenuWrapper
+            onClick={() => {
+              localStorage.removeItem('sb-pickvaiiskvmynzynbcg-auth-token');
+              setIsMenuOpen(false);
+              window.location.reload();
+              setToastState({
+                isOpen: true,
+                value: '정상적으로 로그아웃 되었습니다.',
+              });
+
+              e => e.stopPropagation();
+              // mutate();
+            }}
+          >
+            {`로그아웃`}
+          </ModalMenuWrapper>
+        ) : (
+          <ModalMenuWrapper
+            onClick={() => {
+              router.push('/auth/sign-in');
+              setIsMenuOpen(false);
+              e => e.stopPropagation();
+            }}
+          >
+            {`로그인`}
+          </ModalMenuWrapper>
+        )}
+
+        {isLoggedIn && (
+          <ModalMenuWrapper
+            onClick={() => {
+              router.push('/exercise/program/index-sb');
+              setIsMenuOpen(false);
+              e => e.stopPropagation();
+            }}
+          >
+            {`운동 프로그램`}
+          </ModalMenuWrapper>
+        )}
+
+        {isLoggedIn && (
+          <ModalMenuWrapper
+            onClick={() => {
+              router.push('/exercise/select-sb');
+              setIsMenuOpen(false);
+              e => e.stopPropagation();
+            }}
+          >
+            {`운동 프로그램 선택`}
+          </ModalMenuWrapper>
+        )}
+
+        {isLoggedIn && (
+          <ModalMenuWrapper
+            onClick={() => {
+              router.push('/exercise/control-sb');
+              setIsMenuOpen(false);
+              e => e.stopPropagation();
+            }}
+          >
+            {`프로그램 컨트롤러`}
+          </ModalMenuWrapper>
+        )}
+
         <ModalMenuWrapper
           onClick={() => {
             window.open('https://www.togethergym.co.kr/contact', '_self');
@@ -109,11 +182,6 @@ const Pretag = styled.pre`
     props.textDecoration ? props.textDecoration : ''};
   margin: ${({ margin }) => margin};
   cursor: ${props => (props.pointer ? 'pointer' : '')};
-`;
-
-const LogoImage = styled(Image)`
-  border-radius: 25%;
-  cursor: pointer;
 `;
 
 const NavMainButton = styled.div`

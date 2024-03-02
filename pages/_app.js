@@ -9,6 +9,8 @@ import { Analytics } from '@vercel/analytics/react';
 import Navigation from '@/component/common/navigation';
 import { useRouter } from 'node_modules/next/router';
 import styled from 'styled-components';
+import DotSpinner from '@/component/common/dot-spinner';
+import Toast from '@/component/common/toast';
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -34,15 +36,29 @@ const App = ({ Component, pageProps }) => {
           <RecoilRoot>
             {router?.pathname?.includes('/exercise') === false &&
             router?.pathname?.includes('/control') === false ? (
-              <Frame>
-                <Navigation />
-                <Component {...pageProps} />
-                <Analytics />
-              </Frame>
+              <>
+                {loading ? (
+                  <DotSpinner />
+                ) : (
+                  <Frame>
+                    <Navigation />
+                    <Component {...pageProps} />
+                    <Toast />
+                    <Analytics />
+                  </Frame>
+                )}
+              </>
             ) : (
               <>
-                <Component {...pageProps} />
-                <Analytics />
+                {loading ? (
+                  <DotSpinner />
+                ) : (
+                  <>
+                    <Component {...pageProps} />
+                    <Toast />
+                    <Analytics />
+                  </>
+                )}
               </>
             )}
           </RecoilRoot>

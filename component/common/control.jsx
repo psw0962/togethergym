@@ -4,7 +4,7 @@ import Button from '@/component/common/button';
 import Font from '@/component/common/font';
 import { realTimeDB } from 'utils/firebase';
 import useLocalStorage from 'node_modules/use-local-storage/dist/index';
-import setFlagData from '@/function/setFlagData';
+import setFlagData from '@/function/setTimerFlag';
 
 const ControlComponent = () => {
   const [playProgram, setPlayProgram] = useLocalStorage('playProgram', false);
