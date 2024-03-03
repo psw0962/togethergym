@@ -78,6 +78,6 @@ const Frame = styled.div`
   height: 100%;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 0 3rem 10rem 3rem;
+  padding: 0 3rem 6rem 3rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 `;

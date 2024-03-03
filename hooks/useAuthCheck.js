@@ -9,11 +9,13 @@ const useAuthCheck = () => {
   useEffect(() => {
     if (!data) {
       setIsLoggedIn(false);
+
       return;
     }
 
     if (data !== undefined) {
       setIsLoggedIn(true);
+
       return;
     }
   }, [data]);

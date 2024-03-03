@@ -12,7 +12,7 @@ const withAuth = WrappedComponent => {
     const { data } = useGetUserData();
 
     useEffect(() => {
-      if (!data) {
+      if (data && !data) {
         router.push('/auth/sign-in');
         setToastState({
           isOpen: true,
