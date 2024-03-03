@@ -76,8 +76,9 @@ const getUserData = async () => {
   return data;
 };
 
-export const useGetUserData = () => {
+export const useGetUserData = (setToastState, router, redirect = true) => {
   return useQuery(['userData'], () => getUserData(), {
+    retry: 1,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -85,6 +86,14 @@ export const useGetUserData = () => {
     staleTime: 1000 * 60 * 5,
 
     onError: error => {
+      if (redirect) {
+        setToastState({
+          isOpen: true,
+          value: '로그인 후 이용해 주세요.',
+        });
+        router.push('/auth/sign-in');
+      }
+
       console.log(error);
     },
   });

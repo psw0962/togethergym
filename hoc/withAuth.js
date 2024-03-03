@@ -1,26 +1,17 @@
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { toastStateAtom } from 'atoms';
 import { useRecoilState } from 'recoil';
 import { useGetUserData } from '@/api/auth';
+import DotSpinner from '@/component/common/dot-spinner';
 
 const withAuth = WrappedComponent => {
   const AuthComponent = props => {
     const router = useRouter();
     const [toastState, setToastState] = useRecoilState(toastStateAtom);
 
-    const { data } = useGetUserData();
+    const { isLoading } = useGetUserData(setToastState, router);
 
-    useEffect(() => {
-      if (data && !data) {
-        router.push('/auth/sign-in');
-        setToastState({
-          isOpen: true,
-          value: '로그인 후 이용해 주세요.',
-        });
-        return;
-      }
-    }, []);
+    if (isLoading) return <DotSpinner />;
 
     return <WrappedComponent {...props} />;
   };

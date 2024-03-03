@@ -9,6 +9,7 @@ import { useGetFlagData, usePatchFlagData } from '@/api/flag';
 import { toastStateAtom } from 'atoms';
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'node_modules/next/router';
+import DotSpinner from './dot-spinner';
 
 const ControlComponentSB = () => {
   const router = useRouter();
@@ -17,7 +18,7 @@ const ControlComponentSB = () => {
 
   const [toastState, setToastState] = useRecoilState(toastStateAtom);
 
-  const { data, refetch } = useGetFlagData();
+  const { data, isLoading, refetch } = useGetFlagData();
   const { mutate } = usePatchFlagData(setToastState, router);
 
   useEffect(() => {
@@ -39,71 +40,77 @@ const ControlComponentSB = () => {
 
   return (
     <Container>
-      <Frame>
-        <SearchFlagContainer>
-          <SearchFlagWrapper>
-            <input
-              type="radio"
-              id="basicTimer"
-              name="timer"
-              value="basicTimer"
-              checked={(data && data[0]?.timer_method === 'basicTimer') || ''}
-              onChange={() => {
-                mutate({ type: 'timerMethod', newValue: 'basicTimer' });
+      {isLoading && <DotSpinner />}
+
+      {!isLoading && (
+        <Frame>
+          <SearchFlagContainer>
+            <SearchFlagWrapper>
+              <input
+                type="radio"
+                id="basicTimer"
+                name="timer"
+                value="basicTimer"
+                checked={(data && data[0]?.timer_method === 'basicTimer') || ''}
+                onChange={() => {
+                  mutate({ type: 'timerMethod', newValue: 'basicTimer' });
+                  handleTimerFlagSB('basicTimer', setFlag);
+                }}
+              />
+
+              <SearchFlagLabel htmlFor="basicTimer">{`basicTimer`}</SearchFlagLabel>
+            </SearchFlagWrapper>
+
+            <SearchFlagWrapper>
+              <input
+                type="radio"
+                id="descentTimer"
+                name="timer"
+                value="descentTimer"
+                checked={
+                  (data && data[0]?.timer_method === 'descentTimer') || ''
+                }
+                onChange={() => {
+                  mutate({ type: 'timerMethod', newValue: 'descentTimer' });
+                  handleTimerFlagSB('descentTimer', setFlag);
+                }}
+              />
+
+              <SearchFlagLabel htmlFor="descentTimer">{`descentTimer`}</SearchFlagLabel>
+            </SearchFlagWrapper>
+          </SearchFlagContainer>
+
+          <Button
+            height="8rem"
+            size="large"
+            color="black"
+            onClick={() => {
+              mutate({ type: 'playProgram', newValue: true });
+            }}
+          >
+            <Font fontSize="2.5rem">START</Font>
+          </Button>
+
+          <Button
+            height="8rem"
+            size="large"
+            color="black"
+            onClick={() => {
+              mutate({ type: 'playProgram', newValue: false });
+
+              if (data[0]?.timer_method === 'basicTimer') {
                 handleTimerFlagSB('basicTimer', setFlag);
-              }}
-            />
+              }
 
-            <SearchFlagLabel htmlFor="basicTimer">{`basicTimer`}</SearchFlagLabel>
-          </SearchFlagWrapper>
-
-          <SearchFlagWrapper>
-            <input
-              type="radio"
-              id="descentTimer"
-              name="timer"
-              value="descentTimer"
-              checked={(data && data[0]?.timer_method === 'descentTimer') || ''}
-              onChange={() => {
-                mutate({ type: 'timerMethod', newValue: 'descentTimer' });
+              if (data[0]?.timer_method === 'descentTimer') {
                 handleTimerFlagSB('descentTimer', setFlag);
-              }}
-            />
-
-            <SearchFlagLabel htmlFor="descentTimer">{`descentTimer`}</SearchFlagLabel>
-          </SearchFlagWrapper>
-        </SearchFlagContainer>
-
-        <Button
-          height="8rem"
-          size="large"
-          color="black"
-          onClick={() => {
-            mutate({ type: 'playProgram', newValue: true });
-          }}
-        >
-          <Font fontSize="2.5rem">START</Font>
-        </Button>
-
-        <Button
-          height="8rem"
-          size="large"
-          color="black"
-          onClick={() => {
-            mutate({ type: 'playProgram', newValue: false });
-
-            if (data[0]?.timer_method === 'basicTimer') {
-              handleTimerFlagSB('basicTimer', setFlag);
-            }
-
-            if (data[0]?.timer_method === 'descentTimer') {
-              handleTimerFlagSB('descentTimer', setFlag);
-            }
-          }}
-        >
-          <Font fontSize="2.5rem">RESET</Font>
-        </Button>
-      </Frame>
+              }
+            }}
+          >
+            <Font fontSize="2.5rem">RESET</Font>
+          </Button>
+        </Frame>
+      )}
     </Container>
   );
 };
