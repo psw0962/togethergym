@@ -14,7 +14,6 @@ import kakaotalk from '@/public/png/kakaotalk.png';
 import logo from '@/public/png/logo.png';
 import phone from '@/public/svg/phone.svg';
 import Button from '@/component/common/button';
-import Toast from '@/component/common/toast';
 
 const Home = () => {
   return (

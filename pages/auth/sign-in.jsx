@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import useAuthCheck from '@/hooks/useAuthCheck';
 import styled from 'styled-components';
 import Button from '@/component/common/button';
+import DotSpinner from '@/component/common/dot-spinner';
 
 const SignIn = () => {
   const router = useRouter();
@@ -16,7 +17,10 @@ const SignIn = () => {
 
   const [toastState, setToastState] = useRecoilState(toastStateAtom);
 
-  const { mutate: signInMutate } = usePostSignIn(setToastState, router);
+  const { mutate: signInMutate, isLoading: signInIsLoading } = usePostSignIn(
+    setToastState,
+    router,
+  );
 
   if (isLoggedIn) {
     router.push('/');
@@ -25,6 +29,8 @@ const SignIn = () => {
 
   return (
     <Frame>
+      {signInIsLoading && <DotSpinner />}
+
       <FormWrapper>
         <StyledInput
           type="text"

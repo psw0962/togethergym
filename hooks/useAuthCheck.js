@@ -1,31 +1,22 @@
+import { useGetUserData } from '@/api/auth';
 import { useEffect, useState } from 'react';
 
 const useAuthCheck = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const { data } = useGetUserData();
+
   useEffect(() => {
-    const checkLoginStatus = () => {
-      if (localStorage.getItem('sb-pickvaiiskvmynzynbcg-auth-token') === null) {
-        setIsLoggedIn(false);
+    if (!data) {
+      setIsLoggedIn(false);
+      return;
+    }
 
-        return;
-      }
-
-      if (localStorage.getItem('sb-pickvaiiskvmynzynbcg-auth-token')) {
-        setIsLoggedIn(true);
-
-        return;
-      }
-    };
-
-    checkLoginStatus();
-
-    window.addEventListener('storage', checkLoginStatus);
-
-    return () => {
-      window.removeEventListener('storage', checkLoginStatus);
-    };
-  }, []);
+    if (data !== undefined) {
+      setIsLoggedIn(true);
+      return;
+    }
+  }, [data]);
 
   return isLoggedIn;
 };

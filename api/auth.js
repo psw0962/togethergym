@@ -14,8 +14,12 @@ const postSignIn = async data => {
 };
 
 export const usePostSignIn = (setToastState, router) => {
+  const queryClient = useQueryClient();
+
   return useMutation(data => postSignIn(data), {
     onSuccess: () => {
+      queryClient.invalidateQueries(['userData']);
+
       setToastState({
         isOpen: true,
         value: '정상적으로 로그인 되었습니다.',
@@ -43,13 +47,18 @@ const postSignOut = async () => {
 };
 
 export const usePostSignOut = (setToastState, router) => {
+  const queryClient = useQueryClient();
+
   return useMutation(() => postSignOut(), {
     onSuccess: () => {
+      queryClient.invalidateQueries(['userData']);
+      router.reload();
       setToastState({
         isOpen: true,
         value: '정상적으로 로그아웃 되었습니다.',
       });
-      router.push('/auth/sign-in');
+
+      // router.push('/auth/sign-in');
     },
 
     onError: error => {
