@@ -4,12 +4,13 @@ import logo from '@/public/png/logo.png';
 import { useRouter } from 'node_modules/next/router';
 import ImageWrapper from '@/component/common/image-wrapper';
 import { menu } from '@/public/svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from '@/component/common/modal';
 import { toastStateAtom } from 'atoms';
 import { useRecoilState } from 'recoil';
 import { usePostSignOut } from '@/api/auth';
 import useAuthCheck from '@/hooks/useAuthCheck';
+import supabase from '@/config/supabaseClient';
 
 const Navigation = () => {
   const router = useRouter();
@@ -18,7 +19,22 @@ const Navigation = () => {
 
   const [toastState, setToastState] = useRecoilState(toastStateAtom);
 
-  const { mutate } = usePostSignOut(setToastState, router);
+  const { mutate } = usePostSignOut(setToastState);
+
+  // 로그아웃 처리
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (event === 'SIGNED_OUT') {
+          router.reload();
+        }
+      },
+    );
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, []);
 
   return (
     <Container>

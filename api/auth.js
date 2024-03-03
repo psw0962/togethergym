@@ -46,19 +46,16 @@ const postSignOut = async () => {
   if (error) throw new Error(error);
 };
 
-export const usePostSignOut = (setToastState, router) => {
+export const usePostSignOut = setToastState => {
   const queryClient = useQueryClient();
 
   return useMutation(() => postSignOut(), {
     onSuccess: () => {
       queryClient.invalidateQueries(['userData']);
-      router.reload();
       setToastState({
         isOpen: true,
         value: '정상적으로 로그아웃 되었습니다.',
       });
-
-      // router.push('/auth/sign-in');
     },
 
     onError: error => {

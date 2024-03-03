@@ -294,7 +294,7 @@ const Home = () => {
           </a>
         </IconWrapper>
       </IconFrame>
-      <LineDiv />
+      <LineDiv margin="10rem 0" />
       <BusinessInfoFrame>
         <LogoImage src={logo} alt="logo" width={100} height={100} />
 
@@ -419,7 +419,8 @@ const IconWrapper = styled.div`
 
 const BusinessInfoFrame = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
+  margin-bottom: 4rem;
 `;
 
 const BusinessInfoWrapper = styled.div`
