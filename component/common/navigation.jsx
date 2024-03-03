@@ -18,7 +18,7 @@ const Navigation = () => {
 
   const [toastState, setToastState] = useRecoilState(toastStateAtom);
 
-  // const { mutate } = usePostSignOut(setToastState, router);
+  const { mutate } = usePostSignOut(setToastState, router);
 
   return (
     <Container>
@@ -26,16 +26,10 @@ const Navigation = () => {
         {isLoggedIn ? (
           <ModalMenuWrapper
             onClick={() => {
-              localStorage.removeItem('sb-pickvaiiskvmynzynbcg-auth-token');
+              mutate();
               setIsMenuOpen(false);
-              window.location.reload();
-              setToastState({
-                isOpen: true,
-                value: '정상적으로 로그아웃 되었습니다.',
-              });
 
               e => e.stopPropagation();
-              // mutate();
             }}
           >
             {`로그아웃`}

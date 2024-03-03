@@ -15,6 +15,7 @@ import DotSpinner from '@/component/common/dot-spinner';
 import { useRouter } from 'next/router';
 import { toastStateAtom } from 'atoms';
 import { useRecoilState } from 'recoil';
+import withAuth from '@/hoc/withAuth';
 
 const BasicTimerSB = dynamic(() => import('@/component/timer/BasicTimerSB'));
 const DescentTimerSB = dynamic(() =>
@@ -37,19 +38,6 @@ const ProgramSB = () => {
 
   const { data: flagData, isLoading: flagDataIsLoading } = useGetFlagData();
 
-  // 로그인 여부 확인
-  useEffect(() => {
-    if (localStorage.getItem('sb-pickvaiiskvmynzynbcg-auth-token') === null) {
-      router.push('/auth/sign-in');
-      setToastState({
-        isOpen: true,
-        value: '로그인 후 이용해 주세요.',
-      });
-
-      return;
-    }
-  }, []);
-
   // 새로고침 및 최초 진입 시 프로그램 셋팅
   useEffect(() => {
     if (sessionStorage.getItem('section')) {
@@ -57,7 +45,7 @@ const ProgramSB = () => {
     }
 
     if (flagData && flagData[0]?.play_program === false) {
-      handleTimerFlagSB(setFlag);
+      handleTimerFlagSB(flagData[0]?.timer_method, setFlag);
     }
 
     setElement(true);
@@ -71,15 +59,6 @@ const ProgramSB = () => {
       audio?.play();
     }
   }, [flag?.timer]);
-
-  // 오디오 이펙트 mutate로 할때
-  // useEffect(() => {
-  //   setAudio(new Audio('/sounds/beep.mp3'));
-
-  //   if (flagData && flagData[0]?.timer <= 3) {
-  //     audio?.play();
-  //   }
-  // }, [flagData]);
 
   if (!element) {
     return <></>;
@@ -316,7 +295,7 @@ const ProgramSB = () => {
   );
 };
 
-export default ProgramSB;
+export default withAuth(ProgramSB);
 
 const Container = styled.div`
   background-color: #000;
@@ -364,20 +343,18 @@ const RowVideoWrapper = styled.div`
   @keyframes neon {
     0%,
     100% {
-      box-shadow: 0 0 0.5vw #1e4488, 0 0 0.5vw #1e4488, 0 0 5vw #272424,
-        0 0 5vw #1e4488, 0 0 0.2vw #fed128, 0.3vw 0.3vw 0.1vw #806914;
-      color: #fed128;
+      box-shadow: 0 0 0.3vw #1e4488, 0 0 2vw #1e4488, 0 0 5vw #272424,
+        0 0 1vw #1e4488, 0 0 0.2vw #fed128, 0.3vw 0.3vw 0.1vw #806914;
     }
     50% {
-      box-shadow: 0 0 0.2vw #1e4488, 0 0 0.5vw #1e4488, 0 0 2vw #1e4488,
-        0 0 2vw #1e4488, 0 0 0.1vw #1e4488, 0.3vw 0.3vw 0.1vw #40340a;
-      color: #806914;
+      box-shadow: 0 0 0vw #1e4488, 0 0 0vw #1e4488, 0 0 0vw #1e4488,
+        0 0 1vw #1e4488, 0 0 0.1vw #1e4488, 0.1vw 0.1vw 0.1vw #40340a;
     }
   }
 
-  animation: neon 1s ease infinite;
-  -moz-animation: neon 1s ease infinite;
-  -webkit-animation: neon 1s ease infinite;
+  animation: neon 1.5s ease infinite;
+  -moz-animation: neon 1.5s ease infinite;
+  -webkit-animation: neon 1.5s ease infinite;
 
   display: flex;
   align-items: center;
@@ -402,20 +379,18 @@ const ColumnVideoWrapper = styled.div`
   @keyframes neon {
     0%,
     100% {
-      box-shadow: 0 0 0.5vw #1e4488, 0 0 0.5vw #1e4488, 0 0 5vw #272424,
-        0 0 5vw #1e4488, 0 0 0.2vw #fed128, 0.3vw 0.3vw 0.1vw #806914;
-      color: #fed128;
+      box-shadow: 0 0 0.3vw #1e4488, 0 0 2vw #1e4488, 0 0 5vw #272424,
+        0 0 1vw #1e4488, 0 0 0.2vw #fed128, 0.3vw 0.3vw 0.1vw #806914;
     }
     50% {
-      box-shadow: 0 0 0.2vw #1e4488, 0 0 0.5vw #1e4488, 0 0 2vw #1e4488,
-        0 0 2vw #1e4488, 0 0 0.1vw #1e4488, 0.3vw 0.3vw 0.1vw #40340a;
-      color: #806914;
+      box-shadow: 0 0 0vw #1e4488, 0 0 0vw #1e4488, 0 0 0vw #1e4488,
+        0 0 1vw #1e4488, 0 0 0.1vw #1e4488, 0.1vw 0.1vw 0.1vw #40340a;
     }
   }
 
-  animation: neon 1s ease infinite;
-  -moz-animation: neon 1s ease infinite;
-  -webkit-animation: neon 1s ease infinite;
+  animation: neon 1.5s ease infinite;
+  -moz-animation: neon 1.5s ease infinite;
+  -webkit-animation: neon 1.5s ease infinite;
 
   display: flex;
   align-items: center;

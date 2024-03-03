@@ -21,6 +21,7 @@ import {
 import { useRouter } from 'next/router';
 import { toastStateAtom } from 'atoms';
 import { useRecoilState } from 'recoil';
+import withAuth from '@/hoc/withAuth';
 
 const ReactPaginate = dynamic(() => import('react-paginate'), {
   ssr: false,
@@ -78,19 +79,6 @@ const SelectSB = () => {
       data: reorderedItems,
     });
   };
-
-  // 로그인 여부 확인
-  useEffect(() => {
-    if (localStorage.getItem('sb-pickvaiiskvmynzynbcg-auth-token') === null) {
-      router.push('/auth/sign-in');
-      setToastState({
-        isOpen: true,
-        value: '로그인 후 이용해 주세요.',
-      });
-
-      return;
-    }
-  }, []);
 
   // 프로그램 검색
   useEffect(() => {
@@ -445,7 +433,7 @@ const SelectSB = () => {
   );
 };
 
-export default SelectSB;
+export default withAuth(SelectSB);
 
 const Container = styled.div`
   position: relative;
