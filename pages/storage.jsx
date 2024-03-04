@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 const URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/videos/`;
 const Storage = () => {
-  // data
   const [data, setData] = useState(null);
 
   const getItems = async () => {
