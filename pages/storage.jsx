@@ -25,9 +25,27 @@ const Storage = () => {
     }
   }, []);
 
+  const onChangeInputFile = async event => {
+    console.log(event.target.files[0]);
+
+    const { data, error } = await supabase.storage
+      .from('videos')
+      .upload(`/${event.target.files[0].name}`, event.target.files[0], {
+        cacheControl: '3600',
+        upsert: false,
+      });
+  };
+
   return (
     <div>
-      {data &&
+      <input
+        type="file"
+        onChange={e => {
+          onChangeInputFile(e);
+        }}
+      />
+
+      {/* {data &&
         data?.map(x => {
           return (
             <div key={x.id}>
@@ -44,7 +62,7 @@ const Storage = () => {
               ></video>
             </div>
           );
-        })}
+        })} */}
     </div>
   );
 };
