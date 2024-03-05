@@ -149,6 +149,7 @@ const BusinessInfoFrame = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
+  padding-right: 6rem;
 
   display: flex;
   flex-direction: column;
