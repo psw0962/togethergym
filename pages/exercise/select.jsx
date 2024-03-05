@@ -14,7 +14,7 @@ import { db } from 'utils/firebase';
 import { DragDropContext, Draggable } from 'react-beautiful-dnd';
 import { StrictModeDroppable } from '@/component/common/strict-mode-droppable';
 import dynamic from 'node_modules/next/dynamic';
-import { SEARCHKEYWORDEXAMPLE } from '@/constant/select-keyword';
+import { PROGRAM_CATEGORY } from '@/constant/program-category';
 
 const ReactPaginate = dynamic(() => import('react-paginate'), {
   ssr: false,
@@ -274,10 +274,10 @@ const Select = () => {
             </div>
           </SearchInputWrapper>
 
-          <SearchKeyWordExampleWrapper>
+          <ProgramCategoryWrapper>
             <Font fontSize="1.4rem">검색 키워드 :</Font>
 
-            {SEARCHKEYWORDEXAMPLE?.map((x, index) => {
+            {PROGRAM_CATEGORY?.map((x, index) => {
               return (
                 <React.Fragment key={index}>
                   <Font
@@ -296,7 +296,7 @@ const Select = () => {
                 </React.Fragment>
               );
             })}
-          </SearchKeyWordExampleWrapper>
+          </ProgramCategoryWrapper>
 
           {currentItems?.length === 0 && (
             <Font fontSize="1.6rem">검색 결과가 없습니다</Font>
@@ -541,7 +541,7 @@ const SelectedBox = styled.div`
   border-radius: 10px;
 `;
 
-const SearchKeyWordExampleWrapper = styled.div`
+const ProgramCategoryWrapper = styled.div`
   display: flex;
   gap: 1rem;
   margin: 2rem 0 4rem 0;

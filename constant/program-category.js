@@ -1,4 +1,5 @@
-export const SEARCHKEYWORDEXAMPLE = [
+export const PROGRAM_CATEGORY = [
+  '미분류',
   '맨몸운동',
   '덤벨',
   '스텝박스',
