@@ -38,15 +38,22 @@ const ProgramSB = () => {
 
   const { data: flagData, isLoading: flagDataIsLoading } = useGetFlagData();
 
-  // 새로고침 및 최초 진입 시 프로그램 셋팅
+  // 최초 진입 시 셋팅 (localstorage flag)
+  useEffect(() => {
+    if (flagData && flagData[0]?.play_program === false) {
+      handleTimerFlagSB(flagData[0]?.timer_method, setFlag);
+    }
+  }, [flagData]);
+
+  // 최초 진입 시 셋팅
   useEffect(() => {
     if (sessionStorage.getItem('section')) {
       setSection(sessionStorage.getItem('section'));
     }
 
-    if (flagData && flagData[0]?.play_program === false) {
-      handleTimerFlagSB(flagData[0]?.timer_method, setFlag);
-    }
+    // if (flagData && flagData[0]?.play_program === false) {
+    //   handleTimerFlagSB(flagData[0]?.timer_method, setFlag);
+    // }
 
     setElement(true);
   }, []);

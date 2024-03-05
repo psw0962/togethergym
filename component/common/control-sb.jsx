@@ -21,6 +21,14 @@ const ControlComponentSB = () => {
   const { data, isLoading, refetch } = useGetFlagData();
   const { mutate } = usePatchFlagData(setToastState, router);
 
+  // 최초 진입 시 셋팅
+  useEffect(() => {
+    if (data && data[0]?.play_program === false) {
+      handleTimerFlagSB(data[0]?.timer_method, setFlag);
+    }
+  }, [data]);
+
+  // 로그아웃 처리
   useEffect(() => {
     const subscription = supabase
       .channel('custom-all-channel')
