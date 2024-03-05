@@ -94,6 +94,7 @@ export default SignIn;
 const Frame = styled.div`
   height: 80vh;
   position: relative;
+  padding: 0 3rem;
 `;
 
 const SignInFrame = styled.div`
@@ -103,15 +104,16 @@ const SignInFrame = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 50%;
+  max-width: 80rem;
   margin: 0 auto;
   margin-top: 10rem;
-  padding: 6rem;
+  padding: 6rem 6rem;
   border: 1px solid #c6c6c6;
   border-radius: 10px;
 `;
 
 const FormWrapper = styled.form`
+  width: 100%;
   display: flex;
   gap: 2rem;
   flex-direction: column;
@@ -119,7 +121,7 @@ const FormWrapper = styled.form`
 `;
 
 const StyledInput = styled.input`
-  width: 40rem;
+  width: 100%;
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 5px;
