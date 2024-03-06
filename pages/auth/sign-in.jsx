@@ -38,8 +38,9 @@ const SignIn = () => {
         <FormWrapper>
           <StyledInput
             type="text"
+            name="email"
             value={email || ''}
-            placeholder="아이디"
+            placeholder="이메일"
             onChange={e => setEmail(e.target.value)}
           />
 
