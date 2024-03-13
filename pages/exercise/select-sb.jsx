@@ -329,7 +329,7 @@ const SelectSB = () => {
             <Line margin="40px 0" width="100%" />
 
             {/* 선택한 프로그램 */}
-            <Font fontSize="4.5rem" fontWeight={500} margin="0 0 2rem 0">
+            <Font fontSize="4.5rem" fontWeight={500} margin="6rem 0 2rem 0">
               선택한 프로그램
             </Font>
 

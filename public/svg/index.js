@@ -11,6 +11,7 @@ import search from './search.svg';
 import up from './up.svg';
 import close from './close.svg';
 import check from './check.svg';
+import upload from './upload.svg';
 
 export {
   center,
@@ -26,4 +27,5 @@ export {
   up,
   close,
   check,
+  upload,
 };
