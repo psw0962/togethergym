@@ -13,7 +13,7 @@ const patchUploadVideosData = async patchData => {
     error: getUserError,
   } = await supabase.auth.getUser();
 
-  if ((user.email === 'togethergym1@togethergym.com') === false)
+  if ((user.email === 'admin@togethergym.com') === false)
     return alert('권한이 없습니다. 관리자에게 문의해 주세요.');
 
   for (let i = 0; i < patchData.event.target.files.length; i++) {
@@ -125,7 +125,7 @@ const patchVideosData = async patchData => {
     error: getUserError,
   } = await supabase.auth.getUser();
 
-  if ((user.email === 'togethergym1@togethergym.com') === false)
+  if ((user.email === 'admin@togethergym.com') === false)
     return alert('권한이 없습니다. 관리자에게 문의해 주세요.');
 
   const { error: patchVideosError } = await supabase
@@ -168,7 +168,7 @@ const deleteVideosData = async patchData => {
     error: getUserError,
   } = await supabase.auth.getUser();
 
-  if ((user.email === 'togethergym1@togethergym.com') === false)
+  if ((user.email === 'admin@togethergym.com') === false)
     return alert('권한이 없습니다. 관리자에게 문의해 주세요.');
 
   const { error: tableError } = await supabase
