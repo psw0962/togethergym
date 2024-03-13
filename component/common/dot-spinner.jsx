@@ -1,12 +1,17 @@
 import styled from 'styled-components';
+import Font from './font';
 
-const DotSpinner = ({ width, height, dotColor }) => {
+const DotSpinner = ({ width, height, dotColor, children }) => {
   return (
     <SpinnerFrame>
       <Spinner width={width} height={height} dotColor={dotColor}>
         <div className="bounce1"></div>
         <div className="bounce2"></div>
         <div className="bounce3"></div>
+
+        <Font color="#000" fontSize="1.6rem" margin="2rem 0 0 0">
+          {children}
+        </Font>
       </Spinner>
     </SpinnerFrame>
   );

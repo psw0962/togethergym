@@ -17,6 +17,13 @@ const App = ({ Component, pageProps }) => {
   const loading = usePageLoading();
   const [queryClient] = useState(() => new QueryClient());
 
+  const isPathValid = () => {
+    return (
+      router?.pathname?.includes('/exercise') ||
+      router?.pathname?.includes('/control')
+    );
+  };
+
   return (
     <>
       <Head>
@@ -34,8 +41,19 @@ const App = ({ Component, pageProps }) => {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <RecoilRoot>
-            {router?.pathname?.includes('/exercise') === false &&
-            router?.pathname?.includes('/control') === false ? (
+            {isPathValid() ? (
+              <>
+                {loading ? (
+                  <DotSpinner />
+                ) : (
+                  <>
+                    <Component {...pageProps} />
+                    <Toast />
+                    <Analytics />
+                  </>
+                )}
+              </>
+            ) : (
               <>
                 {loading ? (
                   <DotSpinner />
@@ -46,18 +64,6 @@ const App = ({ Component, pageProps }) => {
                     <Toast />
                     <Analytics />
                   </Frame>
-                )}
-              </>
-            ) : (
-              <>
-                {loading ? (
-                  <DotSpinner />
-                ) : (
-                  <>
-                    <Component {...pageProps} />
-                    <Toast />
-                    <Analytics />
-                  </>
                 )}
               </>
             )}

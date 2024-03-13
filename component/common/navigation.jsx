@@ -98,6 +98,30 @@ const Navigation = () => {
           </ModalMenuWrapper>
         )}
 
+        {isLoggedIn && (
+          <ModalMenuWrapper
+            onClick={() => {
+              router.push('/videos');
+              setIsMenuOpen(false);
+              e => e.stopPropagation();
+            }}
+          >
+            {`운동 영상 관리`}
+          </ModalMenuWrapper>
+        )}
+
+        {isLoggedIn && (
+          <ModalMenuWrapper
+            onClick={() => {
+              router.push('/videos/upload');
+              setIsMenuOpen(false);
+              e => e.stopPropagation();
+            }}
+          >
+            {`운동 영상 업로드`}
+          </ModalMenuWrapper>
+        )}
+
         <ModalMenuWrapper
           onClick={() => {
             router.push('/exercise/index-sb');

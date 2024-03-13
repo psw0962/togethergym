@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 const CommonButton = styled.button`
   width: ${props => (props.width ? props.width : '100%')};
   height: ${props => (props.height ? props.height : '100%')};
+  padding: ${props => (props.padding ? props.padding : '0')};
+
   white-space: nowrap;
   display: flex;
   justify-content: center;
