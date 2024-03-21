@@ -7,6 +7,7 @@ import { upload } from '@/public/svg/index';
 import Image from 'next/image';
 import { usePatchUploadVideosData } from '@/api/videos';
 import DotSpinner from '@/component/common/dot-spinner';
+import withAuth from '@/hoc/withAuth';
 
 const Upload = () => {
   const router = useRouter();
@@ -58,7 +59,7 @@ const Upload = () => {
   );
 };
 
-export default Upload;
+export default withAuth(Upload);
 
 const Frame = styled.div`
   display: flex;

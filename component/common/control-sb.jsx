@@ -126,7 +126,7 @@ const ControlComponentSB = () => {
 export default ControlComponentSB;
 
 const Container = styled.div`
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   height: 100vh;
 `;
@@ -136,7 +136,7 @@ const Frame = styled.div`
   display: flex;
   gap: 5rem;
   flex-direction: column;
-  justify-content: center;
+  margin-top: 40rem;
 `;
 
 const SearchFlagContainer = styled.div`
@@ -144,7 +144,6 @@ const SearchFlagContainer = styled.div`
   display: flex;
   gap: 2rem;
   justify-content: center;
-  margin: 6rem 0 2rem 0;
 `;
 
 const SearchFlagWrapper = styled.div`
