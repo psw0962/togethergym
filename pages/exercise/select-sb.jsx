@@ -241,13 +241,12 @@ const SelectSB = () => {
           </SearchInputWrapper>
 
           <ProgramCategoryWrapper>
-            <Font fontSize="1.4rem">검색 키워드 :</Font>
-
             {PROGRAM_CATEGORY?.map((x, index) => {
               return (
                 <React.Fragment key={index}>
                   <Font
                     fontSize="1.4rem"
+                    whiteSpace="nowrap"
                     pointer={true}
                     textDecoration="underline"
                     onClick={() => {
@@ -487,7 +486,7 @@ const ContainerWrapper = styled.div`
 `;
 
 const ProgramContainer = styled.div`
-  width: 80%;
+  width: 100%;
   min-height: 40rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -503,7 +502,7 @@ const CardWrapper = styled.div`
 `;
 
 const SelectedBox = styled.div`
-  width: 80%;
+  width: 100%;
   padding: 4rem;
   border: 1px solid #000;
   border-radius: 10px;
@@ -513,6 +512,7 @@ const ProgramCategoryWrapper = styled.div`
   display: flex;
   gap: 1rem;
   margin: 2rem 0 4rem 0;
+  flex-wrap: wrap;
 `;
 
 const SelectedCheck = styled.div`

@@ -15,6 +15,7 @@ import {
 import DotSpinner from '@/component/common/dot-spinner';
 import Line from '@/component/common/line';
 import useDebounce from '@/hooks/useDebounce';
+import withAuth from '@/hoc/withAuth';
 
 const ReactPaginate = dynamic(() => import('react-paginate'), {
   ssr: false,
@@ -188,7 +189,7 @@ const Videos = () => {
   );
 };
 
-export default Videos;
+export default withAuth(Videos);
 
 const Frame = styled.div`
   display: flex;

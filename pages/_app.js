@@ -19,8 +19,9 @@ const App = ({ Component, pageProps }) => {
 
   const isPathValid = () => {
     return (
-      router?.pathname?.includes('/exercise') ||
-      router?.pathname?.includes('/control')
+      router?.pathname === '/exercise/program/index-sb'
+      // router?.pathname?.includes('/exercise') ||
+      // router?.pathname?.includes('/control')
     );
   };
 

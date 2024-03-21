@@ -90,7 +90,7 @@ const SelectedBox = styled.div`
   margin: 0 auto;
   gap: 2rem;
 
-  width: 80%;
+  width: 100%;
   padding: 4rem;
   border: 1px solid #000;
   border-radius: 20px;
