@@ -51,10 +51,6 @@ const ProgramSB = () => {
       setSection(sessionStorage.getItem('section'));
     }
 
-    // if (flagData && flagData[0]?.play_program === false) {
-    //   handleTimerFlagSB(flagData[0]?.timer_method, setFlag);
-    // }
-
     setElement(true);
   }, []);
 
@@ -347,7 +343,7 @@ const ExerciseVideoWrapper = styled.div`
 `;
 
 const RowVideoWrapper = styled.div`
-  @keyframes neon {
+  /* @keyframes neon {
     0%,
     100% {
       box-shadow: 0 0 0.3vw #1e4488, 0 0 2vw #1e4488, 0 0 5vw #272424,
@@ -361,7 +357,7 @@ const RowVideoWrapper = styled.div`
 
   animation: neon 1.5s ease infinite;
   -moz-animation: neon 1.5s ease infinite;
-  -webkit-animation: neon 1.5s ease infinite;
+  -webkit-animation: neon 1.5s ease infinite; */
 
   display: flex;
   align-items: center;
@@ -369,7 +365,7 @@ const RowVideoWrapper = styled.div`
 
   width: 650px;
   height: 350px;
-  border: 4px solid #1e4488;
+  /* border: 4px solid #1e4488; */
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -383,7 +379,7 @@ const RowVideoWrapper = styled.div`
 `;
 
 const ColumnVideoWrapper = styled.div`
-  @keyframes neon {
+  /* @keyframes neon {
     0%,
     100% {
       box-shadow: 0 0 0.3vw #1e4488, 0 0 2vw #1e4488, 0 0 5vw #272424,
@@ -397,7 +393,7 @@ const ColumnVideoWrapper = styled.div`
 
   animation: neon 1.5s ease infinite;
   -moz-animation: neon 1.5s ease infinite;
-  -webkit-animation: neon 1.5s ease infinite;
+  -webkit-animation: neon 1.5s ease infinite; */
 
   display: flex;
   align-items: center;
@@ -405,7 +401,7 @@ const ColumnVideoWrapper = styled.div`
 
   width: 420px;
   height: 750px;
-  border: 4px solid #1e4488;
+  /* border: 4px solid #1e4488; */
   border-radius: 20px;
   overflow: hidden;
   position: relative;
