@@ -86,8 +86,8 @@ const Frame = styled.div`
 
 const SelectedBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
   gap: 2rem;
 
   width: 100%;
@@ -95,12 +95,8 @@ const SelectedBox = styled.div`
   border: 1px solid #000;
   border-radius: 20px;
 
-  @media screen and (max-width: 1580px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   @media screen and (max-width: 450px) {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
 
